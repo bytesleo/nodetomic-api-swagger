@@ -2,53 +2,55 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import config from '../config';
 import fs from 'fs';
 
-export default(app) => {
+export default (app) => {
 
-  if (config.swagger.enabled) {
-
-    fs.readdirSync(`${config.base}/api`).forEach(version => {
-
-      let options = {
-        // import swaggerDefinitions
-        swaggerDefinition: {
-          info: {
-            version : version,
-            title : config.swagger.title,
-            description : config.swagger.description,
-            contact : config.swagger.contact,
-            license : config.swagger.license,
-          },
-          // basePath: `/api/${version}`,
-          basePath: `/`,
-          schemes: [
-            'http', 'https'
-          ],
-          securityDefinitions: {
-            Bearer: {
-              type: 'apiKey',
-              name: 'Authorization', in: 'header'
-            },
-            "iss_a": {
-              "type": "oauth2",
-              "authorizationUrl": `/auth/github`,
-              "flow": "authorization_code",
-              // "tokenUrl": "https://xxxxxxxxxxxx.xxx.co...",
-            }
-          }
+  let options = {
+    swaggerDefinition: {
+      swagger: "2.0",
+      info: {
+        version: 'v1.0',
+        title: config.swagger.title,
+        description: config.swagger.description,
+        contact: config.swagger.contact,
+        license: config.swagger.license,
+      },
+      basePath: `/`,
+      schemes: [
+        'http', 'https'
+      ],
+      securityDefinitions: {
+        Bearer: {
+          type: 'apiKey',
+          name: 'Authorization',
+          in : 'header',
+          description: 'The following syntax must be used in the "Authorization" header  Bearer xxxxxx.yyyyyyy.zzzzzz'
         },
-        // path to the API docs
-        apis:  [`${config.base}/api/${version}/**/*.yaml`,`${config.base}/lib/**/*.yaml`]
-      };
+        // "iss_a": {
+        //   "type": "oauth2",
+        //   "authorizationUrl": `/auth/github`,
+        //   "flow": "authorization_code",
+        //   "tokenUrl": "https://xxxxxxxxxxxx.xxx.co...",
+        // }
+      }
+    },
+    consumes: ['application/json'],
+    produces: ['application/json'],
+    // path to the API docs
+    // apis: [`${config.base}/api/${version}/**/*.yaml`,
+    //   `${config.base}/lib/**/*.yaml`
+    // ]
+    apis: [`${config.base}/api/swagger/**/*.yaml`,
+      //`${config.base}/lib/**/*.yaml`
+    ]
+  };
 
-      let swaggerSpec = swaggerJSDoc(options);
+  let swaggerSpec = swaggerJSDoc(options);
 
-      app.get(`/${version}/swagger.json`, function(req, res) {
-        res.json(swaggerSpec);
-      });
+  if (config.swagger.enabled)
+    app.get(`/swagger.json`, (req, res) => res.json(swaggerSpec));
 
-    });
+  return swaggerSpec;
 
-  }
 
   // If you want use Swagger into .js = ${config.base}/**/*.js
 
