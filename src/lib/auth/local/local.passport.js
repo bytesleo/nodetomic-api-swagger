@@ -9,6 +9,8 @@ export function setup(User, config) {
     passReqToCallback: true
   }, function(req, username, password, done) {
 
+    console.log('12222');
+
     User.findOne({username: username, provider: 'local'}).exec().then(user => {
 
       if (!user)
