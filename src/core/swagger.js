@@ -39,8 +39,9 @@ export default (app) => {
     // apis: [`${config.base}/api/${version}/**/*.yaml`,
     //   `${config.base}/lib/**/*.yaml`
     // ]
-    apis: [`${config.base}/api/swagger/**/*.yaml`,
-      //`${config.base}/lib/**/*.yaml`
+    apis: [
+      `${config.base}/auth/**/*.yaml`,
+      `${config.base}/api/swagger/**/*.yaml`
     ]
   };
 

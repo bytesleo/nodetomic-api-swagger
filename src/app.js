@@ -27,13 +27,13 @@ swaggerTools.initializeMiddleware(swaggerConfig, (middleware) => {
   }));
 
   let routerConfig = {
-    controllers: [config.base + '/api/controllers'],
-    // controllers: [config.base + '/api/controllers',config.base + '/lib/auth'],
+    // controllers: [config.base + '/api/controllers'],
+    controllers: [config.base + '/api/controllers',config.base + '/auth/controllers'],
     useStubs: false
   };
 
   app.use(middleware.swaggerRouter(routerConfig));
-  // router.use(middleware.swaggerUi());
+  // app.use(middleware.swaggerUi());  /docs
 
   // Paths
   require('./core/path').default(app);

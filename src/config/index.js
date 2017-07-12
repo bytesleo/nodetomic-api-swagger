@@ -107,8 +107,8 @@ export default {
     },
     github: {
       enabled: false,
-      clientID: '',
-      clientSecret: '',
+      clientID: '52be92c9a41f77a959eb',
+      clientSecret: '76c9bb03c689d098506822fa80dba372a1fe29c8',
       callbackURL: '/auth/github/callback'
     },
     bitbucket: {
