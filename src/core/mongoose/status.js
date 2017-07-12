@@ -4,7 +4,7 @@ export default(db, config) => {
 
   // When successfully connected
   db.on('connected', (err) => {
-    console.log(chalk.greenBright(`----------\nMongoDB-> connected on ${config.database.mongo.db.uri}\n----------`));
+    console.log(chalk.greenBright(`-------\nMongoDB-> connected on ${config.database.mongo.db.uri}\n-------`));
   });
 
   db.once('open', () => {
