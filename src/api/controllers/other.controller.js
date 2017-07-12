@@ -29,7 +29,7 @@ export function upload(req, res) {
         if (err)
           throw err;
 
-        res.json({
+        res.status(201).json({
           message: 'File uploaded!',
           path
         });
