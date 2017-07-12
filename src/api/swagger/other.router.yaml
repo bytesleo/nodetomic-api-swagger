@@ -30,7 +30,7 @@
         type: file
         description: The file to upload.
     responses:
-      200:
+      201:
         description: Success
       500:
         description: Error
