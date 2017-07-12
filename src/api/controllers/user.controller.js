@@ -18,7 +18,7 @@ export function create(req, res) {
 
 export function read(req, res) {
 
-  return User.findById(req.params.id, {
+  return User.findById(req.swagger.params.id.value, {
       password: 0,
       social: 0
     }).exec()
@@ -29,7 +29,7 @@ export function read(req, res) {
 
 export function update(req, res) {
 
-  return Hello.findById(req.user._id).exec()
+  return User.findById(req.user._id).exec()
     .then(notFound(res))
     .then(patch(req.body))
     .then(result(res))

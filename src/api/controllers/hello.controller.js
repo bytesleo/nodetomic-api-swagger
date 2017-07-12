@@ -18,8 +18,6 @@ export function list(req, res) {
 
 export function read(req, res) {
 
-  console.log('->',req.swagger.params.id.value);
-
   return Hello.findById(req.swagger.params.id.value).exec()
     .then(notFound(res))
     .then(result(res))

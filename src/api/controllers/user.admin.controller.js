@@ -20,9 +20,9 @@ export function list(req, res) {
 
 export function update(req, res) {
 
-  return User.findById(req.params.id).exec()
+  return User.findById(req.swagger.params.id.value).exec()
     .then(notFound(res))
-    .then(path(req.body))
+    .then(patch(req.body))
     .then(result(res))
     .then(error(res))
 
@@ -31,7 +31,7 @@ export function update(req, res) {
 export function destroy(req, res) {
 
   return User.deleteOne({
-      _id: req.params.id
+      _id: req.swagger.params.id.value
     }).exe()
     .then(result(res))
     .then(error(res))
