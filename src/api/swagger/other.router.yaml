@@ -1,0 +1,63 @@
+# email
+/api/other/email:
+  x-swagger-router-controller: other.controller
+  get:
+    operationId: email
+    tags:
+      - Examples
+    summary: Send a email
+    description: Send a email
+    responses:
+      200:
+        description: Success
+      500:
+        description: Error
+
+# create
+/api/other/upload:
+  x-swagger-router-controller: other.controller
+  post:
+    operationId: upload
+    tags:
+      - Examples
+    summary: Upload a file
+    description: Upload a file
+    consumes:
+       - multipart/form-data
+    parameters:
+      - in: formData
+        name: exampleFile
+        type: file
+        description: The file to upload.
+    responses:
+      200:
+        description: Success
+      500:
+        description: Error
+# preview
+/api/other/preview/{folder}/{name}:
+  x-swagger-router-controller: other.controller
+  get:
+    operationId: preview
+    tags:
+      - Examples
+    summary: Preview template
+    description: Preview template
+    produces:
+      - text/html
+    parameters:
+      - name: folder
+        description: Example = templates
+        in: path
+        required: true
+        type: string
+      - name: name
+        description: Example = hi.html
+        in: path
+        required: true
+        type: string
+    responses:
+      200:
+        description: Success
+      500:
+        description: Error

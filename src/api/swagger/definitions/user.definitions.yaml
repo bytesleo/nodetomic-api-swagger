@@ -1,0 +1,34 @@
+definitions:
+  User:
+    properties:
+      username:
+        type: "string"
+      password:
+        type: "string"
+      email:
+        type: "string"
+      name:
+        type: "string"
+      lastname:
+        type: "string"
+      photo:
+        type: "string"
+      provider:
+        type: "string"
+      roles:
+        type: "array"
+        items:
+          type: "string"
+      status:
+        type: "number"
+      date:
+        type: "string"
+      last_login:
+        type: "string"
+      social:
+        type: "object"
+  Error:
+    type: object
+    properties:
+      message:
+        type: string
