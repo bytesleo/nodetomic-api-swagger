@@ -1,0 +1,28 @@
+/api/auth/local:
+  # Passport
+  post:
+    x-swagger-router-controller: local.controller
+    tags:
+      - Login
+    summary: Login
+    description: Login user
+    operationId: index
+    parameters:
+      - name: username
+        in: query
+        description: Username...
+        required: true
+        type: string
+      - name: password
+        in: query
+        description: Password...
+        required: true
+        type: string
+        format: password
+    responses:
+      200:
+        description: Success
+      400:
+        description: Login Invalid
+      500:
+        description: Error
