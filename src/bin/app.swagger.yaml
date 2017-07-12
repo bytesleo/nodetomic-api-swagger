@@ -1,0 +1,23 @@
+definitions:
+  Authentication:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  Resource:
+    type: object
+    properties:
+      resource:
+        type: string
+  Token:
+    type: object
+    properties:
+      token:
+        type: string
+  Error:
+    type: object
+    properties:
+      message:
+        type: string
