@@ -28,7 +28,7 @@ export default {
     }
   ],
   router : {
-    ignore: ['example'] //Ignore Routers in /api/example
+    ignore: ['example','controllers','swagger'] //Ignore Routers in /api/example
   },
   path : { // paths 404
     disabled: '/:url(api|assets|lib|bower_components)/*'
@@ -42,10 +42,10 @@ export default {
         },
         seeds: [
           {
-            path: '/api/v1/user/user.seed',
+            path: '/api/models/seeds/user.seed',
             plant: 'once' //once - alway - never
           }, {
-            path: '/api/v1.x/hello/hello.seed',
+            path: '/api/models/seeds/hello.seed',
             plant: 'once' //once - alway - never
           }
         ]
