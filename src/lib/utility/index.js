@@ -3,6 +3,12 @@ import Hogan from 'hogan.js';
 const Promise = require('bluebird');
 const fs = Promise.promisifyAll(require('fs'));
 import config from '../../config';
+//Setup email
+import * as nodemailer from 'nodemailer';
+import smtpTransport from 'nodemailer-smtp-transport';
+// create reusable transporter object using the default SMTP transport
+const transporter = nodemailer.createTransport({service: 'gmail', auth: config.email.auth});
+// const transporter = nodemailer.createTransport(smtpTransport(config.email));
 
 // Encrypt
 export function encrypt(text) {
@@ -30,27 +36,47 @@ export function makeid(length) {
 
 }
 
-// Calculate time rol
-export function getTimeRol(roles) {
+// hasRole
+export function hasRole(rolesRequired, rolesUser) {
+  let isAuthorized = false;
+  rolesRequired.forEach(rolReq => {
+    if (rolesUser.includes(rolReq))
+      isAuthorized = true;
+    return;
+  });
+  return isAuthorized;
+}
 
+
+// Calculate time rol
+export function calculateTTL(roles) {
   try {
     if (roles.length > 0) {
-      let time = 0;
+      let array = [];
+      let isInfinite = false;
       roles.forEach(rol => {
         config.roles.forEach(item => {
           if (rol === item.rol) {
-            time += item.time;
+            if (item.time === 'infinite') {
+              isInfinite = true;
+              return;
+            } else if (item.time){
+              array.push(item.time);
+            }
           }
         });
       });
-      return time * 60;
+      if (isInfinite) {
+        return null;
+      } else {
+        return parseInt(Math.max.apply(Math, array)) * 60;
+      }
     } else {
-      return false;
+      return null;
     }
   } catch (err) {
-    return false;
+    return null;
   }
-
 }
 
 // Get Template
@@ -70,4 +96,10 @@ export function setTemplate(template, values) {
   let HoganTemplate = Hogan.compile(template);
   return HoganTemplate.render(values);
 
+}
+
+// Send Email
+
+export function sendEmail(message) {
+  return Promise.resolve(transporter.sendMail(message), transporter.close());
 }
