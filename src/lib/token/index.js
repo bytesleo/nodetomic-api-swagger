@@ -1,27 +1,32 @@
-import * as Jwt from 'jwt-simple';
-import Promise from 'bluebird';
-import * as utility from '../utility';
+// sign with default (HMAC SHA256)
+import jwt from 'jsonwebtoken';
 import config from '../../config';
 
 // Create Token
-export function create(id) {
+export async function create(user, verify) {
 
-  let verify = utility.makeid(11);
-  let key = `${id.toString()}:${verify}`;
-
-  let value = Jwt.encode({
-    _id: id,
-    _verify: verify
-  }, config.secret);
-
-  return Promise.resolve({key, value});
+  let token = null;
+  try {
+    token = jwt.sign({
+      _id: user._id,
+      _verify: verify
+    }, config.secret);
+  } catch (err) {
+    throw 'Error creating token';
+  }
+  return token;
 
 }
 
-// Extract Token
-export function extract(token) {
+// verify Token
+export async function verify(token) {
 
-  let decoded = Jwt.decode(token, config.secret, true);
-  return Promise.resolve({id: decoded._id, key: `${decoded._id}:${decoded._verify}`});
+  let isMatch = null;
+  try {
+    isMatch = jwt.verify(token, config.secret);
+  } catch (err) {
+    isMatch = false;
+  }
+  return isMatch;
 
 }
