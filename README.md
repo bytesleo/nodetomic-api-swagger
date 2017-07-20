@@ -1,4 +1,4 @@
-# Nodetomic-api [![NPM version](https://badge.fury.io/js/nodetomic-api.svg)](https://npmjs.org/package/nodetomic-api) [![Build Status](https://travis-ci.org/kevoj/nodetomic-api.svg?branch=master)](https://travis-ci.org/kevoj/nodetomic-api) [![dependencies Status](https://david-dm.org/kevoj/nodetomic-api/status.svg)](https://david-dm.org/kevoj/nodetomic-api) [![devDependencies Status](https://david-dm.org/kevoj/nodetomic-api/dev-status.svg)](https://david-dm.org/kevoj/nodetomic-api?type=dev) [![Gitter chat](https://img.shields.io/gitter/room/kevoj/scaling-fullstack.svg)](https://gitter.im/scaling-fullstack/Lobby) [![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://raw.githubusercontent.com/kevoj/nodetomic-api/master/LICENSE) [![Downloads](https://img.shields.io/npm/dt/nodetomic-api.svg?style=flat-square)](https://npmjs.org/package/nodetomic-api)
+# Nodetomic-api-swagger [![NPM version](https://badge.fury.io/js/nodetomic-api-swagger.svg)](https://npmjs.org/package/nodetomic-api-swagger) [![Build Status](https://travis-ci.org/kevoj/nodetomic-api-swagger.svg?branch=master)](https://travis-ci.org/kevoj/nodetomic-api-swagger) [![dependencies Status](https://david-dm.org/kevoj/nodetomic-api-swagger/status.svg)](https://david-dm.org/kevoj/nodetomic-api-swagger) [![devDependencies Status](https://david-dm.org/kevoj/nodetomic-api-swagger/dev-status.svg)](https://david-dm.org/kevoj/nodetomic-api-swagger?type=dev) [![Gitter chat](https://img.shields.io/gitter/room/kevoj/scaling-fullstack.svg)](https://gitter.im/scaling-fullstack/Lobby) [![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://raw.githubusercontent.com/kevoj/nodetomic-api-swagger/master/LICENSE) [![Downloads](https://img.shields.io/npm/dt/nodetomic-api-swagger.svg?style=flat-square)](https://npmjs.org/package/nodetomic-api-swagger)
 
 > Simple RESTful server designed for horizontal scalability, based on [MERN] MongoDb, Express, Redis, NodeJS.
 
@@ -25,7 +25,7 @@
 <a><img src="https://avatars3.githubusercontent.com/u/2824157?v=3&s=400" width="60"></a>
 <a><img src="https://i2.wp.com/community.nodemailer.com/wp-content/uploads/2015/10/n2-2.png?fit=422%2C360&ssl=1" width="60"></a>
 <a><img src="https://avatars2.githubusercontent.com/u/7658037?v=3&s=400" width="60"></a>
-<a><img src="https://cdn.travis-ci.org/images/logos/TravisCI-Mascot-1-20feeadb48fc2492ba741d89cb5a5c8a.png" width="60"></a>
+<a><img src="https://cdn.xebialabs.com/assets/files/plugins/travis-ci.jpg" width="60"></a>
 
 
 ## Requirements
@@ -37,8 +37,8 @@
 ## Installation
 
 ```bash
-git clone https://github.com/kevoj/nodetomic-api
-cd nodetomic-api
+git clone https://github.com/kevoj/nodetomic-api-swagger
+cd nodetomic-api-swagger
 npm i
 ```
 ## Start [Development]
@@ -59,7 +59,7 @@ npm i
 
 You must be aware of running **npm start**
 
-## Eslint
+## Lint
 
 `npm lint`
 
@@ -71,4 +71,4 @@ You must be aware of running **npm start**
 
 ## License
 
-MIT © [Leonardo Rico](https://github.com/kevoj/nodetomic-api/blob/master/LICENSE)
+MIT © [Leonardo Rico](https://github.com/kevoj/nodetomic-api-swagger/blob/master/LICENSE)
