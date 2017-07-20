@@ -7,7 +7,8 @@ export default(connection, config) => {
       console.log(err);
     } else {
       config.database.mongo.db.seeds.forEach(seed => {
-        let model = seed.path.split('/').reverse()[0].match(/\S+(?=.seed)/g)[0] + 's';
+        // let model = seed.path.split('/').reverse()[0].match(/\S+(?=.seed)/g)[0] + 's'; //format model.seed.js
+        let model = seed.path.split('/').reverse()[0] + 's'; //format model.js
         switch (seed.plant) {
           case 'once':
             connection.db.collection(model).count((err, count) => {
@@ -33,5 +34,4 @@ export default(connection, config) => {
       });
     }
   });
-
 }
