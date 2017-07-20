@@ -1,7 +1,0 @@
-definitions:
-  Hello:
-    properties:
-      greet:
-        type: "string"
-      language:
-        type: "string"
