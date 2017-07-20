@@ -21,15 +21,15 @@
             <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
               <div class="typo-styles__demo mdl-typography--display-3">
                 <div class="logo">
-                  <img src="logo.png" />
+                  <img src="logo.svg" />
                 </div>
                 {{project}}
               </div>
               <div class="docs">
-                <a href="/api-docs" target="_blank">Docs Here!</a>
+                <a href="/api-docs">Docs Here!</a>
               </div>
               <div class="footer">
-                Nodetomic API <span>{{version}}</span> by
+                nodetomic-api-swagger <span>{{version}}</span> by
                 <a href="https://github.com/kevoj" target="_blank">kevoj</a>
               </div>
             </div>
@@ -43,11 +43,12 @@
     html,
     body {
       font-family: 'Open Sans', sans-serif;
-      background: #efefef;
+      background: #272727;;
     }
 
     a {
       text-decoration: none;
+      color: #50bf94;
     }
 
     a:hover {
@@ -57,7 +58,7 @@
     .typo-styles__demo {
       margin-top: 20vh;
       text-align: center;
-      color: #555;
+      color: white;
     }
 
     .logo {
@@ -81,11 +82,11 @@
 
     .footer {
       text-align: center;
-      color: #555;
+      color: white;
     }
 
     .footer span {
-      color: rgb(255, 64, 129);
+      color: #50bf94;
       cursor: default;
     }
   </style>
