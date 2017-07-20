@@ -1,0 +1,14 @@
+/api/email/send:
+  x-swagger-router-controller: sendEmail
+# email
+  get:
+    operationId: index
+    tags:
+      - Examples
+    summary: Send a email
+    description: Send a email
+    responses:
+      200:
+        description: Success
+      500:
+        description: Error
