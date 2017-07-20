@@ -1,46 +1,105 @@
-import * as Redis from 'redis';
-import Promise from 'bluebird';
-import * as utility from '../utility';
+import Redis from 'redis-fast-driver';
 import config from '../../config';
 
-Promise.promisifyAll(Redis);
+const r = new Redis({
+  //host: '/tmp/redis.sock', //unix domain
+  host: '127.0.0.1', //can be IP or hostname
+  port: 6379,
+  maxretries: 10, //reconnect retries, default 10
+  //auth: '123', //optional password, if needed
+  //db: 5, //optional db selection
+});
 
-require('redis-delete-wildcard')(Redis);
+require('./status').default(r, config.redis.token.uri);
 
-const db = Redis.createClient({url: config.redis.token.uri});
+//Create
 
-require('./status').default(db, config.redis.token.uri);
+export async function create(key, data, ttl) {
 
-export function set(key, ttl, value) {
-
-  value.ttl = {
-    assigned: ttl,
-    created: value.ts || (new Date().getTime())
+  try {
+    if (!config.redis.token.multiple)
+      await destroyMultiple(key.split(':')[0]);
+    if (ttl) {
+      await r.rawCall(['SETEX', key, ttl, data]);
+    } else {
+      await r.rawCall(['SET', key, data]);
+    }
+  } catch (err) {
+    throw `Error 1 Redis ${err}`;
   }
-  let dataEncrypt = utility.encrypt(JSON.stringify(value));
-  return db.setexAsync(key, ttl, dataEncrypt);
+  return true;
+}
+
+//Get by id
+
+export function get(id) {
+
+  return new Promise((resolve, reject) => {
+    r.rawCall([
+      'get', id
+    ], (err, result) => {
+
+      if (result)
+        resolve(result);
+      resolve(null);
+    });
+  });
 
 }
 
-export function get(key) {
+//Get ttl
 
-  return db.getAsync(key);
+export function ttl(id) {
+
+  return new Promise((resolve, reject) => {
+    r.rawCall([
+      'ttl', id
+    ], (err, result) => {
+
+      if (result)
+        resolve(result);
+      resolve(null);
+    });
+  });
 
 }
 
-export function remove(key) {
+//Destroy by id
 
-  return db.delAsync(key);
+export function destroy(id) {
+
+  return new Promise((resolve, reject) => {
+    r.rawCall([
+      'DEL', id
+    ], (err, result) => {
+
+      if (result)
+        resolve(result);
+      resolve(null);
+    });
+  });
 
 }
 
-export function findAndRemoveById(key) {
+//Destroy multiple by pattern
 
-  let id = key.split(':')[0];
-  db.delwild(`${id}:*`, (err, res) => {
-    if(err)
-      console.log(err);
-    console.log('sessions deleted-> ', res);
+export function destroyMultiple(id) {
+
+  return new Promise((resolve, reject) => {
+    r.rawCall([
+      'KEYS', `${id}:*`
+    ], (err, keys) => {
+
+      keys.join();
+      keys.splice(0, 0, "DEL");
+
+      r.rawCall(keys, (err, result) => {
+        if (result)
+          resolve(result);
+        resolve(null);
+      })
+
+    });
   });
 
 }
