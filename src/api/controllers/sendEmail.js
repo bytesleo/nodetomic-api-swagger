@@ -1,4 +1,4 @@
-import api from 'express-easy-helper';
+import {result, error} from 'express-easy-helper';
 import * as utility from '../../lib/utility';
 const ExampleTemplate = utility.getTemplate('templates/example.html'); //Example with .html, .mustache, .js
 
@@ -20,6 +20,6 @@ export function index(req, res) {
   ExampleTemplate.then(template => {
     options.html = utility.setTemplate(template, values);
     //res.send(options.html); Uncomment to preview html
-    utility.sendEmail(options).then(api.ok(res)).catch(api.error(res));
+    utility.sendEmail(options).then(result(res)).catch(error(res));
   });
 }
