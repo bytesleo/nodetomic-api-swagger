@@ -1,7 +1,7 @@
 {
   "name": "nodetomic-api-swagger",
-  "version": "2.0.3",
-  "description": "Simple RESTful Swagger server designed for horizontal scalability, based on [MERN] MongoDb, Express, Redis, NodeJS.",
+  "version": "2.0.5",
+  "description": "Simple and fast Restful API designed for horizontal scalability including cluster, based on Swagger, Nodejs, Redis + Passport, MongoDB, Express",
   "main": "src/app.js",
   "repository": {
     "type": "git",
@@ -16,6 +16,21 @@
   },
   "author": "Leonardo Rico Guevara (https://github.com/kevoj)",
   "license": "MIT",
+  "keywords": [
+    "RESTful",
+    "swagger",
+    "nodejs",
+    "es6",
+    "api",
+    "rest",
+    "redis",
+    "passport",
+    "express",
+    "mongodb",
+    "cluster",
+    "horizontal",
+    "scalability"
+  ],
   "dependencies": {
     "bcrypt": "^1.0.2",
     "bluebird": "^3.5.0",
