@@ -1,7 +1,7 @@
 // development || production
 const mode = 'development';
 // Project Name:  mongodb://localhost:27017/{NAME}-{mode}
-const name = 'nodetomic-api';
+const name = 'your-app-name';
 import path from 'path';
 
 export default {
