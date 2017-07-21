@@ -2,7 +2,7 @@
 
 > Simple and fast Restful API designed for horizontal scalability including cluster, based on Swagger, Nodejs, Redis + Passport, MongoDB, Express
 
-<img src="https://applicationarchitecture.files.wordpress.com/2010/06/f0028-horizontal-scalability-typical-scenario.png" width="500">
+<img src="http://i.imgur.com/SDOQ8Oe.png" width="600" >
 
 #### Example horizontal scalability
 
