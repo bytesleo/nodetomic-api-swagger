@@ -12,7 +12,7 @@ const r = new Redis({
 
 require('./status').default(r, config.redis.token.uri);
 
-//Create
+//Create / update
 
 export async function create(key, data, ttl) {
 
@@ -29,6 +29,7 @@ export async function create(key, data, ttl) {
   }
   return true;
 }
+
 
 //Get by id
 
