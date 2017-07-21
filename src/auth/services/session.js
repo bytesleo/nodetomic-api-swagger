@@ -1,4 +1,4 @@
-import api from 'express-easy-helper';
+import {result, invalid, error} from 'express-easy-helper';
 import {create as jwt} from '../../lib/token';
 import {create as redis} from '../../lib/redis';
 import {makeid, calculateTTL, encrypt, decrypt} from '../../lib/utility';
@@ -7,9 +7,9 @@ export function initialize(err, user, res) {
 
   // Errors
   if (err)
-    return api.invalid(res, {message: err});
+    return invalid(res, {message: err});
   if (!user)
-    return api.error(res, {message: 'Something went wrong, please try again.'});
+    return error(res, {message: 'Something went wrong, please try again.'});
 
   // values to save
   let _user = {
@@ -30,13 +30,13 @@ export function initialize(err, user, res) {
   return create(_user).then(token => {
     switch (_user.provider) {
       case 'local':
-        api.ok(res, {token});
+        result(res, {token});
         break;
       default:
         res.cookie('token', JSON.stringify(token));
         res.redirect('/');
     }
-  }).catch(api.error(res));
+  }).catch(error(res));
 
 }
 
