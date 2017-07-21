@@ -5,8 +5,8 @@ import User from '../models/user';
 export function create(req, res) {
 
   return User.create(req.body)
-    .then(api.ok(res, 201))
-    .catch(api.error(res));
+    .then(result(res, 201))
+    .catch(error(res));
 
 }
 

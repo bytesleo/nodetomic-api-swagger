@@ -6,8 +6,8 @@ export function list(req, res) {
   return User.find({}, {
       social: 0
     }).exec()
-    .then(api.ok(res))
-    .catch(api.error(res));
+    .then(result(res))
+    .catch(error(res));
 
 }
 
