@@ -1,4 +1,4 @@
-import api from 'express-easy-helper';
+import {result, notFound, error} from 'express-easy-helper';
 import User from '../models/user';
 
 
@@ -15,19 +15,19 @@ export function read(req, res) {
   return User.findById(req.swagger.params.id.value, {
       social: 0
     }).exec()
-    .then(api.notFound(res))
-    .then(api.ok(res))
-    .catch(api.error(res));
+    .then(notFound(res))
+    .then(result(res))
+    .catch(error(res));
 
 }
 
 export function update(req, res) {
 
   return User.findById(req.user._id).exec()
-    .then(api.notFound(res))
+    .then(notFound(res))
     // .then(patch(req.body))
-    .then(api.ok(res))
-    .catch(api.error(res))
+    .then(result(res))
+    .catch(error(res))
 
 }
 
@@ -35,6 +35,6 @@ export function me(req, res) {
 
   let user = req.user;
   delete user.key;
-  return api.ok(res, user);
+  return result(res, user);
 
 }
