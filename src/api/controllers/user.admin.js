@@ -1,4 +1,4 @@
-import api from 'express-easy-helper';
+import {result, notFound, error} from 'express-easy-helper';
 import User from '../models/user';
 
 export function list(req, res) {
@@ -14,10 +14,10 @@ export function list(req, res) {
 export function update(req, res) {
 
   return User.findById(req.swagger.params.id.value).exec()
-    .then(api.notFound(res))
+    .then(notFound(res))
     // .then(patch(req.body))
-    .then(api.ok(res))
-    .then(api.error(res))
+    .then(result(res))
+    .then(error(res))
 
 }
 
@@ -26,8 +26,8 @@ export function destroy(req, res, next) {
   return User.deleteOne({
       _id: req.swagger.params.id.value
     })
-    .then(api.notFound(res))
-    .then(api.ok(res))
-    .then(api.error(res))
+    .then(notFound(res))
+    .then(result(res))
+    .then(error(res))
 
 }
