@@ -1,4 +1,4 @@
-import api from 'express-easy-helper';
+import {result, error} from 'express-easy-helper';
 import fs from 'fs';
 import config from '../../config';
 
@@ -16,7 +16,7 @@ export function index(req, res) {
         if (err)
           throw err;
 
-        api.ok(res, 201, {message: `file upload: ${path}`});
+        result(res, 201, {message: `file upload: ${path}`});
 
       });
 
@@ -24,7 +24,7 @@ export function index(req, res) {
       throw 'Not found files!';
     }
   } catch (err) {
-    api.error(res, err);
+    error(res, err);
   }
 
 }
