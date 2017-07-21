@@ -1,28 +1,27 @@
-import api from 'express-easy-helper';
+import {result, notFound, error} from 'express-easy-helper';
 import Hello from '../models/hello';
-
 
 export function list(req, res) {
 
   return Hello.find().exec()
-    .then(api.ok(res))
-    .catch(api.error(res));
+    .then(result(res))
+    .catch(error(res));
 }
 
 export function read(req, res) {
 
   return Hello.findById(req.swagger.params.id.value).exec()
-    .then(api.notFound(res))
-    .then(api.ok(res))
-    .catch(api.error(res));
+    .then(notFound(res))
+    .then(result(res))
+    .catch(error(res));
 
 }
 
 export function create(req, res) {
 
   return Hello.create(req.body)
-    .then(api.ok(res, 201))
-    .catch(api.error(res));
+    .then(result(res, 201))
+    .catch(error(res));
 
 }
 
@@ -37,9 +36,9 @@ export function update(req, res) {
       }, {
         new: true
       }).exec()
-    .then(api.notFound(res))
-    .then(api.ok(res))
-    .catch(api.error(res))
+    .then(notFound(res))
+    .then(result(res))
+    .catch(error(res))
 
 }
 
@@ -48,7 +47,7 @@ export function destroy(req, res) {
   return Hello.deleteOne({
       _id: req.swagger.params.id.value
     }).exec()
-    .then(api.ok(res))
-    .catch(api.error(res));
+    .then(result(res))
+    .catch(error(res));
 
 }
