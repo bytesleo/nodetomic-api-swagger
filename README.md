@@ -1,6 +1,8 @@
 # Nodetomic-api-swagger [![NPM version](https://badge.fury.io/js/nodetomic-api-swagger.svg)](https://npmjs.org/package/nodetomic-api-swagger) [![Build Status](https://travis-ci.org/kevoj/nodetomic-api-swagger.svg?branch=master)](https://travis-ci.org/kevoj/nodetomic-api-swagger) [![dependencies Status](https://david-dm.org/kevoj/nodetomic-api-swagger/status.svg)](https://david-dm.org/kevoj/nodetomic-api-swagger) [![devDependencies Status](https://david-dm.org/kevoj/nodetomic-api-swagger/dev-status.svg)](https://david-dm.org/kevoj/nodetomic-api-swagger?type=dev) [![Gitter chat](https://img.shields.io/gitter/room/kevoj/scaling-fullstack.svg)](https://gitter.im/scaling-fullstack/Lobby) [![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://raw.githubusercontent.com/kevoj/nodetomic-api-swagger/master/LICENSE) [![Downloads](https://img.shields.io/npm/dt/nodetomic-api-swagger.svg?style=flat-square)](https://npmjs.org/package/nodetomic-api-swagger)
 
-> Simple RESTful server designed for horizontal scalability, based on [MERN] MongoDb, Express, Redis, NodeJS.
+> Simple and fast Restful API designed for horizontal scalability including cluster, based on Swagger, Nodejs, Redis + Passport, MongoDB, Express
+
+<img src="https://applicationarchitecture.files.wordpress.com/2010/06/f0028-horizontal-scalability-typical-scenario.png" width="500">
 
 #### Example horizontal scalability
 
@@ -17,6 +19,7 @@
 <a><img src="https://avatars0.githubusercontent.com/u/8770005?v=3&s=400" width="60"></a>
 <a><img src="http://bluebirdjs.com/img/logo.png" width="60"></a>
 <a><img src="https://nodemon.io/nodemon.svg" width="60"></a>
+<a><img src="https://www.codejobs.biz/public/images/blog/original/fa2794cde49d5ab.jpg" width="60"></a>
 <a><img src="https://pbs.twimg.com/profile_images/599259952574693376/DMrPoJtc.png" width="60"></a>
 <a><img src="http://www.erikasland.com/static/images/mongoose.png" width="60"></a>
 <a><img src="https://nr-platform.s3.amazonaws.com/uploads/platform/published_extension/branding_icon/300/PKpktytKH9.png" width="60"></a>
