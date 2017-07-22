@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import {update} from '../../../auth/services/session';
 
 export default(User) => {
 
@@ -15,6 +16,7 @@ export default(User) => {
   User.pre('save', function(next) {
 
     let user = this;
+
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password'))
       return next();
@@ -44,5 +46,9 @@ export default(User) => {
       return next(err);
     }
   });
+
+  User.pre('findOneAndUpdate', function(next) {
+    update(this._conditions._id, this._update.$set).then(next()).catch(err => next(err));
+  })
 
 };
