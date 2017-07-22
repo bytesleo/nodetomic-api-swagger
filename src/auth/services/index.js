@@ -11,7 +11,7 @@ import config from '../../config';
 //   done(null, user);
 // });
 
-//Passport
+//Passport's
 
 if (config.oAuth.local.enabled) require('../passports/local');
 
