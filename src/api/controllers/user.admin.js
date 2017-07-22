@@ -13,11 +13,24 @@ export function list(req, res) {
 
 export function update(req, res) {
 
-  return User.findById(req.swagger.params.id.value).exec()
+  return User.findByIdAndUpdate(
+      req.swagger.params.id.value, {
+        $set: {
+          username: req.body.username,
+          name: req.body.name,
+          lastname: req.body.lastname,
+          email: req.body.email,
+          photo: req.body.photo,
+          provider: req.body.provider,
+          roles: req.body.roles,
+          status: req.body.status,
+        }
+      }, {
+        new: true
+      }).exec()
     .then(notFound(res))
-    // .then(patch(req.body))
     .then(result(res))
-    .then(error(res))
+    .catch(error(res))
 
 }
 
