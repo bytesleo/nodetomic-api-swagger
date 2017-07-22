@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 
-export default(r, uri) => {
+export default(r, conn) => {
 
   //happen only once
   r.on('ready', () => {
-    console.log(chalk.greenBright(`----------\nRedis-> connected on ${uri}\n----------`));
+    console.log(chalk.greenBright(`----------\nRedis-> connected on ${conn.host}:${conn.port}/${conn.db}\n----------`));
   });
 
   //happen each time when reconnected
