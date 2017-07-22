@@ -1,6 +1,7 @@
 import {unauthorized, forbidden} from 'express-easy-helper';
 import {verify} from '../../lib/token';
-import {get as redis, ttl} from '../../lib/redis';
+import {exits as rsExits, ttl as rsTtl} from '../../lib/redis/rs';
+import {get as ruGet} from '../../lib/redis/ru';
 import {decrypt, hasRole} from '../../lib/utility';
 
 // verifyToken
@@ -16,16 +17,22 @@ export async function verifyToken(req, authOrSecDef, token, cb) {
     let decode = await verify(token);
     if (!decode)
       return cb(forbidden(req.res));
+
     let key = `${decode._id}:${decode._verify}`;
-    //Extract info from redis
-    let _user = await redis(key);
+
+    // Verify if exits token in redis
+    if (!await rsExits(key))
+      return cb(unauthorized(req.res));
+
+    // Extract info user from redis
+    let _user = await ruGet(decode._id);
     if (!_user)
       return cb(unauthorized(req.res));
 
     //decrypt redis
     _user = await JSON.parse(decrypt(_user));
     //set TTL
-    _user.ttl = await ttl(key);
+    _user.ttl = await rsTtl(key);
     //set key
     _user.key = key;
     //Same ids
