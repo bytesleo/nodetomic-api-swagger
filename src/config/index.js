@@ -26,11 +26,23 @@ export default {
     }
   ],
   redis : {
-    token: {
-      // uri: redis://user:password@host:port/db-number?db=db-number&password=bar&option=value
-      uri: 'redis://127.0.0.1:6379/0',
-      // if you want multiples logins or only one device in same time
-      multiple: false
+    // if you want multiples logins or only one device in same time
+    multiple: true,
+    // Sessions
+    rs: {
+      //host: '/tmp/redis.sock', //unix domain
+      host: '127.0.0.1', //can be IP or hostname
+      port: 6379,
+      maxretries: 10, //reconnect retries, default 10
+      //auth: '123', //optional password, if needed
+      db: 0 //optional db selection
+    },
+    // Users
+    ru: {
+      host: '127.0.0.1',
+      port: 6379,
+      maxretries: 10,
+      db: 1
     }
   },
   database : {
