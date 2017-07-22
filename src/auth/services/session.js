@@ -1,6 +1,7 @@
 import {result, invalid, error} from 'express-easy-helper';
-import {create as jwt} from '../../lib/token';
-import {create as redis} from '../../lib/redis';
+import {create as jwtCreate} from '../../lib/token';
+import {create as rsCreate} from '../../lib/redis/rs';
+import {create as ruCreate, get as ruGet, update as ruSet} from '../../lib/redis/ru';
 import {makeid, calculateTTL, encrypt, decrypt} from '../../lib/utility';
 
 export function initialize(err, user, res) {
@@ -26,8 +27,13 @@ export function initialize(err, user, res) {
     lastLogin: user.lastLogin
   }
 
-  // Create
-  return create(_user).then(token => {
+  let _session = {
+    verify: makeid(11),
+    agent: res.req.headers['user-agent'],
+    ip: res.req.headers['x-forwarded-for'] || res.req.connection.remoteAddress
+  }
+
+  return create(_user, _session).then(token => {
     switch (_user.provider) {
       case 'local':
         result(res, {token});
@@ -40,15 +46,29 @@ export function initialize(err, user, res) {
 
 }
 
-async function create(user) {
-  // verify
-  let verify = await makeid(11);
+// Create session and user
+async function create(user, session) {
   // Jwt
-  let token = await jwt(user, verify);
+  let token = await jwtCreate(user, session.verify);
   // Redis
-  let key = `${user._id.toString()}:${verify}`;
-  let data = encrypt(JSON.stringify(user));
-  let ttl = calculateTTL(user.roles);
-  await redis(key, data, ttl);
+  let _key = `${user._id.toString()}:${session.verify}`;
+  let _user = encrypt(JSON.stringify(user));
+  let _session = JSON.stringify(session);
+  // calculate ttl
+  let _ttl = calculateTTL(user.roles);
+  // Create session
+  await rsCreate(_key, _session, _ttl);
+  // Create user
+  await ruCreate(_key, _user);
   return token;
+}
+
+// If the user model is updated it is synchronized with redis
+export async function update(id, userUpdated) {
+  let userOld = await ruGet(id);
+  userOld = await JSON.parse(decrypt(userOld));
+  let merge = Object.assign(userOld, userUpdated);
+  let user = encrypt(JSON.stringify(merge));
+  await ruSet(id, user);
+  return true;
 }
