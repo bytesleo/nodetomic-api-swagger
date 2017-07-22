@@ -48,7 +48,9 @@ export default(User) => {
   });
 
   User.pre('findOneAndUpdate', function(next) {
-    update(this._conditions._id, this._update.$set).then(next()).catch(err => next(err));
+    update(this._conditions._id, this._update.$set).then(r => {
+      next();
+    }).catch(err => next(err));
   })
 
 };
