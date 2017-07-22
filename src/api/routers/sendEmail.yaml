@@ -7,6 +7,12 @@
       - Examples
     summary: Send a email
     description: Send a email
+    parameters:
+      - name: email
+        description: receiver
+        in: query
+        required: true
+        type: string
     responses:
       200:
         description: Success
