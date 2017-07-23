@@ -20,8 +20,8 @@ export default(app) => {
   app.use(helmet());
   app.use(cors({origin: true, credentials: true}));
 
-  if (config.session && config.oAuth.twitter.enabled)
-    require(`./session/${config.session}`).default(app, session);
+  if ("twitter" in config.oAuth && config.oAuth.twitter.enabled)
+    app.use(session({secret: config.secret, resave: false, saveUninitialized: false}));
 
   app.use(passport.initialize());
   app.use(passport.session());
