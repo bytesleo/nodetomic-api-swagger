@@ -3,9 +3,9 @@ import config from '../config';
 
 export default (app) => {
 
-  // Example Manual
-  // app.use('/path', require('../path').default);
-
   require('../auth/services');
+
+  // You can add routers here! for example:
+  // app.use('/path', require('../path').default);
 
 };
