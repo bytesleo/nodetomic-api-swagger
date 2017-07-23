@@ -14,6 +14,8 @@ swaggerTools.initializeMiddleware(swaggerConfig, (middleware) => {
   require('./core/router').default(app);
   // Mongo
   require('./core/mongoose');
+  // Redis
+  require('./lib/redis');
   // Swagger
   require('./core/swagger').default(app, swaggerConfig, middleware);
   // Paths
