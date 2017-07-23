@@ -2,7 +2,7 @@ import Redis from 'redis-fast-driver';
 import config from '../../config';
 
 const r = new Redis(config.redis.ru);
-require('./status').default(r, config.redis.ru);
+require('./status').default(r, config.redis.ru, 'ru');
 
 // Create
 export async function create(key, value) {
@@ -15,7 +15,7 @@ export async function create(key, value) {
   return true;
 }
 
-//Get by id
+// Get by key
 export function get(key) {
   return new Promise((resolve, reject) => {
     r.rawCall([
@@ -41,7 +41,7 @@ export function update(key, value) {
   });
 }
 
-//Destroy by id
+// Destroy by key
 export function destroy(key) {
   return new Promise((resolve, reject) => {
     r.rawCall([
