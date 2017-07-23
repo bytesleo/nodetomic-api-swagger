@@ -1,12 +1,12 @@
 import {result, error} from 'express-easy-helper';
 import config from '../../config';
 
-// Upload File
+// Upload a file
 export function index(req, res) {
   try {
     if (req.files) {
-      //file with name file_upload in form
-      let file = req.files.exampleFile;
+      //file with name 'example' in form
+      let file = req.files.example;
       let path = `/assets/${new Date().getTime()}_${file.name}`;
 
       file.mv(`${config.base}/${path}`, err => {
