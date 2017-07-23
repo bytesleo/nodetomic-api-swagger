@@ -20,6 +20,7 @@ export default(app) => {
   // Paths specials from client
   // app.use('/bower_components', express.static(`${config.root}/bower_components`));
   // app.use('/example.js', express.static(`${config.root}/admin/example.js`));
+  
   if (config.swagger.enabled)
     app.use('/api-docs', express.static(`${config.root}/api-docs`));
 
@@ -30,7 +31,7 @@ export default(app) => {
 
   // Other folder client
   // app.get('/:url(admin)/*', (req, res) => {
-  //     res.sendFile(`${config.clientAdmin}/index.html`);
+  //     res.sendFile(`${config.client2}/index.html`);
   // });
 
 }
