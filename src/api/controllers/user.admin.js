@@ -1,6 +1,7 @@
 import {result, notFound, error} from 'express-easy-helper';
 import User from '../models/user';
 
+// List of user's
 export function list(req, res) {
 
   return User.find({}, {
@@ -11,6 +12,7 @@ export function list(req, res) {
 
 }
 
+// Update a user
 export function update(req, res) {
 
   return User.findByIdAndUpdate(
@@ -34,13 +36,14 @@ export function update(req, res) {
 
 }
 
+// Destroy a user
 export function destroy(req, res, next) {
 
-  return User.deleteOne({
-      _id: req.swagger.params.id.value
-    })
+  return User.findByIdAndRemove(
+    req.swagger.params.id.value
+    ).exec()
     .then(notFound(res))
     .then(result(res))
-    .then(error(res))
+    .catch(error(res))
 
 }
