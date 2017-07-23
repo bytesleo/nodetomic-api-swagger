@@ -1,0 +1,33 @@
+/auth/github:
+  x-swagger-router-controller: github
+# index
+  get:
+    operationId: index
+    tags:
+      - Social
+    summary: Login
+    description: Login user
+    responses:
+      200:
+        description: Success
+      400:
+        description: Login Invalid
+      500:
+        description: Error
+#---------------------------------------------
+/auth/github/callback*:
+  x-swagger-router-controller: github
+# callback
+  get:
+    operationId: callback
+    tags:
+      - Social
+    summary: Login
+    description: Login user
+    responses:
+      200:
+        description: Success
+      400:
+        description: Login Invalid
+      500:
+        description: Error

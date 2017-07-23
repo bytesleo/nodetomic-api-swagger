@@ -1,0 +1,33 @@
+/auth/twitter:
+  x-swagger-router-controller: twitter
+# index
+  get:
+    operationId: index
+    tags:
+      - Social
+    summary: Login
+    description: Login user
+    responses:
+      200:
+        description: Success
+      400:
+        description: Login Invalid
+      500:
+        description: Error
+#---------------------------------------------
+/auth/twitter/callback*:
+  x-swagger-router-controller: twitter
+# callback
+  get:
+    operationId: callback
+    tags:
+      - Social
+    summary: Login
+    description: Login user
+    responses:
+      200:
+        description: Success
+      400:
+        description: Login Invalid
+      500:
+        description: Error
