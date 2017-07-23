@@ -4,12 +4,12 @@ import {exits as rsExits, ttl as rsTtl} from '../../lib/redis/rs';
 import {get as ruGet} from '../../lib/redis/ru';
 import {decrypt, hasRole} from '../../lib/utility';
 
-// verifyToken
+// VerifyToken
 export async function verifyToken(req, authOrSecDef, token, cb) {
 
   //these are the scopes/roles defined for the current endpoint
   let currentScopes = req.swagger.operation["x-security-scopes"];
-  // console.log('Require:', currentScopes);
+
   if (token) {
     // Bearer
     req.headers.authorization = `Bearer ${token}`;
@@ -35,7 +35,7 @@ export async function verifyToken(req, authOrSecDef, token, cb) {
     _user.ttl = await rsTtl(key);
     //set key
     _user.key = key;
-    //Same ids
+    //If id's not equals
     if (_user._id !== decode._id)
       return cb(forbidden(req.res));
 
