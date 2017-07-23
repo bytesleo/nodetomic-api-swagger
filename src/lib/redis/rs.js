@@ -2,7 +2,7 @@ import Redis from 'redis-fast-driver';
 import config from '../../config';
 
 const r = new Redis(config.redis.rs);
-require('./status').default(r, config.redis.rs);
+require('./status').default(r, config.redis.rs, 'rs');
 
 // Create
 export async function create(key, value, ttl) {
@@ -34,13 +34,12 @@ export function exits(key) {
   });
 }
 
-//Get ttl
+// Get ttl by Key
 export function ttl(key) {
   return new Promise((resolve, reject) => {
     r.rawCall([
       'ttl', key
     ], (err, result) => {
-
       if (result)
         resolve(result);
       resolve(null);
@@ -48,14 +47,13 @@ export function ttl(key) {
   });
 }
 
-//Get by Pattern
+// Get values by Pattern
 export function getValuesByPattern(pattern) {
   return new Promise((resolve, reject) => {
     r.rawCall([
       'keys', `${pattern}:*`
     ], (err, keys) => {
-      let command = ['MGET']
-      let query = command.concat(keys);
+      let query = ['MGET'].concat(keys);
       r.rawCall(query, (err, result) => {
         if (result)
           resolve(result);
@@ -65,7 +63,20 @@ export function getValuesByPattern(pattern) {
   });
 }
 
-//Destroy by key
+// Get count by Pattern
+export function getCountByPattern(pattern) {
+  return new Promise((resolve, reject) => {
+    r.rawCall([
+      'keys', `${pattern}:*`
+    ], (err, result) => {
+      if (result)
+        resolve(result.length);
+      resolve(null);
+    });
+  });
+}
+
+// Destroy by key
 export function destroy(key) {
   return new Promise((resolve, reject) => {
     r.rawCall([
@@ -78,7 +89,7 @@ export function destroy(key) {
   });
 }
 
-//Destroy multiple by key
+// Destroy multiple by key
 export function destroyMultiple(key) {
   return new Promise((resolve, reject) => {
     r.rawCall([
@@ -93,5 +104,4 @@ export function destroyMultiple(key) {
       })
     });
   });
-
 }
