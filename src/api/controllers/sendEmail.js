@@ -2,14 +2,14 @@ import {result, error} from 'express-easy-helper';
 import {getTemplate, setTemplate, sendEmail} from '../../lib/utility';
 const ExampleTemplate = getTemplate('templates/example.html'); //Example with .html, .mustache, .js
 
+// Send a email
 export function index(req, res) {
 
-  // setup email data with unicode symbols
   let options = {
-    from: '"Nodetomic-api-swagger 👻" <foo@blurdybloop.com>', // sender address
-    to: `example1@gmail.com, example2@gmail.com, ${req.swagger.params.email.value}`, // list of receivers
+    from: '"Your-app-name 👻" <example@example.com>', // sender address
+    to: `${req.swagger.params.email.value}`, // list of receivers -> example1@gmail.com, example2@gmail.com, ...
     subject: 'Welcome ✔', // Subject line
-    text: 'Hello world ?', // plain text body
+    text: 'Hello world!', // plain text body
     html: '' // html body
   };
 
@@ -22,4 +22,5 @@ export function index(req, res) {
     //res.send(options.html); Uncomment to preview html
     sendEmail(options).then(result(res)).catch(error(res));
   });
+
 }
