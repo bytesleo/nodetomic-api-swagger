@@ -40,7 +40,7 @@ gulp.task('build-replace', () => {
   gulp.src("package.json").pipe(jeditor((json) => {
     delete json.devDependencies;
     json.scripts = {
-      start: `node server/app.js`
+      start: `redis-cli config set notify-keyspace-events KEA && node server/app.js`
     };
     return json;
   })).pipe(gulp.dest(dist));
