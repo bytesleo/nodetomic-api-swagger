@@ -1,4 +1,4 @@
-// sign with default (HMAC SHA256)
+// Sign with default (HMAC SHA256)
 import jwt from 'jsonwebtoken';
 import config from '../../config';
 
@@ -18,7 +18,7 @@ export async function create(user, verify) {
 
 }
 
-// verify Token
+// Verify Token
 export async function verify(token) {
 
   let isMatch = null;
