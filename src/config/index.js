@@ -15,34 +15,34 @@ export default {
     port: 8000
   },
   secret : `your_secret_key`,
-  // roles: if a user has multiple roles, will take the time of the greater role
+  // Roles: if a user has multiple roles, will take the time of the greater role
   roles : [
     {
       rol: 'user',
-      time: 120 // minutes
+      time: 60 // minutes
     }, {
       rol: 'admin',
       time: 'infinite'
     }
   ],
   redis : {
-    // if you want multiples logins or only one device in same time
+    // If you want multiples logins or only one device in same time
     multiple: true,
-    // Sessions
+    // Redis Users
+    ru: {
+      host: '127.0.0.1',
+      port: 6379,
+      maxretries: 10,
+      db: 0
+    },
+    // Redis Sessions
     rs: {
       //host: '/tmp/redis.sock', //unix domain
       host: '127.0.0.1', //can be IP or hostname
       port: 6379,
       maxretries: 10, //reconnect retries, default 10
       //auth: '123', //optional password, if needed
-      db: 0 //optional db selection
-    },
-    // Users
-    ru: {
-      host: '127.0.0.1',
-      port: 6379,
-      maxretries: 10,
-      db: 1
+      db: 1 //optional db selection
     }
   },
   database : {
@@ -56,11 +56,11 @@ export default {
         // plant: once - alway - never
         seeds: [
           {
-            path: '/api/seeds/user',
-            plant: 'once'
+            path: '/seeds/user',
+            plant: 'alway'
           }, {
-            path: '/api/seeds/hello',
-            plant: 'once'
+            path: '/seeds/hello',
+            plant: 'alway'
           }
         ]
       }
