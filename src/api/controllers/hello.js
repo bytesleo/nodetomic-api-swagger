@@ -1,6 +1,7 @@
 import {result, notFound, error} from 'express-easy-helper';
 import Hello from '../models/hello';
 
+// List Hello's
 export function list(req, res) {
 
   return Hello.find().exec()
@@ -8,6 +9,16 @@ export function list(req, res) {
     .catch(error(res));
 }
 
+// Create a Hello
+export function create(req, res) {
+
+  return Hello.create(req.body)
+    .then(result(res, 201))
+    .catch(error(res));
+
+}
+
+// read a Hello
 export function read(req, res) {
 
   return Hello.findById(req.swagger.params.id.value).exec()
@@ -17,14 +28,7 @@ export function read(req, res) {
 
 }
 
-export function create(req, res) {
-
-  return Hello.create(req.body)
-    .then(result(res, 201))
-    .catch(error(res));
-
-}
-
+// Update a Hello
 export function update(req, res) {
 
   return Hello.findByIdAndUpdate(
@@ -42,6 +46,7 @@ export function update(req, res) {
 
 }
 
+// Destroy a Hello
 export function destroy(req, res) {
 
   return Hello.deleteOne({
