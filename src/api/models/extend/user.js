@@ -1,22 +1,19 @@
 import bcrypt from 'bcrypt';
-import {update} from '../../../auth/services/session';
+import {update, destroy} from '../../../auth/services/session';
 
 export default(User) => {
 
   User.methods = {
-
+    // Compare password
     authenticate(candidatePassword) {
-      return bcrypt.compare(candidatePassword, this.password).then(isMatch => {
-        return isMatch;
-      });
+      return bcrypt.compare(candidatePassword, this.password);
     }
-
   };
 
+  // Trigger method's before save
   User.pre('save', function(next) {
 
     let user = this;
-
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password'))
       return next();
@@ -39,6 +36,7 @@ export default(User) => {
 
   });
 
+  // Trigger method's after save
   User.post('save', function(err, doc, next) {
     if (err.name === 'MongoError' && err.code === 11000) {
       return next(`'username "${doc.username}" not available.'`);
@@ -47,8 +45,16 @@ export default(User) => {
     }
   });
 
+  // Trigger method's before findByIdAndUpdate
   User.pre('findOneAndUpdate', function(next) {
     update(this._conditions._id, this._update.$set).then(r => {
+      next();
+    }).catch(err => next(err));
+  })
+
+  // Trigger method's before findByIdAndRemove
+  User.pre('findOneAndRemove', function(next) {
+    destroy(this._conditions._id).then(r => {
       next();
     }).catch(err => next(err));
   })
