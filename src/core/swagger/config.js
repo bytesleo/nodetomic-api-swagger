@@ -3,6 +3,7 @@ import config from '../../config';
 
 export default (app) => {
 
+  // Initialize Swagger
   let options = {
     swaggerDefinition: {
       swagger: "2.0",
@@ -30,8 +31,7 @@ export default (app) => {
     produces: ['application/json'],
     apis: [
       `${config.base}/auth/**/*.yaml`,
-      `${config.base}/api/**/*.yaml`,
-      // `${config.base}/admin/**/*.yaml`,
+      `${config.base}/api/**/*.yaml`
     ]
   };
 
@@ -39,9 +39,7 @@ export default (app) => {
 
   return swaggerSpec;
 
-
   // If you want use Swagger into .js = ${config.base}/**/*.js
-
   /**
    * @swagger
    * definitions:
