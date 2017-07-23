@@ -1,15 +1,22 @@
 import {result, notFound, error} from 'express-easy-helper';
 import User from '../models/user';
-import {getValuesByPattern as rsGetAll, destroy as rsDestroy } from '../../lib/redis/rs';
 
+// Create a user
 export function create(req, res) {
 
-  return User.create(req.body)
+  return User.create({
+    username: req.body.username,
+    name: req.body.name,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    password: req.body.password
+    })
     .then(result(res, 201))
     .catch(error(res));
 
 }
 
+// Read a user
 export function read(req, res) {
 
   return User.findById(req.swagger.params.id.value, {
@@ -21,6 +28,7 @@ export function read(req, res) {
 
 }
 
+// Update user
 export function update(req, res) {
 
   return User.findByIdAndUpdate(
@@ -40,12 +48,14 @@ export function update(req, res) {
     .then(result(res))
     .catch(error(res))
 
+
 }
 
+// Get current user
 export function me(req, res) {
 
   let user = req.user;
-  delete user.key; //session key
+  delete user.key; //session key in redis
   return result(res, user);
 
 }
