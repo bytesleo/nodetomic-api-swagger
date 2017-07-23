@@ -1,6 +1,6 @@
 {
   "name": "nodetomic-api-swagger",
-  "version": "2.1.1",
+  "version": "2.1.3",
   "description": "Simple and fast Restful API designed for horizontal scalability including cluster, based on Swagger, Nodejs, Redis + Passport, MongoDB, Express",
   "main": "src/app.js",
   "repository": {
@@ -8,11 +8,12 @@
     "url": "git+https://github.com/kevoj/nodetomic-api-swagger.git"
   },
   "scripts": {
-    "start": "nodemon src/app.js --exec babel-node -e js,yaml",
+    "start": "npm run redis && nodemon src/app.js --exec babel-node -e js,yaml",
     "build": "npm run lint && gulp build",
-    "serve": "npm run build && node dist/server/app.js",
+    "serve": "npm run build && npm run redis && node dist/server/app.js",
     "test": "mocha --compilers js:babel-register",
-    "lint": "eslint src --ext .js"
+    "lint": "eslint src --ext .js",
+    "redis": "redis-cli config set notify-keyspace-events KEA"
   },
   "author": "Leonardo Rico Guevara (https://github.com/kevoj)",
   "license": "MIT",
