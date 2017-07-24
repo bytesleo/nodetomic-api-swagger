@@ -69,6 +69,8 @@
         description: Unauthenticated
       403:
         description: Forbidden
+      404:
+        description: Not found
       500:
         description: Error
 #---------------------------------------------
