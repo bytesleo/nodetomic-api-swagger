@@ -5,6 +5,7 @@ import Hello from '../models/hello';
 export function list(req, res) {
 
   return Hello.find().exec()
+    .then(notFound(res))
     .then(result(res))
     .catch(error(res));
 }
