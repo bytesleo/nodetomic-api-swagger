@@ -14,6 +14,8 @@
           type: array
           items:
             $ref: "#/definitions/Hello"
+      404:
+        description: Not found
       500:
         description: Error
 # create
