@@ -32,6 +32,11 @@ export async function verifyToken(req, authOrSecDef, token, cb) {
 
     //decrypt redis
     _user = await JSON.parse(decrypt(_user));
+
+    //user is enabled?
+    if (!_user.status)
+      return cb(unauthorized(req.res));
+
     //set TTL
     _user.ttl = await rsTtl(key);
     //set key
