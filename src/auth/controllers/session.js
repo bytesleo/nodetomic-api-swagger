@@ -5,6 +5,7 @@ import {getValuesByPattern as rsGetAll,destroy as rsDestroy} from '../../lib/red
 export function list(req, res) {
 
   return rsGetAll(req.user._id)
+  .then(notFound(res))
   .then(all => {
     for (let prop in all)
         all[prop] = JSON.parse(all[prop]);
@@ -25,7 +26,7 @@ export function destroy(req, res) {
 }
 
 // Destroy a current session
-export async function logout(req, res) {
+export function logout(req, res) {
 
   return rsDestroy(req.user.key)
   .then(notFound(res))
