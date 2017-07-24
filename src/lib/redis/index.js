@@ -1,2 +1,2 @@
-require('./rs');
-require('./ru');
+require('./sessions');
+require('./users');
