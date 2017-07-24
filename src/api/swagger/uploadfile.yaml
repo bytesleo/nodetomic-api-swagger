@@ -1,0 +1,21 @@
+/api/file/upload:
+  x-swagger-router-controller: uploadfile
+# index
+  post:
+    operationId: index
+    tags:
+      - Examples
+    summary: Upload a file
+    description: Upload a file
+    consumes:
+       - multipart/form-data
+    parameters:
+      - in: formData
+        name: example
+        type: file
+        description: The file to upload.
+    responses:
+      201:
+        description: Success
+      500:
+        description: Error
