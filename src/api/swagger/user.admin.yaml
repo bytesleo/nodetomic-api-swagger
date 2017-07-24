@@ -8,7 +8,7 @@
     x-security-scopes:
       - admin
     tags:
-      - Admin
+      - User Admin
     summary: Get list users [Rol admin]
     description: Returns list of Users
     responses:
@@ -35,7 +35,7 @@
     x-security-scopes:
       - admin
     tags:
-      - Admin
+      - User Admin
     summary: Delete user by id [Rol admin]
     description: Deletes a single User
     parameters:
@@ -63,7 +63,7 @@
     x-security-scopes:
       - admin
     tags:
-      - Admin
+      - User Admin
     summary: Update user by id [Rol admin]
     description: update a single User
     parameters:
