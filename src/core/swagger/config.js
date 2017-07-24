@@ -35,9 +35,7 @@ export default (app) => {
     ]
   };
 
-  let swaggerSpec = swaggerJSDoc(options);
-
-  return swaggerSpec;
+  return swaggerJSDoc(options);
 
   // If you want use Swagger into .js = ${config.base}/**/*.js
   /**
