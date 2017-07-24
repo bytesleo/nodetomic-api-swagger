@@ -8,7 +8,7 @@
 
 <img src="http://i.imgur.com/cGMG5Rb.png" width="600" >
 
-<http://localhost:8000/api-docs/>
+<http://localhost:8000/docs/>
 
 <img src="http://i.imgur.com/8KGmhj9.png" width="600" >
 
@@ -38,12 +38,11 @@
 <a><img src="https://avatars2.githubusercontent.com/u/7658037?v=3&s=400" width="60"></a>
 <a><img src="https://cdn.xebialabs.com/assets/files/plugins/travis-ci.jpg" width="60"></a>
 
-
 ## Requirements
 
-- [Nodejs](https://nodejs.org) **>= 6.x.x** (Recommended 8.x.x)
+- [Nodejs](https://nodejs.org) **>= 6.x.x** (**Recommended 8.x.x**)
 - [MongoDB](https://www.mongodb.com)  **>= 3.x.x**
-- [Redis](https://redis.io)  **>= 3.x.x**
+- [Redis](https://redis.io)  **>= 3.x.x** (**Recommended 4.x.x**)
 
 ## Installation
 
@@ -52,6 +51,58 @@ git clone https://github.com/kevoj/nodetomic-api-swagger
 cd nodetomic-api-swagger
 npm i
 ```
+## Features
+
+* **Tokens**
+  * JWT merged with REDIS
+
+* **Redis**
+  * Expiration of Key by role time
+  * Encryption of information
+  * Synchronization with user model update
+  * Expiration and elimination event cleaner
+
+* **Middleware**
+  * Login validation
+  * Role validation
+
+* **Authentication**
+  * local
+  * facebook
+  * twitter
+  * google
+  * github
+  * bitbucket
+
+* **Session**
+  * Single or Multiple
+  * Get list of sessions
+  * Destroy a session
+
+* **Scalability**
+  * Support for simple execution (nodemon/node)
+  * Support for cluster (Pm2)
+
+## Structure
+
+* **client**
+* **src**
+  * api
+    * controllers
+    * models
+    * swagger
+  * assets
+  * auth
+    * controllers
+    * passports
+    * swagger
+    * services
+  * config
+  * core
+  * lib
+  * seeds
+  * views
+  * app.js
 
 ## Development
 
@@ -68,12 +119,14 @@ npm i
 * Generate output folder: **`dist`**
 
   * dist
-    * api-docs
     * client
     * server
-    * cluster.config.js (pm2) (pm2 start cluster.config.js)
-    * simple.config.js  (pm2) (pm2 start simple.config.js)
-    * package.json (npm start)
+    * cluster.config.js  (**pm2 start cluster.config.js**)
+    * simple.config.js   (**pm2 start simple.config.js**)
+    * package.json
+      * **npm start**
+      * **npm run pm2-simple**
+      * **npm run pm2-cluster**
 
 ### Test
 
