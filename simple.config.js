@@ -2,7 +2,7 @@ module.exports = {
   "apps": [
     {
       "name": "cleaner",
-      "script": "./server/cleaner/index.js",
+      "script": "./server/core/cleaner/index.js",
       // "watch": true
       // "env": {
       //   "NODE_ENV": "development"
