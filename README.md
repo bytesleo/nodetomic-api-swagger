@@ -52,53 +52,66 @@ git clone https://github.com/kevoj/nodetomic-api-swagger
 cd nodetomic-api-swagger
 npm i
 ```
-## Start [Development]
+
+## Development
+
+### Start
 
 `npm start`
 
 *  <http://localhost:8000>
 
-## Build [Development]
+### Build
 
 `npm run build`
 
 * Generate output folder: **`dist`**
 
-## Test [Development]
+  * dist
+    * api-docs
+    * client
+    * server
+    * cluster.config.js (pm2) (pm2 start cluster.config.js)
+    * simple.config.js  (pm2) (pm2 start simple.config.js)
+    * package.json (npm start)
+
+### Test
 
 `npm test`
 
 You must be aware of running **npm start**
 
-## Lint [Development]
+### Lint
 
 `npm lint`
 
-## Simple [Development]
+### Preview compiled in mode simple (pm2)
 
 `npm run pm2-dev-simple`
 
 * <http://localhost:8000>
 
-## Cluster [Development]
+### Preview compiled in mode cluster (pm2)
 
 `npm run pm2-dev-cluster`
 
 * <http://localhost:8000>
 
-## Serve [Production]
+## Production
+
+### Run mode Default (node)
 
 `npm run serve`
 
 * <http://localhost:8000>
 
-## Simple [Production]
+### Run mode simple (pm2)
 
 `npm run pm2-simple`
 
 * <http://localhost:8000>
 
-## Cluster [Production]
+### Run mode cluster (pm2)
 
 `npm run pm2-cluster`
 
