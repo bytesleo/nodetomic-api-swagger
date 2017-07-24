@@ -1,11 +1,15 @@
 import {result, notFound, error} from 'express-easy-helper';
-import {getValuesByPattern as rsGetAll,destroy as rsDestroy} from '../../lib/redis/rs';
+import {getValuesByPattern as rsGetAll,destroy as rsDestroy} from '../../lib/redis/sessions';
 
 // List of sessions by user
 export function list(req, res) {
 
   return rsGetAll(req.user._id)
-  .then(result(res))
+  .then(all => {
+    for (let prop in all)
+        all[prop] = JSON.parse(all[prop]);
+    return result(res, all);
+  })
   .catch(error(res))
 
 }
