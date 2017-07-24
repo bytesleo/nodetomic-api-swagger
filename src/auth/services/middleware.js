@@ -1,8 +1,9 @@
 import {unauthorized, forbidden} from 'express-easy-helper';
 import {verify} from '../../lib/token';
-import {exits as rsExits, ttl as rsTtl} from '../../lib/redis/rs';
-import {get as ruGet} from '../../lib/redis/ru';
-import {decrypt, hasRole} from '../../lib/utility';
+import {exits as rsExits, ttl as rsTtl} from '../../lib/redis/sessions';
+import {get as ruGet} from '../../lib/redis/users';
+import {decrypt} from '../../lib/utility/crypto';
+import {hasRole} from '../../lib/utility/role';
 
 // VerifyToken
 export async function verifyToken(req, authOrSecDef, token, cb) {
