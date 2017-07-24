@@ -1,6 +1,6 @@
 {
   "name": "nodetomic-api-swagger",
-  "version": "2.1.3",
+  "version": "2.3.1",
   "description": "Simple and fast Restful API designed for horizontal scalability including cluster, based on Swagger, Nodejs, Redis + Passport, MongoDB, Express",
   "main": "src/app.js",
   "repository": {
@@ -8,12 +8,17 @@
     "url": "git+https://github.com/kevoj/nodetomic-api-swagger.git"
   },
   "scripts": {
-    "start": "npm run redis && nodemon src/app.js --exec babel-node -e js,yaml",
+    "start": "npm run redis && npm run cleaner & nodemon src/app.js --exec babel-node -e js,yaml",
     "build": "npm run lint && gulp build",
-    "serve": "npm run build && npm run redis && node dist/server/app.js",
     "test": "mocha --compilers js:babel-register",
     "lint": "eslint src --ext .js",
-    "redis": "redis-cli config set notify-keyspace-events KEA"
+    "cleaner": "nodemon src/cleaner --exec babel-node",
+    "redis": "redis-cli config set notify-keyspace-events KEA",
+    "serve": "npm run build && cd dist && npm start",
+    "pm2-simple": "npm run build && cd dist && npm run pm2-simple",
+    "pm2-cluster": "npm run build && cd dist && npm run pm2-cluster",
+    "pm2-dev-simple": "npm run build && cd dist && npm run pm2-dev-simple",
+    "pm2-dev-cluster": "npm run build && cd dist && npm run pm2-dev-cluster"
   },
   "author": "Leonardo Rico Guevara (https://github.com/kevoj)",
   "license": "MIT",
@@ -63,6 +68,7 @@
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
+    "pm2": "^2.6.1",
     "pretty-error": "^2.1.1",
     "redis": "^2.7.1",
     "redis-fast-driver": "^1.0.5",
