@@ -28,15 +28,14 @@ export default {
   redis : {
     // If you want multiples logins or only one device in same time
     multiple: true,
-    // Redis Users
-    ru: {
+    // dbs
+    users: {
       host: '127.0.0.1',
       port: 6379,
       maxretries: 10,
       db: 0
     },
-    // Redis Sessions
-    rs: {
+    sessions: {
       //host: '/tmp/redis.sock', //unix domain
       host: '127.0.0.1', //can be IP or hostname
       port: 6379,
