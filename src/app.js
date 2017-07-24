@@ -4,9 +4,9 @@ import swaggerTools from 'swagger-tools';
 import chalk from 'chalk';
 import config from './config';
 const app = express();
-// Swagger
+// Swagger Config
 let swaggerConfig = require('./core/swagger/config').default(app);
-// Init
+// Swagger Init
 swaggerTools.initializeMiddleware(swaggerConfig, (middleware) => {
   // Core
   require('./core/engine').default(app);
@@ -20,11 +20,11 @@ swaggerTools.initializeMiddleware(swaggerConfig, (middleware) => {
   require('./core/swagger').default(app, swaggerConfig, middleware);
   // Paths
   require('./core/path').default(app);
-  // Create HTTP server.
-  const server = http.createServer(app);
-  // Listen Server
-  server.listen(config.server.port, config.server.ip, () => {
+  // Server
+  app.listen(config.server.port, config.server.ip, () => {
     process.env.NODE_ENV = config.mode;
-    console.log(chalk.greenBright(`\n\n-------\nServer-> listening on http://${config.server.ip}:${config.server.port} in mode [${config.mode}]\n-------`));
+    console.log(chalk.greenBright(
+      `\n-------\nServer-> listening on http://${config.server.ip}:${config.server.port} in mode [${config.mode}]\n-------`
+    ));
   });
 });
