@@ -1,8 +1,10 @@
 import {result, invalid, error} from 'express-easy-helper';
 import {create as jwtCreate} from '../../lib/token';
-import {create as rsCreate} from '../../lib/redis/rs';
-import {create as ruCreate, get as ruGet, update as ruSet, destroy as ruDestroy} from '../../lib/redis/ru';
-import {makeid, ttl, encrypt, decrypt} from '../../lib/utility';
+import {create as rsCreate} from '../../lib/redis/sessions';
+import {create as ruCreate, get as ruGet, update as ruSet, destroy as ruDestroy} from '../../lib/redis/users';
+import {makeid} from '../../lib/utility/makeid';
+import {ttl} from '../../lib/utility/ttl';
+import {encrypt, decrypt} from '../../lib/utility/crypto';
 
 // Initialize after login success
 export async function initialize(err, user, res) {
