@@ -15,6 +15,8 @@ const dist_server = `${dist}/server`;
 const dist_swagger = `${dist}/api-docs`;
 const dist_package = `${dist}/package.json`;
 const dist_client = `${dist}/client`;
+const pm2_simple = `simple.config.js`;
+const pm2_cluster = `cluster.config.js`;
 
 gulp.task('build', () => {
   runSequence('build-clean', 'build-babel', 'build-replace');
@@ -40,13 +42,20 @@ gulp.task('build-replace', () => {
   gulp.src("package.json").pipe(jeditor((json) => {
     delete json.devDependencies;
     json.scripts = {
-      start: `redis-cli config set notify-keyspace-events KEA && node server/app.js`
+      "start": `npm run redis && node server/cleaner & node server/app.js`,
+      "pm2-simple": `npm run redis && pm2 start ${pm2_simple}`,
+      "pm2-cluster": `npm run redis && pm2 start ${pm2_cluster}`,
+      "pm2-dev-simple": `pm2 kill && npm run pm2-simple && pm2 monit`,
+      "pm2-dev-cluster": `pm2 kill && npm run pm2-cluster && pm2 monit`,
+      "redis": `redis-cli config set notify-keyspace-events KEA`
     };
     return json;
   })).pipe(gulp.dest(dist));
 
+  gulp.src([pm2_simple, pm2_cluster]).pipe(gulp.dest(dist));
+
   if (!fs.existsSync(`${dist}/client`)) {
-    gulp.src(['client/*']).pipe(gulp.dest(dist_client));
+    gulp.src(['client/*']).pipe(minify({minify: true, collapseWhitespace: true, conservativeCollapse: true, minifyJS: true, minifyCSS: true})).pipe(gulp.dest(dist_client));
   }
   setTimeout(() => console.log(chalk.greenBright('\n---------\nBuild success!\n---------\n')), 500);
 });
