@@ -2,7 +2,15 @@
 
 > Simple and fast Restful API designed for horizontal scalability including cluster, based on Swagger, Nodejs, Redis + Passport, MongoDB, Express
 
-<img src="http://i.imgur.com/SDOQ8Oe.png" width="600" >
+## Examples
+
+<http://localhost:8000>
+
+<img src="http://i.imgur.com/cGMG5Rb.png" width="600" >
+
+<http://localhost:8000/api-docs/>
+
+<img src="http://i.imgur.com/8KGmhj9.png" width="600" >
 
 #### Example horizontal scalability
 
@@ -50,25 +58,49 @@ npm i
 
 *  <http://localhost:8000>
 
-## Build
+## Build [Development]
 
 `npm run build`
 
 * Generate output folder: **`dist`**
 
-## Test
+## Test [Development]
 
 `npm test`
 
 You must be aware of running **npm start**
 
-## Lint
+## Lint [Development]
 
 `npm lint`
 
-## Start [Production]
+## Simple [Development]
+
+`npm run pm2-dev-simple`
+
+* <http://localhost:8000>
+
+## Cluster [Development]
+
+`npm run pm2-dev-cluster`
+
+* <http://localhost:8000>
+
+## Serve [Production]
 
 `npm run serve`
+
+* <http://localhost:8000>
+
+## Simple [Production]
+
+`npm run pm2-simple`
+
+* <http://localhost:8000>
+
+## Cluster [Production]
+
+`npm run pm2-cluster`
 
 * <http://localhost:8000>
 
