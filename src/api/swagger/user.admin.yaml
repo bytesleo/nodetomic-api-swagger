@@ -9,7 +9,7 @@
       - admin
     tags:
       - User Admin
-    summary: Get list users [Rol admin]
+    summary: Get list users [Role admin]
     description: Returns list of Users
     responses:
       200:
@@ -22,6 +22,8 @@
         description: Unauthenticated
       403:
         description: Forbidden
+      404:
+        description: Not found
       500:
         description: Error
 #---------------------------------------------
@@ -36,7 +38,7 @@
       - admin
     tags:
       - User Admin
-    summary: Delete user by id [Rol admin]
+    summary: Delete user by id [Role admin]
     description: Deletes a single User
     parameters:
       - name: id
@@ -64,7 +66,7 @@
       - admin
     tags:
       - User Admin
-    summary: Update user by id [Rol admin]
+    summary: Update user by id [Role admin]
     description: update a single User
     parameters:
       - name: id
