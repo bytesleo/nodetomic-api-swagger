@@ -17,14 +17,15 @@ export default (app) => {
           type: 'apiKey',
           name: 'Authorization',
           in : 'header',
-          description: 'The following syntax must be used in the "Authorization" header  Bearer xxxxxx.yyyyyyy.zzzzzz'
+          description: 'The following syntax must be used in the "Authorization" header xxxxxx.yyyyyyy.zzzzzz'
         },
-        // "iss_a": {
-        //   "type": "oauth2",
-        //   "authorizationUrl": `/auth/github`,
-        //   "flow": "authorization_code",
-        //   "tokenUrl": "https://xxxxxxxxxxxx.xxx.co...",
-        // }
+        OAuth2: {
+          type: 'oauth2',
+          flow: 'implicit',
+          authorizationUrl: `http://${config.server.ip}:${config.server.port}/auth/github`,
+          // tokenUrl: `http://${config.server.ip}:${config.server.port}/#/token`,
+          description: 'Example oAuth by Github, copy paste token generate in Api key authorization'
+        }
       }
     },
     consumes: ['application/json'],
