@@ -7,14 +7,16 @@
       - Authentication
     summary: Signin
     description: Default [ admin/123 ] - [ user/123 ]
+    consumes:
+      - application/x-www-form-urlencoded
     parameters:
       - name: username
-        in: query
+        in: formData
         description: Username...
         required: true
         type: string
       - name: password
-        in: query
+        in: formData
         description: Password...
         required: true
         type: string
