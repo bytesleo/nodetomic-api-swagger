@@ -19,8 +19,12 @@ passport.use('local', new LocalStrategy({
     user.authenticate(password).then(isMatch => { //validate password
       if (!isMatch)
         return done('This password is not correct.');
+
       user.lastLogin = Date.now(); //save log last_login
-      user.save().then(done(null, user)).catch(err => done(err));
+      
+      user.save().then(_user => {
+        return done(null, _user);
+      }).catch(err => done(err));
     });
 
   }).catch(err => done(err));
