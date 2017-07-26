@@ -24,10 +24,13 @@ passport.use(new GitHubStrategy({
     } else {
       user.social.info = profile._json;
       user.photo = profile._json.avatar_url;
-      user.lastLogin = Date.now();
     }
 
-    user.save().then(user => done(null, user)).catch(err => done(err));
+    user.lastLogin = Date.now();
+
+    user.save().then(_user => {
+      return done(null, _user);
+    }).catch(err => done(err));
 
   }).catch(err => done(err));
 
