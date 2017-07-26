@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import {update, destroy} from '../../../auth/services/session';
 
 export default(User) => {
 
@@ -44,19 +43,5 @@ export default(User) => {
       return next(err);
     }
   });
-
-  // Trigger method's before findByIdAndUpdate
-  User.pre('findOneAndUpdate', function(next) {
-    update(this._conditions._id, this._update.$set).then(r => {
-      next();
-    }).catch(err => next(err));
-  })
-
-  // Trigger method's before findByIdAndRemove
-  User.pre('findOneAndRemove', function(next) {
-    destroy(this._conditions._id).then(r => {
-      next();
-    }).catch(err => next(err));
-  })
 
 };
