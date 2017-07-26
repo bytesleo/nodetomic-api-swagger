@@ -1,4 +1,4 @@
-var host = location.origin;
+const host = location.origin;
 
 const home = {
   template: '<div><div class="project">API</div><div class="docs"><a href="/docs">Docs Here!</a></div></div>'
@@ -18,6 +18,6 @@ const routes = [
   }
 ]
 
-const router = new VueRouter({routes})
+const router = new VueRouter({routes: routes})
 
 const app = new Vue({router}).$mount('#app')
