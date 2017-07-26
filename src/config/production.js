@@ -19,30 +19,26 @@ export default {
   roles : [
     {
       rol: 'user',
-      time: 60 // minutes
+      time: 60, // minutes
     }, {
       rol: 'admin',
       time: 'infinite'
     }
   ],
   redis : {
-    // If you want multiples logins or only one device in same time
-    multiple: true,
-    // dbs
-    users: {
-      host: '127.0.0.1',
-      port: 6379,
-      maxretries: 10,
-      db: 0
-    },
+    // Db sessions
     sessions: {
       //host: '/tmp/redis.sock', //unix domain
       host: '127.0.0.1', //can be IP or hostname
       port: 6379,
       maxretries: 10, //reconnect retries, default 10
       //auth: '123', //optional password, if needed
-      db: 1 //optional db selection
-    }
+      db: 0 //optional db selection
+    },
+    // If you want multiples logins or only one device in same time
+    multiple: true,
+    // Enable events to expired,del,..etc keys in redis
+    pubsub: true
   },
   database : {
     mongo: {
