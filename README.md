@@ -57,10 +57,7 @@ npm i
   * JWT merged with REDIS
 
 * **Redis**
-  * Expiration of Key by role time
-  * Encryption of information
-  * Synchronization with user model update
-  * Expiration and elimination event cleaner
+  * Pub/Sub Expired, del, etc by key
 
 * **Middleware**
   * Login validation
@@ -75,13 +72,13 @@ npm i
   * bitbucket
 
 * **Session**
-  * Single or Multiple
+  * Single or Multiple (One or more devices at the same time)
   * Get list of sessions
   * Destroy a session
 
 * **Scalability**
-  * Support for simple execution (nodemon/node)
-  * Support for cluster (Pm2)
+  * Support for simple execution
+  * Support for cluster
 
 ## Structure
 
@@ -121,8 +118,8 @@ npm i
   * dist
     * client
     * server
-    * cluster.config.js  (**pm2 start cluster.config.js**)
-    * simple.config.js   (**pm2 start simple.config.js**)
+    * cluster.config.js
+    * simple.config.js
     * package.json
       * **npm start**
       * **npm run pm2-simple**
