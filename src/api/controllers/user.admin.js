@@ -4,9 +4,9 @@ import User from '../models/user';
 // List of user's
 export function list(req, res) {
 
-  return User.find({}, {
-      social: 0
-    }).exec()
+  return User.find({})
+    .select('-social')
+    .exec()
     .then(notFound(res))
     .then(result(res))
     .catch(error(res));
