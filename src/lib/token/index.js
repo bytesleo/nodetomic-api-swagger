@@ -3,13 +3,13 @@ import jwt from 'jsonwebtoken';
 import config from '../../config';
 
 // Create Token
-export async function create(user, verify) {
+export async function create(_id, _verify) {
 
   let token = null;
   try {
-    token = jwt.sign({
-      _id: user._id,
-      _verify: verify
+    token = await jwt.sign({
+      _id,
+      _verify
     }, config.secret);
   } catch (err) {
     throw 'Error creating token';
