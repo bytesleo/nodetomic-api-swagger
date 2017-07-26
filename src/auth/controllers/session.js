@@ -1,5 +1,5 @@
 import {result, notFound, error} from 'express-easy-helper';
-import {getValuesByPattern as rsGetAll,destroy as rsDestroy} from '../../lib/redis/sessions';
+import {getValuesByPattern as rsGetAll,destroy as rsDestroy} from '../../lib/redis';
 
 // List of sessions by user
 export function list(req, res) {
