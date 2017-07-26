@@ -42,7 +42,7 @@ gulp.task('build-replace', () => {
   gulp.src("package.json").pipe(jeditor((json) => {
     delete json.devDependencies;
     json.scripts = {
-      "start": `npm run redis && node server/core/cleaner & node server/app.js`,
+      "start": `npm run redis && node server/app.js`,
       "pm2-simple": `npm run redis && pm2 start ${pm2_simple}`,
       "pm2-cluster": `npm run redis && pm2 start ${pm2_cluster}`,
       "pm2-dev-simple": `pm2 kill && npm run pm2-simple && pm2 monit`,
