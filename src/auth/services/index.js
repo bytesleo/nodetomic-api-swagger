@@ -1,7 +1,6 @@
 import config from '../../config';
 
 //Passport's
-
 if ("local" in config.oAuth && config.oAuth.local.enabled)
   require('../passports/local');
 
