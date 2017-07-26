@@ -1,6 +1,6 @@
 {
   "name": "nodetomic-api-swagger",
-  "version": "2.3.5",
+  "version": "2.5.0",
   "description": "Simple and fast Restful API designed for horizontal scalability including cluster, based on Swagger, Nodejs, Redis + Passport, MongoDB, Express",
   "main": "src/app.js",
   "repository": {
@@ -8,12 +8,11 @@
     "url": "git+https://github.com/kevoj/nodetomic-api-swagger.git"
   },
   "scripts": {
-    "start": "npm run redis && npm run cleaner & nodemon src/app.js --exec babel-node -e js,yaml",
+    "start": "npm run redis && nodemon src/app.js --exec babel-node -e js,yaml",
     "build": "npm run lint && gulp build",
     "test": "mocha --compilers js:babel-register",
     "lint": "eslint src --ext .js",
     "serve": "npm run build && cd dist && npm start",
-    "cleaner": "nodemon src/core/cleaner --exec babel-node",
     "redis": "redis-cli config set notify-keyspace-events KEA",
     "pm2-simple": "npm run build && cd dist && npm run pm2-simple",
     "pm2-cluster": "npm run build && cd dist && npm run pm2-cluster",
