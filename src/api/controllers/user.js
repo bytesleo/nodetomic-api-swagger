@@ -47,7 +47,7 @@ export function update(req, res) {
     .then(notFound(res))
     .then(result(res))
     .catch(error(res))
-    
+
 }
 
 // Get current user
