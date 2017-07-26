@@ -8,7 +8,7 @@
     x-security-scopes:
       - admin
     tags:
-      - Session Admin
+      - Admin Session
     summary: Gets the list of all sessions for a user [Role Admin]
     description: Returns list of sessions
     parameters:
@@ -36,7 +36,7 @@
     x-security-scopes:
       - admin
     tags:
-      - Session Admin
+      - Admin Session
     summary: Destroys a session of a user [Role Admin]
     description: Destroy a session
     parameters:
@@ -73,7 +73,7 @@
     x-security-scopes:
       - admin
     tags:
-      - Session Admin
+      - Admin Session
     summary: Destroys all sessions of a user [Role Admin]
     description: Destroy a session
     parameters:
