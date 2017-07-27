@@ -8,7 +8,7 @@ import User from '../../api/models/user';
 export async function verifyToken(req, authOrSecDef, token, cb) {
 
   // these are the scopes/roles defined for the current endpoint
-  let currentScopes = req.swagger.operation["x-security-scopes"];
+  let requiredRoles = req.swagger.operation["x-security-scopes"];
 
   if (token) {
     // Bearer
@@ -40,8 +40,8 @@ export async function verifyToken(req, authOrSecDef, token, cb) {
       return cb(unauthorized(req.res));
 
     // Verify Roles
-    if (currentScopes)
-      if (!hasRole(currentScopes, _user.roles))
+    if (requiredRoles)
+      if (!hasRole(requiredRoles, _user.roles))
         return cb(forbidden(req.res));
 
     // get current TTL
