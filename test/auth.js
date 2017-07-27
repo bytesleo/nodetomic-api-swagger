@@ -1,5 +1,8 @@
 const request = require("request");
 let n = 0;
+let roles = ['admin','user'];
+
+console.log(`Testing Auth...`);
 
 setInterval(function() {
   var options = {
@@ -11,14 +14,14 @@ setInterval(function() {
       'content-type': 'application/x-www-form-urlencoded'
     },
     form: {
-      username: 'user',
+      username: roles[Math.round(Math.random())],
       password: '123'
     }
   };
   request(options, function(error, response, body) {
     if (error)
       throw new Error(error);
-    n++;
-    console.log(`#${n} - ${body}`);
+    // n++
+    //console.log(`#${n} - ${body}`);
   });
 }, 30);
