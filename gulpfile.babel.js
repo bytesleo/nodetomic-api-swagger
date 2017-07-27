@@ -5,7 +5,6 @@ import babel from 'gulp-babel';
 import rename from 'gulp-rename';
 import clean from 'gulp-rimraf';
 import minify from 'gulp-minifier';
-import replace_string from 'gulp-replace';
 import jeditor from "gulp-json-editor";
 import runSequence from 'run-sequence';
 import config from './src/config';
@@ -29,7 +28,7 @@ gulp.task('build-clean', () => {
 });
 
 gulp.task('build-babel', () => {
-  return gulp.src(['src/**/*.js', '!src/core/dev.js', '!src/config/*.js', '!src/core/swagger/api-docs/*']).pipe(babel()).pipe(gulp.dest(dist_server));
+  return gulp.src(['src/**/*.js','!src/config/*.js', '!src/core/swagger/api-docs/*']).pipe(babel()).pipe(gulp.dest(dist_server));
 });
 
 gulp.task('build-replace', () => {
@@ -38,7 +37,6 @@ gulp.task('build-replace', () => {
   gulp.src(['src/assets/**/*']).pipe(gulp.dest(`${dist_server}/assets`));
   gulp.src(['src/**/*.yaml']).pipe(gulp.dest(dist_server));
   gulp.src([`src/core/swagger/api-docs/*`]).pipe(gulp.dest(dist_swagger));
-  gulp.src(`${dist_server}/core/engine.js`).pipe(replace_string("require('./dev').default(app);", '')).pipe(gulp.dest(`${dist_server}/core`));
   gulp.src("package.json").pipe(jeditor((json) => {
     delete json.devDependencies;
     json.scripts = {
