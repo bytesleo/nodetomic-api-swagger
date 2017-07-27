@@ -2,7 +2,7 @@ import {result, invalid, error} from 'express-easy-helper';
 import {create as jwtCreate} from '../../lib/token';
 import {create as rCreate} from '../../lib/redis';
 import {makeid} from '../../lib/utility/makeid';
-import {ttl} from '../../lib/utility/ttl';
+import {ttlRole} from '../../lib/utility/role';
 
 // Initialize after login success
 export async function initialize(err, user, res) {
@@ -24,17 +24,14 @@ export async function initialize(err, user, res) {
 
     // Create Token and save in Redis
     token = await create(user, session);
-
     // Save token in cookies
     res.cookie('token', JSON.stringify(token));
-
     // if local return token
     if (user.provider === 'local')
       return result(res, {token});
 
     // if Social redirect
     res.redirect('/#/token');
-
   } catch (err) {
     return error(res, {message: `Error creating keys in redis ${err}`});
   }
@@ -52,7 +49,7 @@ async function create(user, session) {
   // Stringify info session
   let _session = JSON.stringify(session);
   // Calculate ttl by user role
-  let _ttl = ttl(user.roles);
+  let _ttl = ttlRole(user.roles);
   // Create Session in redis
   await rCreate(_key, _session, _ttl);
   // Return token
