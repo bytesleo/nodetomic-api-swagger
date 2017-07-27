@@ -18,20 +18,25 @@ export async function observer(key) {
   ], async function(e, data) {
     // key, action, id
     let obj = get(data);
+    let msg = '';
     if (obj) {
       switch (obj.action) {
         case 'expired':
-          console.log(chalk.blueBright(`expired ${obj.key} - node = ${node}`));
+          msg = `expired ${obj.key}`;
           break;
         case 'del':
-          console.log(chalk.blueBright(`del ${obj.key} - node = ${node}`));
+          msg = `del ${obj.key}`;
           break;
         default:
           break;
       }
     } else {
-      console.log(chalk.blueBright(`${data} - node = ${node}`));
+      msg = data;
     }
+
+    if (config.log)
+      console.log(chalk.blueBright(`${msg} - node = ${node}`));
+
   });
 }
 
