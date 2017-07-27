@@ -7,6 +7,7 @@ import passport from 'passport';
 import session from 'express-session';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
+import morgan from 'morgan';
 import config from './../config';
 
 export default(app) => {
@@ -26,5 +27,12 @@ export default(app) => {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  require('./dev').default(app);
+  // Liverload
+  if (config.livereload.enabled)
+    app.use(require('connect-livereload')({src: `http://${config.livereload.ip}:${config.livereload.port}/livereload.js`}));
+
+  // Morgan
+  if (config.log)
+    app.use(morgan('dev'));
+
 };
