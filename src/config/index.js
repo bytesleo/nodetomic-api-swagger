@@ -18,10 +18,10 @@ export default {
   // Roles: if a user has multiple roles, will take the time of the greater role
   roles : [
     {
-      rol: 'user',
+      role: 'user',
       time: 60, // minutes
     }, {
-      rol: 'admin',
+      role: 'admin',
       time: 'infinite'
     }
   ],
