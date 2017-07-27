@@ -65,7 +65,7 @@
     x-security-scopes:
       - admin
     tags:
-      - User Admin
+      - Admin User
     summary: Update user by id [Role admin]
     description: update a single User
     parameters:
