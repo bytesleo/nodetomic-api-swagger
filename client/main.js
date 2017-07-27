@@ -20,4 +20,4 @@ const routes = [
 
 const router = new VueRouter({routes: routes})
 
-const app = new Vue({router}).$mount('#app')
+const app = new Vue({router: router}).$mount('#app');
