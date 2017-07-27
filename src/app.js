@@ -1,6 +1,5 @@
-import express from 'express';
-import http from 'http';
 import swaggerTools from 'swagger-tools';
+import express from 'express';
 import chalk from 'chalk';
 import config from './config';
 const app = express();
