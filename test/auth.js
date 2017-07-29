@@ -1,8 +1,9 @@
 const request = require("request");
+const chalk = require('chalk');
 let n = 0;
 let roles = ['admin','user'];
 
-console.log(`Testing Auth...`);
+console.log(chalk.cyan(`Testing Auth...`));
 
 setInterval(function() {
   var options = {
@@ -24,4 +25,4 @@ setInterval(function() {
     // n++
     //console.log(`#${n} - ${body}`);
   });
-}, 30);
+}, 5);
