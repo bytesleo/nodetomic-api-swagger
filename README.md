@@ -122,50 +122,76 @@ npm i
     * simple.config.js
     * package.json
       * **npm start**
-      * **npm run pm2-simple**
-      * **npm run pm2-cluster**
+      * **npm run simple**
+      * **npm run cluster**
 
 ### Test
 
 `npm test`
 
-You must be aware of running **npm start**
-
 ### Lint
 
 `npm lint`
 
-### Preview compiled in mode simple (pm2)
+## Node [Production]
 
-`npm run pm2-dev-simple`
+### Default
 
-* <http://localhost:8000>
-
-### Preview compiled in mode cluster (pm2)
-
-`npm run pm2-dev-cluster`
-
-* <http://localhost:8000>
-
-## Production
-
-### Run mode Default (node)
+**Description:** Run node in a single thread
 
 `npm run serve`
 
 * <http://localhost:8000>
 
-### Run mode simple (pm2)
+## PM2 [Development]
 
-`npm run pm2-simple`
+### Simple
+
+**Description:** Run pm2 in a single thread and run the monitor
+
+`npm run dev-simple`
+
+* <http://localhost:8000>
+
+### Cluster
+
+**Description:** Run pm2 in multiple threads and run the monitor
+
+`npm run dev-cluster`
 
 * <http://localhost:8000>
 
-### Run mode cluster (pm2)
+## PM2 [Production]
 
-`npm run pm2-cluster`
+### Simple
+
+**Description:** Run pm2 in a single thread
+
+`npm run simple`
 
 * <http://localhost:8000>
+
+### Cluster
+
+**Description:** Run pm2 in multiple threads
+
+`npm run cluster`
+
+* <http://localhost:8000>
+
+## Destroy
+
+### PM2
+
+**Description:** destroyed pm2 simple and pm2 cluster
+
+`npm stop`
+
+### Node
+
+**Description:** destroyed all process for node
+  
+`killall node`
 
 ## License
 
