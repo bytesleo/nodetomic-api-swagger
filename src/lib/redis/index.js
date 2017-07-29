@@ -1,26 +1,22 @@
 import Redis from 'redis-fast-driver';
 import config from '../../config';
-import {observer} from './pubsub';
+import './pubsub';
 
-const r = new Redis(config.redis.sessions);
-require('./status').default(r, config.redis.sessions, 'sessions');
+const r = new Redis(config.redis.sessions.conn);
+require('./status').default(r, config.redis.sessions.conn, 'sessions');
 
 
 // Create
 export async function create(key, value, ttl) {
   try {
     let id = key.split(':')[0];
-    if (!config.redis.multiple)
+    if (!config.redis.sessions.multiple)
       await destroyMultiple(id);
     if (ttl) {
       await r.rawCall(['SETEX', key, ttl, value]);
     } else {
       await r.rawCall(['SET', key, value]);
     }
-
-    // Observer by key!
-    if(config.redis.pubsub)
-      await observer(key);
 
   } catch (err) {
     throw `Error 1 Redis ${err}`;
