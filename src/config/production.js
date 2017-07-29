@@ -5,18 +5,18 @@ const name = 'your-app-name';
 import path from 'path';
 
 export default {
-  mode : mode,
-  name : name,
-  root : path.normalize(`${__dirname}/../..`),
-  base : path.normalize(`${__dirname}/..`),
-  client : `${path.normalize(`${__dirname}/../..`)}/client`,
-  server : {
+  mode: mode,
+  name: name,
+  root: path.normalize(`${__dirname}/../..`),
+  base: path.normalize(`${__dirname}/..`),
+  client: `${path.normalize(`${__dirname}/../..`)}/client`,
+  server: {
     ip: 'localhost',
     port: 8000
   },
-  secret : `your_secret_key`,
+  secret: `your_secret_key`,
   // Roles: if a user has multiple roles, will take the time of the greater role
-  roles : [
+  roles: [
     {
       role: 'user',
       time: 60, // minutes
@@ -25,22 +25,27 @@ export default {
       time: 'infinite'
     }
   ],
-  redis : {
+  redis: {
     // Db sessions
     sessions: {
-      //host: '/tmp/redis.sock', //unix domain
-      host: '127.0.0.1', //can be IP or hostname
-      port: 6379,
-      maxretries: 10, //reconnect retries, default 10
-      //auth: '123', //optional password, if needed
-      db: 0 //optional db selection
+      conn: {
+        //host: '/tmp/redis.sock', //unix domain
+        host: '127.0.0.1', //can be IP or hostname
+        port: 6379,
+        maxretries: 10, //reconnect retries, default 10
+        //auth: '123', //optional password, if needed
+        db: 0 //optional db selection
+      },
+      // If you want multiples logins or only one device in same time
+      multiple: true,
+      // Enable events to expired,del,..etc keys in redis
+      pubsub: {
+        //Expiration events, removal of keys in redis
+        events: true
+      }
     },
-    // If you want multiples logins or only one device in same time
-    multiple: true,
-    // Enable events to expired,del,..etc keys in redis
-    pubsub: false
   },
-  database : {
+  database: {
     mongo: {
       db: {
         // uri: mongodb://username:password@host:port/database?options
@@ -61,11 +66,11 @@ export default {
       }
     }
   },
-  path : {
+  path: {
     // paths 404
     disabled: '/:url(api|auth|assets|lib)/*'
   },
-  email : {
+  email: {
     host: 'hostexample',
     secure: true,
     port: 465,
@@ -74,7 +79,7 @@ export default {
       pass: 'examplePassword'
     }
   },
-  swagger : {
+  swagger: {
     enabled: true,
     info: {
       version: 'v1.0',
@@ -93,8 +98,8 @@ export default {
   },
   // session: defaultStore, mongoStore, redisStore
   // note: Required for Twitter oAuth
-  session : 'defaultStore',
-  oAuth : {
+  session: 'defaultStore',
+  oAuth: {
     local: {
       enabled: true
     },
@@ -130,10 +135,10 @@ export default {
     }
   },
   // DEV
-  livereload : { // livereload
+  livereload: { // livereload
     enabled: false,
     ip: 'localhost',
     port: 35729
   },
-  log : false // Log request in console?
+  log: true // Log request in console?
 };
