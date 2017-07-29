@@ -1,11 +1,9 @@
-const numCPUs = require('os').cpus().length;
-
 module.exports = {
   "apps": [
     {
       "name": "app",
       "script": "./server/app.js",
-      "instances": numCPUs,
+      "instances": 'max',
       "exec_mode": "cluster",
       "watch": false,
       "env": {
