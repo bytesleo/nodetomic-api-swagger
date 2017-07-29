@@ -38,7 +38,7 @@ export default {
     // If you want multiples logins or only one device in same time
     multiple: true,
     // Enable events to expired,del,..etc keys in redis
-    pubsub: true
+    pubsub: false
   },
   database : {
     mongo: {
