@@ -41,11 +41,12 @@ gulp.task('build-replace', () => {
     delete json.devDependencies;
     json.scripts = {
       "start": `npm run redis && node server/app.js`,
-      "pm2-simple": `npm run redis && pm2 start ${pm2_simple}`,
-      "pm2-cluster": `npm run redis && pm2 start ${pm2_cluster}`,
-      "pm2-dev-simple": `pm2 kill && npm run pm2-simple && pm2 monit`,
-      "pm2-dev-cluster": `pm2 kill && npm run pm2-cluster && pm2 monit`,
-      "redis": `redis-cli config set notify-keyspace-events KEA`
+      "simple": `npm run redis && npm stop && pm2 startOrRestart ${pm2_simple}`,
+      "cluster": `npm run redis && npm stop && pm2 startOrRestart ${pm2_cluster}`,
+      "dev-simple": `npm run simple && pm2 monit`,
+      "dev-cluster": `npm run cluster && pm2 monit`,
+      "redis": `redis-cli config set notify-keyspace-events KEA`,
+      "stop": `pm2 delete ${pm2_simple} ${pm2_cluster}`
     };
     return json;
   })).pipe(gulp.dest(dist));
