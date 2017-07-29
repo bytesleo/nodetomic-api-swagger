@@ -8,7 +8,5 @@ services:
   - mongodb
   - redis-server
 script:
-  - npm run serve &
-  - sleep 20
   - npm test
 fail_fast: true
