@@ -1,16 +1,16 @@
-import {result, invalid, error} from 'express-easy-helper';
-import {create as jwtCreate} from '../../lib/token';
-import {create as rCreate} from '../../lib/redis';
-import {makeid} from '../../lib/utility/makeid';
-import {ttlRole} from '../../lib/utility/role';
+import { result, invalid, error } from 'express-easy-helper';
+import { create as jwtCreate } from '../../lib/jwt';
+import { create as reCreate } from '../../lib/redis';
+import { makeid } from '../../lib/utility/makeid';
+import { ttlRole } from '../../lib/utility/role';
 
 // Initialize after login success
 export async function initialize(err, user, res) {
   // Errors
   if (err)
-    return invalid(res, {message: err});
+    return invalid(res, { message: err });
   if (!user)
-    return error(res, {message: 'Something went wrong, please try again.'});
+    return error(res, { message: 'Something went wrong, please try again.' });
 
   // Values to save in redis session
   let session = {
@@ -21,19 +21,18 @@ export async function initialize(err, user, res) {
 
   let token = null;
   try {
-
     // Create Token and save in Redis
     token = await create(user, session);
     // Save token in cookies
     res.cookie('token', JSON.stringify(token));
     // if local return token
     if (user.provider === 'local')
-      return result(res, {token});
+      return result(res, { token });
 
     // if Social redirect
     res.redirect('/#/token');
   } catch (err) {
-    return error(res, {message: `Error creating keys in redis ${err}`});
+    return error(res, { message: `Error creating keys in redis ${err}` });
   }
 
 }
@@ -51,7 +50,7 @@ async function create(user, session) {
   // Calculate ttl by user role
   let _ttl = ttlRole(user.roles);
   // Create Session in redis
-  await rCreate(_key, _session, _ttl);
+  await reCreate(_key, _session, _ttl);
   // Return token
   return token;
 }

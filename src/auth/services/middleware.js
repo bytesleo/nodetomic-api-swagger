@@ -1,7 +1,7 @@
-import {unauthorized, forbidden} from 'express-easy-helper';
-import {exits as rExits, ttl as rTtl} from '../../lib/redis';
-import {hasRole} from '../../lib/utility/role';
-import {verify} from '../../lib/token';
+import { unauthorized, forbidden } from 'express-easy-helper';
+import { exits as reExits, ttl as reTtl } from '../../lib/redis';
+import { hasRole } from '../../lib/utility/role';
+import { verify } from '../../lib/jwt';
 import User from '../../api/models/user';
 
 // VerifyToken
@@ -23,7 +23,7 @@ export async function verifyToken(req, authOrSecDef, token, cb) {
     let key = `${decode._id}:${decode._verify}`;
 
     // Verify if exits token in redis
-    if (!await rExits(key))
+    if (!await reExits(key))
       return cb(unauthorized(req.res));
 
     // Extract info user from MongoDB
@@ -45,7 +45,7 @@ export async function verifyToken(req, authOrSecDef, token, cb) {
         return cb(forbidden(req.res));
 
     // get current TTL
-    let ttl = await rTtl(key);
+    let ttl = await reTtl(key);
 
     // Success
     req.user = Object.assign({
