@@ -8,7 +8,7 @@
 
 <http://localhost:8000/docs> 
 
-<img src="http://i.imgur.com/sR1yfe1.png" width="800" >
+<img src="http://i.imgur.com/sR1yfe1.png">
 
 #### Example horizontal scalability
 
