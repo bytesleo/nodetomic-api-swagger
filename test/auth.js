@@ -25,4 +25,4 @@ setInterval(function() {
     // n++
     //console.log(`#${n} - ${body}`);
   });
-}, 5);
+}, 30);
