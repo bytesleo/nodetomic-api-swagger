@@ -1,16 +1,14 @@
 # Nodetomic-api-swagger [![NPM version](https://badge.fury.io/js/nodetomic-api-swagger.svg)](https://npmjs.org/package/nodetomic-api-swagger) [![Build Status](https://travis-ci.org/kevoj/nodetomic-api-swagger.svg?branch=master)](https://travis-ci.org/kevoj/nodetomic-api-swagger) [![dependencies Status](https://david-dm.org/kevoj/nodetomic-api-swagger/status.svg)](https://david-dm.org/kevoj/nodetomic-api-swagger) [![devDependencies Status](https://david-dm.org/kevoj/nodetomic-api-swagger/dev-status.svg)](https://david-dm.org/kevoj/nodetomic-api-swagger?type=dev) [![Gitter chat](https://img.shields.io/gitter/room/kevoj/scaling-fullstack.svg)](https://gitter.im/scaling-fullstack/Lobby) [![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://raw.githubusercontent.com/kevoj/nodetomic-api-swagger/master/LICENSE) [![Downloads](https://img.shields.io/npm/dt/nodetomic-api-swagger.svg?style=flat-square)](https://npmjs.org/package/nodetomic-api-swagger)
 
-> Simple and fast Restful API designed for horizontal scalability including cluster, based on Swagger, Nodejs, Redis + Passport, MongoDB, Express
+> Simple and fast Restful API designed for horizontal scalability including cluster, based on Swagger, Socket.io, Nodejs, Redis + Passport, MongoDB, Express
 
 ## Examples
 
-<http://localhost:8000>
+![](https://j.gifs.com/0gw5gX.gif)
 
-<img src="http://i.imgur.com/cGMG5Rb.png" width="600" >
+<http://localhost:8000/docs> 
 
-<http://localhost:8000/docs/>
-
-<img src="http://i.imgur.com/8KGmhj9.png" width="600" >
+<img src="http://i.imgur.com/sR1yfe1.png" width="800" >
 
 #### Example horizontal scalability
 
@@ -21,6 +19,7 @@
 <a><img src="http://solucionesit.ldtsynergy.com/-/Srvs015/MongoDB/file/view/mongodb.png/547250106/315x368/mongodb.png" width="60"></a>
 <a><img src="http://code.runnable.com/images/provider-icons/icon-express-alt.svg" width="60"></a>
 <a><img src="https://chris.lu/upload/images/redis.png" width="60"></a>
+<a><img src="https://www.pubnub.com/wp-content/uploads/2014/07/SOCKETIOICON.gif" width="60"></a>
 <a><img src="http://oraclelinuxworld.com/wp-content/uploads/2016/01/NodeJS-Small-Blog-Feature-Image-.jpg" width="60"></a>
 <a><img src="http://www.themightycribb.com/wp-content/uploads/2016/08/gulpjs-logo.jpg" width="60"></a>
 <a><img src="https://cms-assets.tutsplus.com/uploads/users/16/posts/24511/preview_image/babel-1.png" width="60"></a>
@@ -63,6 +62,9 @@ npm i
   * Login validation
   * Role validation
 
+* Socket.io
+  * cluster
+
 * **Authentication**
   * local
   * facebook
@@ -87,6 +89,7 @@ npm i
   * api
     * controllers
     * models
+    * sockets
     * swagger
   * assets
   * auth
