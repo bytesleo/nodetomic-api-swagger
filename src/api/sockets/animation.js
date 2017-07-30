@@ -1,5 +1,5 @@
-let socket;
-let io;
+let socket = null;
+let io = null;
 
 // Constructor
 export default (_socket, _io) => {
@@ -16,13 +16,6 @@ export function on() {
 // Example emit from controllers/news.js
 export function emit(data) {
 
-    io.emit('shake', data);
+    io.emit('animation', data);
 
 }
-
-// list all clients
-/*export function getClients() {
-    io.of('/').adapter.clients(function (err, clients) {
-        console.log(clients);
-    });
-}*/
