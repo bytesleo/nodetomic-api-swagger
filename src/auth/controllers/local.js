@@ -1,5 +1,5 @@
 import passport from 'passport';
-import {initialize} from '../services/session';
+import { initialize } from '../services/session';
 
 // Callback passport
 export function callback(req, res, next) {
