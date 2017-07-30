@@ -1,5 +1,5 @@
-let socket;
-let io;
+let socket = null;
+let io = null;
 
 // Constructor
 export default (_socket, _io) => {
@@ -20,10 +20,11 @@ export function on() {
         io.emit('delete', data);
     });
 
-
 }
 
 // You can emit from controllers/hello.js
+// import { emit as socket } from '../sockets/hello';
+// socket.emit('hello world!');
 export function emit(data) {
 
     io.emit('other event', data);
