@@ -12,7 +12,6 @@ import config from './src/config';
 const dist = './dist';
 const dist_server = `${dist}/server`;
 const dist_swagger = `${dist_server}/core/swagger/api-docs`;
-const dist_package = `${dist}/package.json`;
 const dist_client = `${dist}/client`;
 const pm2_simple = `simple.config.js`;
 const pm2_cluster = `cluster.config.js`;
@@ -22,21 +21,29 @@ gulp.task('build', () => {
 });
 
 gulp.task('build-clean', () => {
+  // Remove files dist, but ignore assets
   return gulp.src([
-    `${dist_server}/*`, `!${dist_server}/assets`, dist_package
-  ], {read: false}).pipe(clean({force: true}));
+    `${dist_server}/*`, `!${dist_server}/assets`
+  ], { read: false }).pipe(clean({ force: true }));
 });
 
 gulp.task('build-babel', () => {
-  return gulp.src(['src/**/*.js','!src/config/*.js', '!src/core/swagger/api-docs/*']).pipe(babel()).pipe(gulp.dest(dist_server));
+  // Babel transform, ignore config and swagger api-docs
+  return gulp.src(['src/**/*.js', '!src/config/*.js', '!src/core/swagger/api-docs/*']).pipe(babel()).pipe(gulp.dest(dist_server));
 });
 
 gulp.task('build-replace', () => {
+  // Copy config production
   gulp.src(["src/config/production.js"]).pipe(babel()).pipe(rename('index.js')).pipe(gulp.dest(`${dist_server}/config`));
-  gulp.src(['src/views/**/*.{html,css}']).pipe(minify({minify: true, collapseWhitespace: true, conservativeCollapse: true, minifyJS: true, minifyCSS: true})).pipe(gulp.dest(`${dist_server}/views`));
+  // Copy views
+  gulp.src(['src/views/**/*.{html,css}']).pipe(minify({ minify: true, collapseWhitespace: true, conservativeCollapse: true, minifyJS: true, minifyCSS: true })).pipe(gulp.dest(`${dist_server}/views`));
+  // Copy assets
   gulp.src(['src/assets/**/*']).pipe(gulp.dest(`${dist_server}/assets`));
+  // Copy *.yaml
   gulp.src(['src/**/*.yaml']).pipe(gulp.dest(dist_server));
+  // Copy swagger/api-docs
   gulp.src([`src/core/swagger/api-docs/*`]).pipe(gulp.dest(dist_swagger));
+  // package.json
   gulp.src("package.json").pipe(jeditor((json) => {
     delete json.devDependencies;
     json.scripts = {
@@ -50,11 +57,13 @@ gulp.task('build-replace', () => {
     };
     return json;
   })).pipe(gulp.dest(dist));
-
+  // Copy pm2 files
   gulp.src([pm2_simple, pm2_cluster]).pipe(gulp.dest(dist));
-
+  // If not exits client folder, then copy current client
   if (!fs.existsSync(`${dist}/client`)) {
-    gulp.src(['client/*']).pipe(minify({minify: true, collapseWhitespace: true, conservativeCollapse: true, minifyJS: true, minifyCSS: true})).pipe(gulp.dest(dist_client));
+    gulp.src(['client/*','!**/*.js']).pipe(minify({ minify: true, collapseWhitespace: true, conservativeCollapse: true, minifyCSS: true })).pipe(gulp.dest(dist_client));
+    gulp.src(['client/**/*.js']).pipe(babel()).pipe(gulp.dest(dist_client));
   }
+  // Success
   setTimeout(() => console.log(chalk.greenBright('\n---------\nBuild success!\n---------\n')), 500);
 });
