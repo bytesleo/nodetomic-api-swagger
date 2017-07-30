@@ -1,5 +1,5 @@
 import passport from 'passport';
-import {Strategy as BitbucketStrategy} from 'passport-bitbucket';
+import { Strategy as BitbucketStrategy } from 'passport-bitbucket';
 import User from '../../api/models/user';
 import config from '../../config';
 
@@ -9,7 +9,7 @@ passport.use(new BitbucketStrategy({
   callbackURL: config.oAuth.bitbucket.callbackURL
 }, (token, tokenSecret, profile, done) => {
 
-  User.findOne({provider: 'bitbucket', 'social.id': profile.id}).exec().then(user => {
+  User.findOne({ provider: 'bitbucket', 'social.id': profile.id }).exec().then(user => {
 
     if (!user) {
       user = new User({

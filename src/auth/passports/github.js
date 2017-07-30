@@ -1,5 +1,5 @@
 import passport from 'passport';
-import {Strategy as GitHubStrategy} from 'passport-github';
+import { Strategy as GitHubStrategy } from 'passport-github';
 import User from '../../api/models/user';
 import config from '../../config';
 
@@ -9,7 +9,7 @@ passport.use(new GitHubStrategy({
   callbackURL: config.oAuth.github.callbackURL
 }, (accessToken, refreshToken, profile, done) => {
 
-  User.findOne({provider: 'github', 'social.id': profile.id}).exec().then(user => {
+  User.findOne({ provider: 'github', 'social.id': profile.id }).exec().then(user => {
 
     if (!user) {
       user = new User({

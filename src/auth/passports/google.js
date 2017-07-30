@@ -1,5 +1,5 @@
 import passport from 'passport';
-import {OAuth2Strategy as GoogleStrategy} from 'passport-google-oauth';
+import { OAuth2Strategy as GoogleStrategy } from 'passport-google-oauth';
 import User from '../../api/models/user';
 import config from '../../config';
 
@@ -9,7 +9,7 @@ passport.use(new GoogleStrategy({
   callbackURL: config.oAuth.google.callbackURL
 }, (accessToken, refreshToken, profile, done) => {
 
-  User.findOne({provider: 'google', 'social.id': profile.id}).exec().then(user => {
+  User.findOne({ provider: 'google', 'social.id': profile.id }).exec().then(user => {
 
     if (!user) {
       user = new User({

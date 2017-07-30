@@ -1,5 +1,5 @@
 import passport from 'passport';
-import {Strategy as TwitterStrategy} from 'passport-twitter';
+import { Strategy as TwitterStrategy } from 'passport-twitter';
 import User from '../../api/models/user';
 import config from '../../config';
 
@@ -9,7 +9,7 @@ passport.use(new TwitterStrategy({
   callbackURL: config.oAuth.twitter.callbackURL
 }, (token, tokenSecret, profile, done) => {
 
-  User.findOne({provider: 'twitter', 'social.id': profile.id}).exec().then(user => {
+  User.findOne({ provider: 'twitter', 'social.id': profile.id }).exec().then(user => {
 
     if (!user) {
       user = new User({

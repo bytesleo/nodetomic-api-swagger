@@ -1,5 +1,5 @@
 import passport from 'passport';
-import {Strategy as FacebookStrategy} from 'passport-facebook';
+import { Strategy as FacebookStrategy } from 'passport-facebook';
 import User from '../../api/models/user';
 import config from '../../config';
 
@@ -9,7 +9,7 @@ passport.use(new FacebookStrategy({
   callbackURL: config.oAuth.facebook.callbackURL
 }, (accessToken, refreshToken, profile, done) => {
 
-  User.findOne({provider: 'facebook', 'social.id': profile.id}).exec().then(user => {
+  User.findOne({ provider: 'facebook', 'social.id': profile.id }).exec().then(user => {
 
     if (!user) {
       user = new User({
@@ -27,7 +27,7 @@ passport.use(new FacebookStrategy({
     }
 
     user.lastLogin = Date.now();
-    
+
     user.save().then(_user => {
       return done(null, _user);
     }).catch(err => done(err));
