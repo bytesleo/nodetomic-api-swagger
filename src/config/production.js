@@ -1,6 +1,6 @@
 // development || production
 const mode = 'production';
-// Project Name:  mongodb://localhost:27017/{NAME}-{mode}
+// name:  mongodb://localhost:27017/{name}-{mode}
 const name = 'your-app-name';
 import path from 'path';
 
@@ -26,7 +26,6 @@ export default {
     }
   ],
   redis: {
-    // Db sessions
     sessions: {
       conn: {
         //host: '/tmp/redis.sock', //unix domain
@@ -44,6 +43,14 @@ export default {
         events: true
       }
     },
+    // By default the port to listen the sockets is +1 of the port of the server.port
+    // Example: server.port: 8000, then socket.port = 8001
+    sockets: {
+      conn: {
+        host: '127.0.0.1',
+        port: 6379
+      }
+    }
   },
   database: {
     mongo: {
