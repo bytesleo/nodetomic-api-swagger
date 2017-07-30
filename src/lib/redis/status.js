@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-export default(r, conn, name) => {
+export default (r, conn, name) => {
 
   const uri = `${conn.host}:${conn.port}/${conn.db}`;
 
@@ -22,7 +22,7 @@ export default(r, conn, name) => {
     console.log(chalk.redBright(`Redis[${name}]-> error: ${uri} - detail: ${err}`));
   });
 
-  setTimeout(async() => {
+  setTimeout(async () => {
     if (!await r.rawCall(['ping'])) {
       console.log(chalk.redBright(`Redis[${name}]-> Could not establish a connection: ${uri}`));
       process.exit(-1);
