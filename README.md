@@ -16,7 +16,7 @@
 
 #### Technologies
 
-<a><img src="http://solucionesit.ldtsynergy.com/-/Srvs015/MongoDB/file/view/mongodb.png/547250106/315x368/mongodb.png" width="60"></a>
+<a><img src="http://nightdeveloper.net/wp-content/uploads/2014/12/mongo_db.png" width="60"></a>
 <a><img src="http://code.runnable.com/images/provider-icons/icon-express-alt.svg" width="60"></a>
 <a><img src="https://chris.lu/upload/images/redis.png" width="60"></a>
 <a><img src="https://www.pubnub.com/wp-content/uploads/2014/07/SOCKETIOICON.gif" width="60"></a>
