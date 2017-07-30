@@ -8,25 +8,26 @@ require('./status').default(r, config.redis.sessions.conn, 'pubsub');
 // Get CLuster or simple Process
 const node = parseInt(process.env.NODE_APP_INSTANCE) || 0;
 
-/*-----------
+/*
 * Basic Exmaple Pubsub
+* Listener all nodes
 */
-
-// Listener all nodes
 r.rawCall([
   'subscribe', `news`
 ], async function (e, data) {
-  console.log(chalk.blueBright(`${data} - node = ${node}`));
+
+  if (config.log)
+    console.log(chalk.blueBright(`${data} - node = ${node}`));
 });
 
 // Send publish from node 0
 if (node === 0) {
   const r2 = new Redis(config.redis.sessions.conn);
-  setTimeout(function (){
+  setTimeout(function () {
     r2.rawCall(['PUBLISH', 'news', 'hello world!']);
   }, 3000);
 }
-/*-----------*/
+
 
 
 // Thread event manager (Expired, del)
