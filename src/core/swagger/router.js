@@ -16,7 +16,7 @@ export default (app, swaggerConfig) => {
   // delete swaggerConfig.paths['/auth/github'];
 
   // If Swagger is enabled then the router is enabled!
-  if (config.swagger.enabled){
+  if (config.swagger.enabled) {
     app.get(`/swagger.json`, (req, res) => res.json(swaggerConfig));
     app.use('/docs', express.static(`${config.base}/core/swagger/api-docs`));
   }

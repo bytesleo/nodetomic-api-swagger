@@ -1,15 +1,15 @@
-import {error} from 'express-easy-helper';
-import {verifyToken} from '../../auth/services/middleware';
+import { error } from 'express-easy-helper';
+import { verifyToken } from '../../auth/services/middleware';
 import config from '../../config';
 
-export default(app, swaggerConfig, middleware) => {
+export default (app, swaggerConfig, middleware) => {
 
   // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
   app.use(middleware.swaggerMetadata());
   // Provide the security handlers
-  app.use(middleware.swaggerSecurity({Bearer: verifyToken}));
+  app.use(middleware.swaggerSecurity({ Bearer: verifyToken }));
   // Validate Swagger requests
-  app.use(middleware.swaggerValidator({validateResponse: false}));
+  app.use(middleware.swaggerValidator({ validateResponse: false }));
 
   // Route validated requests to appropriate controller
   let routerConfig = {

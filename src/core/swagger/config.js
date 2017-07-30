@@ -16,7 +16,7 @@ export default (app) => {
         Bearer: {
           type: 'apiKey',
           name: 'Authorization',
-          in : 'header',
+          in: 'header',
           description: 'The following syntax must be used in the "Authorization" header xxxxxx.yyyyyyy.zzzzzz'
         },
         OAuth2: {
