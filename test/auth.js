@@ -10,7 +10,6 @@ setInterval(function() {
     method: 'POST',
     url: 'http://localhost:8000/auth/local',
     headers: {
-      'postman-token': '7adf01b2-9d2e-0bb4-38b9-037fa55f472b',
       'cache-control': 'no-cache',
       'content-type': 'application/x-www-form-urlencoded'
     },
@@ -25,4 +24,4 @@ setInterval(function() {
     // n++
     //console.log(`#${n} - ${body}`);
   });
-}, 30);
+}, 50);
