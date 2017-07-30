@@ -1,4 +1,4 @@
-import {result, notFound, error} from 'express-easy-helper';
+import { result, notFound, error } from 'express-easy-helper';
 import Hello from '../models/hello';
 
 // List Hello's
@@ -33,14 +33,14 @@ export function read(req, res) {
 export function update(req, res) {
 
   return Hello.findByIdAndUpdate(
-      req.swagger.params.id.value, {
-        $set: {
-          greet: req.body.greet,
-          language: req.body.language,
-        }
-      }, {
-        new: true
-      }).exec()
+    req.swagger.params.id.value, {
+      $set: {
+        greet: req.body.greet,
+        language: req.body.language,
+      }
+    }, {
+      new: true
+    }).exec()
     .then(notFound(res))
     .then(result(res))
     .catch(error(res))
@@ -51,8 +51,8 @@ export function update(req, res) {
 export function destroy(req, res) {
 
   return Hello.deleteOne({
-      _id: req.swagger.params.id.value
-    }).exec()
+    _id: req.swagger.params.id.value
+  }).exec()
     .then(result(res))
     .catch(error(res));
 
