@@ -1,4 +1,4 @@
-import {result, error} from 'express-easy-helper';
+import { result, error } from 'express-easy-helper';
 import config from '../../config';
 
 // Upload a file
@@ -12,7 +12,7 @@ export function index(req, res) {
       file.mv(`${config.base}/${path}`, err => {
         if (err)
           throw err;
-        result(res, 201, {message: `file upload: ${path}`});
+        result(res, 201, { message: `file upload: ${path}` });
       });
 
     } else {

@@ -1,6 +1,6 @@
-import {result, error} from 'express-easy-helper';
-import {send} from '../../lib/utility/nodemailer';
-import {getTemplate, setTemplate} from '../../lib/utility/hogan';
+import { result, error } from 'express-easy-helper';
+import { send } from '../../lib/utility/nodemailer';
+import { getTemplate, setTemplate } from '../../lib/utility/hogan';
 const templateExample = getTemplate('templates/example.html'); //Example with .html, .mustache, .js
 
 // Send a email
