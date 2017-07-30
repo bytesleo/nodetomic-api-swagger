@@ -7,7 +7,7 @@ const app = express();
 require('./lib/socket.io');
 // Swagger Config
 let swaggerConfig = require('./core/swagger/config').default(app);
-// Swagger Init
+// Swagger middleware init
 swaggerTools.initializeMiddleware(swaggerConfig, (middleware) => {
   // Core
   require('./core/engine').default(app);
