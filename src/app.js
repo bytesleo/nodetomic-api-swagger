@@ -3,6 +3,8 @@ import express from 'express';
 import chalk from 'chalk';
 import config from './config';
 const app = express();
+// Socket
+require('./lib/socketio');
 // Swagger Config
 let swaggerConfig = require('./core/swagger/config').default(app);
 // Swagger Init
