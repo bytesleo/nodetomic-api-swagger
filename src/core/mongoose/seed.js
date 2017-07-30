@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-export default(connection, config) => {
+export default (connection, config) => {
 
   // Get list collections
   connection.db.listCollections().toArray((err, collections) => {

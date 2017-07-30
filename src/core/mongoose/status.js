@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-export default(db, config) => {
+export default (db, config) => {
 
   const uri = config.database.mongo.db.uri;
 
