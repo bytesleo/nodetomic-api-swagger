@@ -4,7 +4,7 @@ import express from 'express';
 import favicon from 'serve-favicon';
 import config from '../config';
 
-export default(app) => {
+export default (app) => {
 
   // Paths 404 from url
   app.get(config.path.disabled, (req, res) => {
