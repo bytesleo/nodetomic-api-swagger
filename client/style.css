@@ -1,6 +1,7 @@
  html,
  body {
      padding-top: 5vh;
+     font-family: 'Open Sans', sans-serif;
  }
  
  .logo {
@@ -17,7 +18,6 @@
      color: white;
      font-size: 40px;
      line-height: 1.2;
-     font-family: 'Open Sans', sans-serif !important;
  }
  
  .socket {
@@ -26,7 +26,6 @@
      padding: 8px 0;
      color: #b9f291;
      font-size: 15px;
-     font-family: 'Open Sans', sans-serif !important;
  }
  
  .btn-add {
@@ -36,7 +35,6 @@
  .link-docs {
      padding-top: 5px;
      text-align: center;
-     font-family: 'Open Sans', sans-serif !important;
  }
  
  .link-docs a {
@@ -48,11 +46,6 @@
      padding-top: 5px;
      text-align: left;
      color: #50bf94;
-     font-family: 'Open Sans', sans-serif !important;
- }
- 
- .hello {
-     font-family: 'Open Sans', sans-serif !important;
  }
  
  .hello .rm {
@@ -78,5 +71,4 @@
  
  .footer a {
      color: #50bf94;
-     font-family: 'Open Sans', sans-serif !important;
  }
