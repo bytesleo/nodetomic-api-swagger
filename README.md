@@ -42,19 +42,6 @@
 <a><img src="https://i2.wp.com/community.nodemailer.com/wp-content/uploads/2015/10/n2-2.png?fit=422%2C360&ssl=1" width="60"></a>
 <a><img src="https://cdn.xebialabs.com/assets/files/plugins/travis-ci.jpg" width="60"></a>
 
-## Requirements
-
-- [Nodejs](https://nodejs.org) **>= 6.x.x** (**Recommended 8.x.x**)
-- [MongoDB](https://www.mongodb.com)  **>= 3.x.x**
-- [Redis](https://redis.io)  **>= 3.x.x** (**Recommended 4.x.x**)
-
-## Installation
-
-```bash
-git clone https://github.com/kevoj/nodetomic-api-swagger
-cd nodetomic-api-swagger
-npm i
-```
 ## Features
 
 * **Tokens**
@@ -88,13 +75,171 @@ npm i
   * Routers by swagger
   * Swagger UI
   
+## Requirements
+
+- [Nodejs](https://nodejs.org) **>= 6.x.x** (**Recommended 8.x.x**)
+- [MongoDB](https://www.mongodb.com)  **>= 3.x.x**
+- [Redis](https://redis.io)  **>= 3.x.x** (**Recommended 4.x.x**)
+
+## Installation
+
+```bash
+git clone https://github.com/kevoj/nodetomic-api-swagger
+cd nodetomic-api-swagger
+npm i
+```
+## How to create..
+
+### Model
+
+src/api/**models**/hello.js
+
+```javascript
+
+import mongoose from 'mongoose';
+const Schema = mongoose.Schema;
+
+const HelloSchema = new Schema({
+  greet: {
+    type: String,
+    required: [true, 'Greet is required.']
+  },
+  language: {
+    type: String,
+    required: [true, 'Language is required.']
+  }
+});
+
+export default mongoose.model('Hello', HelloSchema);
+
+```
+
+### Controller
+
+src/api/**controllers**/hello.js
+
+```javascript
+
+import { result, notFound, error } from 'express-easy-helper';
+import Hello from '../models/hello';
+
+export function list(req, res) {
+	return Hello.find().exec()
+    .then(notFound(res))
+    .then(result(res))
+    .catch(error(res));
+}
+
+```
+### Swagger (Router)
+
+src/api/**swagger**/hello.yaml
+
+```yaml
+
+/api/hello:
+  x-swagger-router-controller: hello 
+  get:
+    operationId: list
+    tags:
+      - Hello
+    summary: Get list Hello's
+    description: Returns all hello
+    responses:
+      200:
+        description: Success
+      404:
+        description: Not found
+      500:
+        description: Error
+
+```
+
+### Swagger (Router + middleware)
+
+src/api/**swagger**/hello.yaml
+
+```yaml
+
+/api/hello:
+  x-swagger-router-controller: hello 
+  get:
+    operationId: list
+    security:
+      - Bearer: []
+    x-security-scopes:
+      - admin
+    tags:
+      - Hello
+    summary: Get list Hello's
+    description: Returns all hello
+    responses:
+      200:
+        description: Success
+      404:
+        description: Not found
+      500:
+        description: Error
+
+```
+
+### Socket
+
+src/api/**sockets**/hello.js
+
+```javascript
+
+let socket = null;
+let io = null;
+
+// Constructor
+export default (_socket, _io) => {
+    socket = _socket;
+    io = _io;
+    on();
+}
+
+// Here should be all events 'on'
+export function on() {
+	// Listen 'example'
+    socket.on('example', function (data) {
+    	// emit to cool
+        io.emit('cool', data);
+    });
+}
+
+export function emit(data) {
+    io.emit('other event', data);
+}
+
+
+```
+
+### Controller + Socket
+
+src/api/**controllers**/hello.js
+
+```javascript
+
+import { result, notFound, error } from 'express-easy-helper';
+import { emit as socket } from '../sockets/hello';
+
+export function list(req, res) {
+
+	socket.emit('hello world');
+  return result(res, 'Emited!');
+
+}
+
+```
+
 ## Development
 
 ### Start
 
 `npm start`
 
-![](http://i.imgur.com/Tb17d0E.png)
+![Imgur](http://i.imgur.com/XqgySyb.png)
 
 *  <http://localhost:8000>
 
@@ -102,33 +247,23 @@ npm i
 
 `npm run build`
 
-![](http://i.imgur.com/yTI3otr.png)
+![Imgur](http://i.imgur.com/yTI3otr.png)
 
 * Generate output folder: **`dist`**
 
-![Imgur](http://i.imgur.com/tfscL7A.png)
+![Imgur](http://i.imgur.com/u4axBDN.png)
 
 ### Test
 
 `npm test`
 
-![](http://i.imgur.com/siwM64e.png)
+![Imgur](http://i.imgur.com/S5w9Jpm.png)
 
 ### Lint
 
 `npm lint`
 
-### Preview Production
-
-Run node in a single thread
-
-`npm run serve`
-
-![Imgur](http://i.imgur.com/B1GE9CJ.png)
-
-* <http://localhost:8000>
-
-### Preview Production [Pm2]
+## Pm2 [Development]
 
 #### Simple
 
@@ -136,7 +271,7 @@ Run pm2 in a single thread and run the monitor
 
 `npm run dev-simple`
 
-![Imgur](http://i.imgur.com/mBuFp0p.png)
+![Imgur](http://i.imgur.com/cNuBVzK.png)
 
 * <http://localhost:8000>
 
@@ -146,11 +281,11 @@ Run pm2 in multiple threads and run the monitor
 
 `npm run dev-cluster`
 
-![Imgur](http://i.imgur.com/HFayeji.png)
+![Imgur](http://i.imgur.com/wEU2Uz5.png)
 
 * <http://localhost:8000>
 
-## Production
+## Pm2 [Production]
 
 ### Simple
 
@@ -172,15 +307,13 @@ Run pm2 in multiple threads
 
 * <http://localhost:8000>
 
-## Destroy
+## Stop
 
 ### PM2
 
 destroy pm2 simple and pm2 cluster
 
 `npm stop`
-
-![](http://i.imgur.com/j6Yr7b2.png)
 
 ### Node
 
