@@ -1,10 +1,12 @@
+/* global io, location, Cookies, alert, document, Vue, VueRouter */
+
 // Config
 const host = location.origin;
-var port = parseInt(host.split(':').reverse()[0]);
+const port = parseInt(host.split(':').reverse()[0]);
 const hostSocket = host.replace(port, port + 1);
 
 // Socket.io
-var socket = io.connect(hostSocket, {
+const socket = io.connect(hostSocket, {
   'transports': ['websocket', 'polling']
 });
 
@@ -74,7 +76,7 @@ socket.on('add', function (data) {
 
 socket.on('delete', function (data) {
   app.greets.forEach(element => {
-    if (element._id == data._id) {
+    if (element._id === data._id) {
       let index = app.greets.indexOf(element);
       app.greets.splice(index, 1);
     }
@@ -83,7 +85,7 @@ socket.on('delete', function (data) {
 
 // Animation
 
-var logo = document.getElementById("logo");
+const logo = document.getElementById("logo");
 
 logo.addEventListener("animationend", function () {
   app.logo = '';
