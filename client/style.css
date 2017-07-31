@@ -1,7 +1,45 @@
- html,
  body {
-     padding-top: 5vh;
+     padding-top: 10vh;
      font-family: 'Open Sans', sans-serif;
+ }
+ 
+ .btn-add {
+     margin-top: 15px;
+ }
+ 
+ .footer {
+     margin-top: 0;
+     text-align: center;
+     color: white;
+ }
+ 
+ .footer a {
+     color: #50bf94;
+ }
+ 
+ .hello .greet {
+     font-size: 17px;
+ }
+ 
+ .hello .language {
+     color: #50bf94;
+     font-size: 11px;
+ }
+ 
+ .hello .rm {
+     float: right;
+     cursor: pointer;
+     font-size: 11px;
+ }
+ 
+ .link-docs {
+     padding-top: 5px;
+     text-align: center;
+ }
+ 
+ .link-docs a {
+     font-size: 17px;
+     color: #50bf94;
  }
  
  .logo {
@@ -28,47 +66,8 @@
      font-size: 15px;
  }
  
- .btn-add {
-     margin-top: 15px;
- }
- 
- .link-docs {
-     padding-top: 5px;
-     text-align: center;
- }
- 
- .link-docs a {
-     font-size: 17px;
-     color: #50bf94;
- }
- 
  .token {
      padding-top: 5px;
      text-align: left;
-     color: #50bf94;
- }
- 
- .hello .rm {
-     float: right;
-     cursor: pointer;
-     font-size: 11px;
- }
- 
- .hello .greet {
-     font-size: 17px;
- }
- 
- .hello .language {
-     color: #50bf94;
-     font-size: 11px;
- }
- 
- .footer {
-     margin-top: 0px;
-     text-align: center;
-     color: white;
- }
- 
- .footer a {
      color: #50bf94;
  }
