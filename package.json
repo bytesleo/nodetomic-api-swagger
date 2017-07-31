@@ -1,6 +1,6 @@
 {
     "name": "nodetomic-api-swagger",
-    "version": "2.7.3",
+    "version": "2.7.5",
     "description": "Simple and fast Restful API designed for horizontal scalability including cluster, based on Swagger, Socket.io, Nodejs, Redis + Passport, MongoDB, Express",
     "main": "src/app.js",
     "repository": {
@@ -13,12 +13,11 @@
         "test": "npm run simple && node ./node_modules/npm-delay 4000 && mocha --compilers js:babel-register && npm stop",
         "lint": "eslint src --ext .js",
         "redis": "redis-cli config set notify-keyspace-events KEA",
-        "serve": "npm run build && cd dist && npm start",
+        "stop": "pm2 delete simple.config.js cluster.config.js",
+        "dev-simple": "npm run build -- -dev && cd dist && npm stop && pm2-dev simple.config.js",
+        "dev-cluster": "npm run build -- -dev && cd dist && npm stop && pm2-dev cluster.config.js",
         "simple": "npm run build && cd dist && npm run simple",
-        "cluster": "npm run build && cd dist && npm run cluster",
-        "dev-simple": "npm run build && cd dist && npm run dev-simple",
-        "dev-cluster": "npm run build && cd dist && npm run dev-cluster",
-        "stop": "pm2 delete simple.config.js cluster.config.js"
+        "cluster": "npm run build && cd dist && npm run cluster"
     },
     "author": "Leonardo Rico Guevara (https://github.com/kevoj)",
     "license": "MIT",
