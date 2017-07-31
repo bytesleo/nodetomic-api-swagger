@@ -17,6 +17,7 @@ const pm2_simple = `simple.config.js`;
 const pm2_cluster = `cluster.config.js`;
 
 gulp.task('build', () => {
+  
   runSequence('build-clean', 'build-babel', 'build-replace');
 });
 
@@ -33,8 +34,10 @@ gulp.task('build-babel', () => {
 });
 
 gulp.task('build-replace', () => {
+  // Copy file config dev or production 
+  const conf = process.argv[3] ? 'index' : 'production';
   // Copy config production
-  gulp.src(["src/config/production.js"]).pipe(babel()).pipe(rename('index.js')).pipe(gulp.dest(`${dist_server}/config`));
+  gulp.src([`src/config/${conf}.js`]).pipe(babel()).pipe(rename('index.js')).pipe(gulp.dest(`${dist_server}/config`));
   // Copy views
   gulp.src(['src/views/**/*.{html,css}']).pipe(minify({ minify: true, collapseWhitespace: true, conservativeCollapse: true, minifyJS: true, minifyCSS: true })).pipe(gulp.dest(`${dist_server}/views`));
   // Copy assets
@@ -50,8 +53,6 @@ gulp.task('build-replace', () => {
       "start": `npm run redis && node server/app.js`,
       "simple": `npm run redis && npm stop && pm2 startOrRestart ${pm2_simple}`,
       "cluster": `npm run redis && npm stop && pm2 startOrRestart ${pm2_cluster}`,
-      "dev-simple": `npm run simple && pm2 monit`,
-      "dev-cluster": `npm run cluster && pm2 monit`,
       "redis": `redis-cli config set notify-keyspace-events KEA`,
       "stop": `pm2 delete ${pm2_simple} ${pm2_cluster}`
     };
