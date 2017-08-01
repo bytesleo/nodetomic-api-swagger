@@ -1,20 +1,11 @@
-import { result, notFound, error } from 'express-easy-helper';
-import { getSize as reGetSize, getInfo as reGetInfo } from '../../lib/redis';
+import { result, error } from 'express-easy-helper';
+import { getInfo as reGetInfo } from '../../lib/redis';
 
-// Get Size
-export function size(req, res) {
+// Get section
+export function section(req, res) {
 
-  return reGetSize()
-    .then(notFound(res))
-    .then(result(res))
-    .catch(error(res))
-}
-
-// Get info
-export function info(req, res) {
-
-  return reGetInfo(req.user.key).then(r => {
-    res.send(r);
+  return reGetInfo(req.swagger.params.section.value).then(info => {
+    res.send(info.toString());
   }).catch(error(res))
 
 }
