@@ -128,9 +128,9 @@ import Hello from '../models/hello';
 
 export function list(req, res) {
 	return Hello.find().exec()
-    .then(notFound(res))
-    .then(result(res))
-    .catch(error(res));
+        .then(notFound(res))
+        .then(result(res))
+        .catch(error(res));
 }
 
 ```
@@ -192,8 +192,8 @@ src/api/**sockets**/hello.js
 
 ```javascript
 
-let socket = null;
-let io = null;
+export let socket = null;
+export let io = null;
 
 // Constructor
 export default (_socket, _io) => {
@@ -206,15 +206,15 @@ export default (_socket, _io) => {
 export function on() {
 	// Listen 'example'
     socket.on('example', function (data) {
-    	// emit to cool
-        io.emit('cool', data);
+    	// Emit to cool
+      emit('cool', data);
     });
 }
 
-export function emit(data) {
-    io.emit('other event', data);
+// Emit events
+export function emit(event, data) {
+    io.emit(event, data);
 }
-
 
 ```
 
@@ -224,13 +224,13 @@ src/api/**controllers**/hello.js
 
 ```javascript
 
-import { result, notFound, error } from 'express-easy-helper';
-import { emit as socket } from '../sockets/hello';
+import { result } from 'express-easy-helper';
+import { emit } from '../sockets/hello';
 
-export function list(req, res) {
+export function test(req, res) {
 
-	socket.emit('hello world');
-  return result(res, 'Emited!');
+	emit('hello','world');
+  return result(res, 'Socket emitted!');
 
 }
 
@@ -264,13 +264,13 @@ export function list(req, res) {
 
 ### Lint
 
-`npm lint`
+`npm run lint`
 
 ## Pm2 [Development]
 
 #### Simple
 
-Run pm2 in a single thread and run the monitor
+Run pm2 in a single thread and run pm2 console
 
 `npm run dev-simple`
 
@@ -280,7 +280,7 @@ Run pm2 in a single thread and run the monitor
 
 #### Cluster
 
-Run pm2 in multiple threads and run the monitor
+Run pm2 in multiple threads and run pm2 console
 
 `npm run dev-cluster`
 
