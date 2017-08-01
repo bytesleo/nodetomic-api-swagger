@@ -5,7 +5,6 @@ import './pubsub';
 const r = new Redis(config.redis.sessions.conn);
 require('./status').default(r, config.redis.sessions.conn, 'sessions');
 
-
 // Create
 export async function create(key, value, ttl) {
   try {
@@ -79,25 +78,11 @@ export function getCountByPattern(pattern) {
   });
 }
 
-// Get size
-export function getSize(pattern) {
-  return new Promise((resolve, reject) => {
-    r.rawCall([
-      'DBSIZE'
-    ], (err, result) => {
-      if (result)
-        resolve(result);
-      resolve(null);
-    });
-  });
-}
-
 // Get info
-export function getInfo(pattern) {
+export function getInfo(section) {
   return new Promise((resolve, reject) => {
-    r.rawCall([
-      'INFO'
-    ], (err, result) => {
+    let query = (section === 'DBSIZE') ? ['DBSIZE'] : ['INFO', section];
+    r.rawCall(query, (err, result) => {
       if (result)
         resolve(result);
       resolve(null);
