@@ -1,5 +1,5 @@
-let socket = null;
-let io = null;
+export let socket = null;
+export let io = null;
 
 // Constructor
 export default (_socket, _io) => {
@@ -13,20 +13,18 @@ export default (_socket, _io) => {
 export function on() {
 
     socket.on('hello:add', function (data) {
-        io.emit('add', data);
+        emit('add', data);
     });
 
     socket.on('hello:delete', function (data) {
-        io.emit('delete', data);
+        emit('delete', data);
     });
 
 }
 
-// You can emit from controllers/hello.js
-// import { emit as socket } from '../sockets/hello';
-// socket.emit('hello world!');
-export function emit(data) {
-
-    io.emit('other event', data);
-
+// You can emit from controllers/hello.js, example:
+// - import { emit } from '../sockets/hello';
+// - emit('hello','world!');
+export function emit(event, data) {
+    io.emit(event, data);
 }
