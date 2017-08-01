@@ -2,7 +2,7 @@
   x-swagger-router-controller: animation
 # emit
   post:
-    operationId: emit
+    operationId: animation
     tags:
       - Socket
     summary: Animate logo via socket
