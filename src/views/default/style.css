@@ -1,0 +1,40 @@
+ body {
+     padding-top: 10vh;
+     font-family: 'Open Sans', sans-serif;
+ }
+ 
+ .footer {
+     margin-top: 0;
+     text-align: center;
+     color: white;
+ }
+ 
+ .footer a {
+     color: #50bf94;
+ }
+ 
+ .link-docs {
+     padding-top: 5px;
+     text-align: center;
+ }
+ 
+ .link-docs a {
+     font-size: 17px;
+     color: #50bf94;
+ }
+ 
+ .logo {
+     text-align: center;
+ }
+ 
+ .logo img {
+     width: 100px;
+ }
+ 
+ .project {
+     padding-top: 10px;
+     text-align: center;
+     color: white;
+     font-size: 40px;
+     line-height: 1.2;
+ }
