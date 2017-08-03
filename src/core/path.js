@@ -1,5 +1,5 @@
-import fs from "fs";
 import path from 'path';
+import fs from "fs";
 import express from 'express';
 import favicon from 'serve-favicon';
 import config from '../config';
@@ -15,6 +15,10 @@ export default (app) => {
   if (fs.existsSync(config.client)) {
     app.use(express.static(config.client));
     app.use(favicon(path.join(config.client, 'favicon.ico')));
+  } else {
+    // Use client default
+    app.use(express.static(`${config.base}/views/default/${config.mode}`));
+    app.use(favicon(path.join(`${config.base}/views/default/${config.mode}`, 'favicon.ico')));
   }
 
   // Paths specials from client
