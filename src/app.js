@@ -1,24 +1,17 @@
-import swaggerTools from 'swagger-tools';
 import express from 'express';
+import swaggerTools from 'swagger-tools';
 import chalk from 'chalk';
 import config from './config';
 const app = express();
-// Socket
-require('./lib/socket.io');
+
 // Swagger Config
-let swaggerConfig = require('./core/swagger/config').default(app);
+let swaggerConfig = require('./lib/swagger/config').default(app);
 // Swagger middleware init
-swaggerTools.initializeMiddleware(swaggerConfig, (middleware) => {
+swaggerTools.initializeMiddleware(swaggerConfig, middleware => {
   // Core
-  require('./core/engine').default(app);
-  // Routers Express
-  require('./core/router').default(app);
-  // Mongo
-  require('./core/mongoose');
-  // Redis
-  require('./lib/redis');
+  require('./core').default(app);
   // Swagger
-  require('./core/swagger').default(app, swaggerConfig, middleware);
+  require('./lib/swagger').default(app, swaggerConfig, middleware);
   // Paths
   require('./core/path').default(app);
   // Server
