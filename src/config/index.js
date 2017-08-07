@@ -1,9 +1,12 @@
-// development || production
-const mode = 'development';
-// name:  mongodb://localhost:27017/{name}-{mode}
-const name = 'your-app-name';
 import path from 'path';
-
+/**
+ * development || production
+ */
+const mode = 'development';
+const name = 'your-app-name';
+/**
+ * Example for MongoDB:  mongodb://localhost:27017/{name}-{mode}
+ */
 export default {
   mode: mode,
   name: name,
@@ -37,9 +40,8 @@ export default {
       },
       // If you want multiples logins or only one device in same time
       multiple: true,
-      // Enable events to expired,del,..etc keys in redis
       pubsub: {
-        //Expiration events, removal of keys in redis
+        //// Enable events to expired,del...
         events: true
       }
     },
