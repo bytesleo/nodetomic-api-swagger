@@ -8,7 +8,6 @@ export default (_socket, _io) => {
     on();
 }
 
-
 // Here should be all events 'on'
 export function on() {
 
