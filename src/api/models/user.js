@@ -52,7 +52,10 @@ const UserSchema = new Schema({
   }
 });
 
+UserSchema.path('username').index({ unique: true });
+
 UserSchema.plugin(mongoosePaginate);
+
 require('./extend/user').default(UserSchema);
 
 export default mongoose.model('User', UserSchema);
