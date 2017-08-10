@@ -24,7 +24,7 @@ gulp.task('build', () => {
 gulp.task('build-clean', () => {
   // Remove files dist, but ignore assets
   return gulp.src([
-    `${dist_server}/*`, `!${dist_server}/assets`
+    `${dist_server}/*`, `!${dist_server}/assets`, `${dist_client}`
   ], { read: false }).pipe(clean({ force: true }));
 });
 
@@ -60,9 +60,13 @@ gulp.task('build-replace', () => {
   })).pipe(gulp.dest(dist));
   // Copy pm2 files
   gulp.src([pm2_simple, pm2_cluster]).pipe(gulp.dest(dist));
-  // If not exits client folder, then copy current client
+  // If exits client folder, then copy current client
   if (fs.existsSync(`${dist}/client`)) {
     gulp.src(['client/**/*']).pipe(gulp.dest(dist_client));
+  } else {
+    // If not exits client folder, then copy default client
+    gulp.src(['src/views/default/favicon.ico', 'src/views/default/logo.svg']).pipe(gulp.dest(dist_client));
+    gulp.src(['src/views/default/client.html']).pipe(minify({ minify: true, collapseWhitespace: true, conservativeCollapse: true})).pipe(rename('index.html')).pipe(gulp.dest(dist_client));
   }
   // Success
   setTimeout(() => console.log(chalk.greenBright('\n---------\nBuild success!\n---------\n')), 500);
