@@ -9,7 +9,7 @@ require('./status').default(r, config.redis.sessions.conn, 'pubsub');
 const node = parseInt(process.env.NODE_APP_INSTANCE) || 0;
 
 /*
-* Basic Exmaple Pubsub
+* Basic Example Pubsub
 * Listener all nodes
 */
 r.rawCall([

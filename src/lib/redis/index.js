@@ -1,9 +1,10 @@
 import Redis from 'redis-fast-driver';
+import chalk from 'chalk';
 import config from '../../config';
-import './pubsub';
 
 const r = new Redis(config.redis.sessions.conn);
 require('./status').default(r, config.redis.sessions.conn, 'sessions');
+
 
 // Create
 export async function create(key, value, ttl) {
