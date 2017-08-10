@@ -10,7 +10,7 @@ import fileUpload from 'express-fileupload';
 import morgan from 'morgan';
 import config from './../config';
 
-export default (app) => {
+export async function index(app) {
 
   app.use(bodyParser.json({ limit: '5mb' }));
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,17 +35,20 @@ export default (app) => {
   if (config.log)
     app.use(morgan('dev'));
 
-  // Mongo
-  require('../lib/mongoose');
+  // Mongoose
+  await require('../lib/mongoose').connect();
 
   // Redis
-  require('../lib/redis');
+  await require('../lib/redis');
+
+  if (config.redis.sessions.pubsub.enabled)
+    await require('../lib/redis/pubsub');
 
   // Socket.io
-  require('../lib/socket.io');
+  await require('../lib/socket.io').connect();
 
   // Services
-  require('../auth/services');
+  await require('../auth/services');
 
   // You can add more require's here! 
 };
