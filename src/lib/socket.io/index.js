@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import fs from "fs";
 import config from '../../config';
 
-const io = require('socket.io')(config.server.port + 1);
+const io = require('socket.io')(config.io);
 io.adapter(Redis(config.redis.sockets.conn));
 
 // Scan events
@@ -16,25 +16,6 @@ fs.readdirSync(pathSocket).forEach(path => {
 // Instance
 const node = parseInt(process.env.NODE_APP_INSTANCE) || 0;
 
-// Init
-io.on('connection', socket => {
-
-    if (config.log) {
-        console.log(chalk.magentaBright(`Socket connected - node = ${node}`));
-        total();
-    }
-
-    // Autoload sockets
-    events.forEach(path => require(path).default(socket, io));
-
-    socket.on('disconnect', () => {
-        if (config.log) {
-            console.log(chalk.magentaBright(`Socket disconnect - node = ${node}`));
-            total();
-        }
-    });
-
-});
 
 // Total socket clients
 function total() {
@@ -43,3 +24,26 @@ function total() {
     });
 }
 
+
+// Connect
+export async function connect() {
+
+    return await io.on('connection', socket => {
+
+        if (config.log) {
+            console.log(chalk.magentaBright(`Socket connected - node = ${node}`));
+            total();
+        }
+
+        // Autoload sockets
+        events.forEach(path => require(path).default(socket, io));
+
+        socket.on('disconnect', () => {
+            if (config.log) {
+                console.log(chalk.magentaBright(`Socket disconnect - node = ${node}`));
+                total();
+            }
+        });
+
+    });
+}
