@@ -3,20 +3,16 @@ import path from 'path';
  * development || production
  */
 const mode = 'development';
-const name = 'your-app-name';
-/**
- * Example for MongoDB:  mongodb://localhost:27017/{name}-{mode}
- */
+const appName = `your-app-name`;
+const dbName = `your-app-name-${mode}`;
+const client = '/client';  // 
+
 export default {
-  mode: mode,
-  name: name,
-  root: path.normalize(`${__dirname}/../..`),
-  base: path.normalize(`${__dirname}/..`),
-  client: `${path.normalize(`${__dirname}/../..`)}/client`,
   server: {
     ip: 'localhost',
     port: 8000
   },
+  io: 8001, // Public port for socket.io
   secret: `your_secret_key`,
   // Roles: if a user has multiple roles, will take the time of the greater role
   roles: [
@@ -41,12 +37,12 @@ export default {
       // If you want multiples logins or only one device in same time
       multiple: true,
       pubsub: {
-        //// Enable events to expired,del...
+        // Enable PubSub!
+        enabled: false,
+        // Enable events to expired,del...
         events: true
       }
     },
-    // By default the port to listen the sockets is +1 of the port of the server.port
-    // Example: server.port: 8000, then socket.port = 8001
     sockets: {
       conn: {
         host: '127.0.0.1',
@@ -58,9 +54,9 @@ export default {
     mongo: {
       db: {
         // uri: mongodb://username:password@host:port/database?options
-        uri: `mongodb://localhost:27017/${name}-${mode}`,
+        uri: `mongodb://localhost:27017/${dbName}`,
         options: {
-          useMongoClient: false
+          useMongoClient: true
         },
         // plant: once - alway - never
         seeds: [
@@ -92,8 +88,8 @@ export default {
     enabled: true,
     info: {
       version: 'v1.0',
-      title: name,
-      description: `RESTful API ${name}`,
+      title: appName,
+      description: `RESTful API ${appName}`,
       "contact": {
         "name": "Developer",
         "url": "http://www.example.com",
@@ -143,11 +139,18 @@ export default {
       callbackURL: '/auth/bitbucket/callback'
     }
   },
+  // globals
+  mode: mode,
+  name: appName,
+  root: path.normalize(`${__dirname}/../..`),
+  base: path.normalize(`${__dirname}/..`),
+  client: `${path.normalize(`${__dirname}/../..`)}${client}`,
   // DEV
   livereload: { // livereload
     enabled: false,
     ip: 'localhost',
     port: 35729
   },
-  log: true // Log request in console?
+  log: true, // Log request in console?
+  example: true
 };
