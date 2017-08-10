@@ -37,6 +37,7 @@ export default (User) => {
 
   // Trigger method's after save
   User.post('save', function (err, doc, next) {
+   
     if (err.name === 'MongoError' && err.code === 11000) {
       return next(`'username "${doc.username}" not available.'`);
     } else {
