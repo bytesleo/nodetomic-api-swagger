@@ -4,21 +4,23 @@ import chalk from 'chalk';
 import config from './config';
 const app = express();
 
-// Swagger Config
-let swaggerConfig = require('./lib/swagger/config').default(app);
-// Swagger middleware init
-swaggerTools.initializeMiddleware(swaggerConfig, middleware => {
+async function run() {
   // Core
-  require('./core').default(app);
-  // Swagger
-  require('./lib/swagger').default(app, swaggerConfig, middleware);
-  // Paths
-  require('./core/path').default(app);
-  // Server
-  app.listen(config.server.port, config.server.ip, () => {
-    process.env.NODE_ENV = config.mode;
-    console.log(chalk.greenBright(
-      `\n-------\nServer-> listening on http://${config.server.ip}:${config.server.port} in mode [${config.mode}]\n-------`
-    ));
+  await require('./core').index(app);
+  // Swagger Config
+  let swaggerConfig = await require('./lib/swagger/config').default(app);
+  // Swagger Middleware
+  await swaggerTools.initializeMiddleware(swaggerConfig, middleware => {
+    // Swagger Init 
+    require('./lib/swagger').default(app, swaggerConfig, middleware);
+    // Paths
+    require('./core/path').default(app);
+    // Server
+    app.listen(config.server.port, config.server.ip, () => {
+      process.env.NODE_ENV = config.mode;
+      console.log(chalk.greenBright(`-------\nServer-> listening on http://${config.server.ip}:${config.server.port} in mode [${config.mode}]\n-------`));
+    });
   });
-});
+}
+
+run();
