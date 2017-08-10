@@ -29,11 +29,7 @@ export function ttlRole(roles) {
           }
         });
       });
-      if (isInfinite) {
-        return null;
-      } else {
-        return parseInt(Math.max.apply(Math, array)) * 60;
-      }
+      return isInfinite ? null : parseInt(Math.max.apply(Math, array)) * 60;
     } else {
       return null;
     }

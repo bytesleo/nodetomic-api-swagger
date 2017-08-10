@@ -7,12 +7,7 @@ const fs = Promise.promisifyAll(require('fs'));
 // Get Template
 export async function getTemplate(path) {
 
-  if (path.indexOf('.js') > -1) {
-    return await require(`${config.base}/views/${path}`).default;
-  } else {
-    return await fs.readFileAsync(`${config.base}/views/${path}`, 'utf8');
-  }
-
+  return await (path.indexOf('.js') > -1) ? require(`${config.base}/views/${path}`).default : fs.readFileAsync(`${config.base}/views/${path}`, 'utf8');
 }
 
 // Replace in Template
