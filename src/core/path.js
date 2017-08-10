@@ -11,23 +11,32 @@ export default (app) => {
     res.status(404).sendFile(`${config.base}/views/404.html`);
   });
 
-  // Point static path to client
-  if (fs.existsSync(config.client)) {
-    app.use(express.static(config.client));
-    app.use(favicon(path.join(config.client, 'favicon.ico')));
-  } else {
-    // Use client default
-    app.use(express.static(`${config.base}/views/default/${config.mode}`));
-    app.use(favicon(path.join(`${config.base}/views/default/${config.mode}`, 'favicon.ico')));
+  // Point static path to client by default
+  let client = config.client;
+  let file = 'index';
+
+  // If not exits client, when set internal default
+  if (!fs.existsSync(config.client)) {
+    client = `${config.base}/views/default`;
+    file = config.mode;
+    if (config.example) {
+      app.use('/socket', express.static(`${client}/socket.html`));
+      app.use('/token', express.static(`${client}/token.html`));
+    }
+
   }
+
+  app.use(express.static(client));
+  app.use(favicon(path.join(client, 'favicon.ico')));
+
+  // Folder client
+
+  app.get('/*', (req, res) => {
+    res.sendFile(`${client}/${file}.html`);
+  });
 
   // Paths specials from client
   // app.use('/bower_components', express.static(`${config.root}/bower_components`));
-
-  // Folder client
-  app.get('/*', (req, res) => {
-    res.sendFile(`${config.client}/index.html`);
-  });
 
   // Other folder client
   // app.get('/:url(admin)/*', (req, res) => {
