@@ -3,23 +3,17 @@
      font-family: 'Open Sans', sans-serif;
  }
  
- .footer {
-     margin-top: 0;
+ .content .title {
      text-align: center;
-     color: white;
+     font-size: 20px;
+     margin-top: 2px;
+ }
+ 
+ .content .title a {
+     color: #84d993;
  }
  
  .footer a {
-     color: #50bf94;
- }
- 
- .link-docs {
-     padding-top: 5px;
-     text-align: center;
- }
- 
- .link-docs a {
-     font-size: 17px;
      color: #50bf94;
  }
  
@@ -31,10 +25,41 @@
      width: 100px;
  }
  
- .project {
-     padding-top: 10px;
+ .footer {
+     margin-top: 20px;
      text-align: center;
      color: white;
-     font-size: 40px;
-     line-height: 1.2;
+ }
+ 
+ .section {
+     text-align: center;
+     color: white;
+     font-size: 25px;
+     margin: 25px 0;
+ }
+ 
+ .btn-add {
+     margin-top: 15px;
+ }
+ 
+ .hello .greet {
+     font-size: 17px;
+ }
+ 
+ .hello .language {
+     color: #50bf94;
+     font-size: 11px;
+ }
+ 
+ .hello .rm {
+     float: right;
+     cursor: pointer;
+     font-size: 11px;
+ }
+ 
+ .note {
+     font-style: oblique;
+     color: white;
+     text-align: center;
+     padding-bottom: 10px;
  }
