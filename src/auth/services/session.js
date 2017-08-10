@@ -1,8 +1,8 @@
 import { result, invalid, error } from 'express-easy-helper';
 import { create as jwtCreate } from '../../lib/jwt';
 import { create as reCreate } from '../../lib/redis';
-import { makeid } from '../../lib/utility/makeid';
-import { ttlRole } from '../../lib/utility/role';
+import { makeid } from '../../lib/util/makeid';
+import { ttlRole } from '../../lib/util/role';
 
 // Initialize after login success
 export async function initialize(err, user, res) {
@@ -29,8 +29,8 @@ export async function initialize(err, user, res) {
     if (user.provider === 'local')
       return result(res, { token });
 
-    // if Social redirect
-    res.redirect('/#/token');
+    // if Social redirect to..
+    res.redirect('/token');
   } catch (err) {
     return error(res, { message: `Error creating keys in redis ${err}` });
   }
