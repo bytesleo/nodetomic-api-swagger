@@ -1,6 +1,6 @@
 import { unauthorized, forbidden } from 'express-easy-helper';
 import { exits as reExits, ttl as reTtl } from '../../lib/redis';
-import { hasRole } from '../../lib/utility/role';
+import { hasRole } from '../../lib/util/role';
 import { verify } from '../../lib/jwt';
 import User from '../../api/models/user';
 
