@@ -1,7 +1,7 @@
 {
-    "presets": ["es2015", "stage-0"],
+    "presets": ["env", "es2016", "stage-0"],
     "plugins": ["transform-flow-comments", "transform-runtime"],
-    "compact": true,
+    "compact": "true",
     "comments": false,
-    "ignore": [],
+    "ignore": []
 }
