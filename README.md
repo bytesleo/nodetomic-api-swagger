@@ -15,16 +15,16 @@
 
 <http://localhost:8000/docs> 
 
-<img src="http://i.imgur.com/sR1yfe1.png">
+<img src="http://i.imgur.com/FARxCXe.png">
 
 
 #### Technologies
 
-<a><img src="http://nightdeveloper.net/wp-content/uploads/2014/12/mongo_db.png" width="60"></a>
-<a><img src="http://code.runnable.com/images/provider-icons/icon-express-alt.svg" width="60"></a>
-<a><img src="https://chris.lu/upload/images/redis.png" width="60"></a>
 <a><img src="http://oraclelinuxworld.com/wp-content/uploads/2016/01/NodeJS-Small-Blog-Feature-Image-.jpg" width="60"></a>
 <a><img src="https://avatars2.githubusercontent.com/u/7658037?v=3&s=400" width="60"></a>
+<a><img src="https://chris.lu/upload/images/redis.png" width="60"></a>
+<a><img src="http://nightdeveloper.net/wp-content/uploads/2014/12/mongo_db.png" width="60"></a>
+<a><img src="http://code.runnable.com/images/provider-icons/icon-express-alt.svg" width="60"></a>
 <a><img src="https://www.pubnub.com/wp-content/uploads/2014/07/SOCKETIOICON.gif" width="60"></a>
 <a><img src="https://pbs.twimg.com/profile_images/542039812916510720/Vw-JEJQA.png" width="60"></a>
 <a><img src="https://cms-assets.tutsplus.com/uploads/users/16/posts/24511/preview_image/babel-1.png" width="60"></a>
@@ -45,39 +45,6 @@
 
 <a href="https://www.codacy.com/app/kevoj/nodetomic-api-swagger?utm_source=github.com&utm_medium=referral&utm_content=kevoj/nodetomic-api-swagger&utm_campaign=Badge_Grade" ><img src="http://i.imgur.com/n98gapy.png"></a>
 
-## Features
-
-* **Tokens**
-  * JWT merged with REDIS
-  * Expiration time
-* **Redis**
-  * Pub/Sub
-  * Events: Expired, del, etc
-* **Middleware**
-  * Login validation
-  * Role validation
-* **Socket.io**
-  * Support cluster
-  * Socket Redis
-* **Authentication**
-  * local
-  * facebook
-  * twitter
-  * google
-  * github
-  * bitbucket
-  * and more...
-* **Session**
-  * Single or Multiple (One or more devices at the same time)
-  * Get list of sessions
-  * Destroy a session
-* **Node**
-  * Support cluster
-  * Support Pm2
-* **Swagger**
-  * Routers by swagger
-  * Swagger UI
-  
 ## Requirements
 
 - [Nodejs](https://nodejs.org) **>= 6.x.x** (**Recommended 8.x.x**)
@@ -127,7 +94,7 @@ import { result, notFound, error } from 'express-easy-helper';
 import Hello from '../models/hello';
 
 export function list(req, res) {
-	return Hello.find().exec()
+  return Hello.find().exec()
         .then(notFound(res))
         .then(result(res))
         .catch(error(res));
@@ -204,9 +171,9 @@ export default (_socket, _io) => {
 
 // Here should be all events 'on'
 export function on() {
-	// Listen 'example'
+  // Listen 'example'
     socket.on('example', function (data) {
-    	// Emit to cool
+  // Emit to cool
       emit('cool', data);
     });
 }
@@ -229,7 +196,7 @@ import { emit } from '../sockets/hello';
 
 export function test(req, res) {
 
-	emit('hello','world');
+  emit('hello','world');
   return result(res, 'Socket emitted!');
 
 }
@@ -242,7 +209,7 @@ export function test(req, res) {
 
 `npm start`
 
-![Imgur](http://i.imgur.com/XqgySyb.png)
+![Imgur](http://i.imgur.com/7w0fwTy.png)
 
 *  <http://localhost:8000>
 
@@ -254,13 +221,15 @@ export function test(req, res) {
 
 * Generate output folder: **`dist`**
 
+Folder "client" is optional. You can paste the compilation of a client here, for example of Vue, React, Angular ...
+
 ![Imgur](http://i.imgur.com/u4axBDN.png)
 
 ### Test
 
 `npm test`
 
-![Imgur](http://i.imgur.com/S5w9Jpm.png)
+![Imgur](http://i.imgur.com/4cM4HXs.png)
 
 ### Lint
 
@@ -306,7 +275,7 @@ Run pm2 in multiple threads
 
 `npm run cluster`
 
-![Imgur](http://i.imgur.com/LsWPQqx.png)
+![Imgur](http://i.imgur.com/HTWJcUk.png)
 
 * <http://localhost:8000>
 
