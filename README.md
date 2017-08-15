@@ -3,6 +3,10 @@
 
 > RESTful API Nodejs designed for horizontal scalability, based on Swagger, Redis, JWT, Passport, Socket.io, Express, MongoDB. Support multiple cluster!
 
+#### Codacy
+
+<a href="https://www.codacy.com/app/kevoj/nodetomic-api-swagger?utm_source=github.com&utm_medium=referral&utm_content=kevoj/nodetomic-api-swagger&utm_campaign=Badge_Grade" ><img src="http://i.imgur.com/n98gapy.png"></a>
+
 #### Horizontal scalability
 
 <img src="https://applicationarchitecture.files.wordpress.com/2010/06/f0028-horizontal-scalability-typical-scenario.png" width="500">
@@ -40,10 +44,6 @@
 <a><img src="https://avatars3.githubusercontent.com/u/2824157?v=3&s=400" width="60"></a>
 <a><img src="https://i2.wp.com/community.nodemailer.com/wp-content/uploads/2015/10/n2-2.png?fit=422%2C360&ssl=1" width="60"></a>
 <a><img src="https://cdn.xebialabs.com/assets/files/plugins/travis-ci.jpg" width="60"></a>
-
-#### Codacy
-
-<a href="https://www.codacy.com/app/kevoj/nodetomic-api-swagger?utm_source=github.com&utm_medium=referral&utm_content=kevoj/nodetomic-api-swagger&utm_campaign=Badge_Grade" ><img src="http://i.imgur.com/n98gapy.png"></a>
 
 ## Requirements
 
