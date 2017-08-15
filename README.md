@@ -219,9 +219,7 @@ export function test(req, res) {
 
 ![Imgur](http://i.imgur.com/yTI3otr.png)
 
-* Generate output folder: **`dist`**
-
-Folder "client" is optional. You can paste the compilation of a client here, for example of Vue, React, Angular ...
+Generate folder **`dist`**. So "dist/client" is optional. You can paste the compilation of a client here, for example of Vue, React, Angular ...
 
 ![Imgur](http://i.imgur.com/u4axBDN.png)
 
