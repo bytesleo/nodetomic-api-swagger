@@ -11,7 +11,7 @@ import config from './src/config';
 
 const dist = './dist';
 const dist_server = `${dist}/server`;
-const dist_swagger = `${dist_server}/lib/swagger/api-docs`;
+const dist_swagger = `${dist_server}/lib/swagger/ui`;
 const dist_client = `${dist}/client`;
 const pm2_simple = `simple.config.js`;
 const pm2_cluster = `cluster.config.js`;
@@ -30,7 +30,7 @@ gulp.task('build-clean', () => {
 
 gulp.task('build-babel', () => {
   // Babel transform, ignore config and swagger api-docs
-  return gulp.src(['src/**/*.js', '!src/config/*.js', '!src/lib/swagger/api-docs/*']).pipe(babel()).pipe(gulp.dest(dist_server));
+  return gulp.src(['src/**/*.js', '!src/config/*.js', '!src/lib/swagger/ui/*']).pipe(babel()).pipe(gulp.dest(dist_server));
 });
 
 gulp.task('build-replace', () => {
@@ -44,15 +44,15 @@ gulp.task('build-replace', () => {
   gulp.src(['src/assets/**/*']).pipe(gulp.dest(`${dist_server}/assets`));
   // Copy *.yaml
   gulp.src(['src/**/*.yaml']).pipe(gulp.dest(dist_server));
-  // Copy swagger/api-docs
-  gulp.src([`src/lib/swagger/api-docs/*`]).pipe(gulp.dest(dist_swagger));
+  // Copy swagger/ui
+  gulp.src([`src/lib/swagger/ui/*`]).pipe(gulp.dest(dist_swagger));
   // package.json
   gulp.src("package.json").pipe(jeditor((json) => {
     delete json.devDependencies;
     json.scripts = {
       "start": `npm run redis && node server/app.js`,
-      "simple": `npm run redis && npm stop && pm2 startOrRestart ${pm2_simple} --env production`,
-      "cluster": `npm run redis && npm stop && pm2 startOrRestart ${pm2_cluster} --env production`,
+      "simple": `npm run redis && npm stop && pm2 start ${pm2_simple} --env production`,
+      "cluster": `npm run redis && npm stop && pm2 start ${pm2_cluster} --env production`,
       "redis": `redis-cli config set notify-keyspace-events KEA`,
       "stop": `pm2 delete ${pm2_simple} ${pm2_cluster}`
     };
