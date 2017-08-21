@@ -30,7 +30,7 @@ export async function connect() {
             total();
         }
 
-        // Autoload sockets
+        // inject events to new socket...
         events.forEach(path => require(path).default(socket, io));
 
         socket.on('disconnect', () => {
