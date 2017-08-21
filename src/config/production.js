@@ -12,7 +12,7 @@ export default {
   },
   io: { // Socket.io
     port: 8001,
-    example: true // router -> http://localhost:8000/socket
+    example: false // router -> http://localhost:8000/socket
   },
   redis: { // Redis
     sessions: { // redis[sessions]
