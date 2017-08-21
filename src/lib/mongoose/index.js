@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 import chalk from 'chalk';
 import config from '../../config';
 
-const uri = config.database.mongo.db.uri;
-const opts = config.database.mongo.db.options;
+const uri = config.mongo.db.uri;
+const opts = config.mongo.db.options;
 
 mongoose.Promise = global.Promise;
 
