@@ -17,9 +17,11 @@ export default (app) => {
 
   // If not exits client, when set internal default
   if (!fs.existsSync(config.client)) {
+    
     client = `${config.base}/views/default`;
     file = config.mode;
-    if (config.example) {
+
+    if (config.io.example) {
       app.use('/socket', express.static(`${client}/socket.html`));
       app.use('/token', express.static(`${client}/token.html`));
     }
