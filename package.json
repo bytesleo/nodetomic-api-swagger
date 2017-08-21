@@ -8,7 +8,7 @@
         "url": "git+https://github.com/kevoj/nodetomic-api-swagger.git"
     },
     "scripts": {
-        "nodemon": "npm stop && npm run redis && nodemon src/app.js --exec babel-node -e js,yaml",
+        "nodemon": "export NODE_ENV=development && npm stop && npm run redis && nodemon src/app.js --exec babel-node -e js,yaml",
         "start": "npm stop && npm run redis && pm2-dev dev.config.js",
         "build": "npm run lint && gulp build",
         "test": "npm run simple && node ./node_modules/npm-delay 4000 && mocha --compilers js:babel-register && npm stop",
