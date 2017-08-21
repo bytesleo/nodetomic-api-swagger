@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import fs from "fs";
 import config from '../../config';
 
-const io = require('socket.io')(config.io);
+const io = require('socket.io')(config.io.port);
 io.adapter(Redis(config.redis.sockets.conn));
 
 // Scan events
@@ -13,10 +13,6 @@ fs.readdirSync(pathSocket).forEach(path => {
     events.push(`${pathSocket}/${path}`);
 });
 
-// Instance
-const node = parseInt(process.env.NODE_APP_INSTANCE) || 0;
-
-
 // Total socket clients
 function total() {
     io.of('/').adapter.clients((err, clients) => {
@@ -24,14 +20,13 @@ function total() {
     });
 }
 
-
 // Connect
 export async function connect() {
 
     return await io.on('connection', socket => {
 
         if (config.log) {
-            console.log(chalk.magentaBright(`Socket connected - node = ${node}`));
+            console.log(chalk.magentaBright(`Socket connected - node = ${config.node}`));
             total();
         }
 
@@ -40,7 +35,7 @@ export async function connect() {
 
         socket.on('disconnect', () => {
             if (config.log) {
-                console.log(chalk.magentaBright(`Socket disconnect - node = ${node}`));
+                console.log(chalk.magentaBright(`Socket disconnect - node = ${config.node}`));
                 total();
             }
         });
