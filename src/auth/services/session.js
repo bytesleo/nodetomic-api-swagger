@@ -19,10 +19,9 @@ export async function initialize(err, user, res) {
     ip: res.req.headers['x-forwarded-for'] || res.req.connection.remoteAddress
   }
 
-  let token = null;
   try {
     // Create Token and save in Redis
-    token = await create(user, session);
+    let token = await create(user, session);
     // Save token in cookies
     res.cookie('token', JSON.stringify(token));
     // if local return token
