@@ -27,10 +27,6 @@ export async function index(app) {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  // Liverload
-  if (config.mode === 'development' && config.livereload.enabled)
-    app.use(require('connect-livereload')({ src: `http://${config.livereload.ip}:${config.livereload.port}/livereload.js` }));
-
   // Morgan
   if (config.log)
     app.use(morgan('dev'));
