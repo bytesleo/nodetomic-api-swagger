@@ -58,6 +58,95 @@ git clone https://github.com/kevoj/nodetomic-api-swagger
 cd nodetomic-api-swagger
 npm i
 ```
+
+## Development
+
+### Start
+
+`npm start` with **pm2** or `npm run modemon` with **nodemon**
+
+![Imgur](http://i.imgur.com/7w0fwTy.png)
+
+*  <http://localhost:8000>
+
+### Build
+
+`npm run build`
+
+![Imgur](http://i.imgur.com/yTI3otr.png)
+
+Generate folder **`dist`**. So "dist/client" is optional. You can paste the compilation of a client here, for example of Vue, React, Angular ...
+
+![Imgur](http://i.imgur.com/u4axBDN.png)
+
+### Test
+
+`npm test`
+
+![Imgur](http://i.imgur.com/4cM4HXs.png)
+
+### Lint
+
+`npm run lint`
+
+## Pm2 [Development]
+
+#### Simple
+
+Run pm2 in a single thread and run pm2 console
+
+`npm run dev-simple`
+
+![Imgur](http://i.imgur.com/cNuBVzK.png)
+
+* <http://localhost:8000>
+
+#### Cluster
+
+Run pm2 in multiple threads and run pm2 console
+
+`npm run dev-cluster`
+
+![Imgur](http://i.imgur.com/wEU2Uz5.png)
+
+* <http://localhost:8000>
+
+## Pm2 [Production]
+
+### Simple
+
+Run pm2 in a single thread
+
+`npm run simple`
+
+![Imgur](http://i.imgur.com/tLA2hu7.png)
+
+* <http://localhost:8000>
+
+### Cluster
+
+Run pm2 in multiple threads
+
+`npm run cluster`
+
+![Imgur](http://i.imgur.com/HTWJcUk.png)
+
+* <http://localhost:8000>
+
+## Stop
+
+### PM2
+
+destroy pm2 simple and pm2 cluster
+
+`npm stop`
+
+### Node
+
+destroyed all process for node
+
+`killall node`
+
 ## How to create..
 
 ### Model
@@ -202,94 +291,6 @@ export function test(req, res) {
 }
 
 ```
-
-## Development
-
-### Start
-
-`npm start`
-
-![Imgur](http://i.imgur.com/7w0fwTy.png)
-
-*  <http://localhost:8000>
-
-### Build
-
-`npm run build`
-
-![Imgur](http://i.imgur.com/yTI3otr.png)
-
-Generate folder **`dist`**. So "dist/client" is optional. You can paste the compilation of a client here, for example of Vue, React, Angular ...
-
-![Imgur](http://i.imgur.com/u4axBDN.png)
-
-### Test
-
-`npm test`
-
-![Imgur](http://i.imgur.com/4cM4HXs.png)
-
-### Lint
-
-`npm run lint`
-
-## Pm2 [Development]
-
-#### Simple
-
-Run pm2 in a single thread and run pm2 console
-
-`npm run dev-simple`
-
-![Imgur](http://i.imgur.com/cNuBVzK.png)
-
-* <http://localhost:8000>
-
-#### Cluster
-
-Run pm2 in multiple threads and run pm2 console
-
-`npm run dev-cluster`
-
-![Imgur](http://i.imgur.com/wEU2Uz5.png)
-
-* <http://localhost:8000>
-
-## Pm2 [Production]
-
-### Simple
-
-Run pm2 in a single thread
-
-`npm run simple`
-
-![Imgur](http://i.imgur.com/tLA2hu7.png)
-
-* <http://localhost:8000>
-
-### Cluster
-
-Run pm2 in multiple threads
-
-`npm run cluster`
-
-![Imgur](http://i.imgur.com/HTWJcUk.png)
-
-* <http://localhost:8000>
-
-## Stop
-
-### PM2
-
-destroy pm2 simple and pm2 cluster
-
-`npm stop`
-
-### Node
-
-destroyed all process for node
-
-`killall node`
 
 ## License
 
