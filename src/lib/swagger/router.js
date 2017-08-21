@@ -18,6 +18,6 @@ export default (app, swaggerConfig) => {
   // If Swagger is enabled then the router is enabled!
   if (config.swagger.enabled) {
     app.get(`/swagger.json`, (req, res) => res.json(swaggerConfig));
-    app.use('/docs', express.static(`${config.base}/lib/swagger/api-docs`));
+    app.use('/docs', express.static(`${config.base}/lib/swagger/ui`));
   }
 };
