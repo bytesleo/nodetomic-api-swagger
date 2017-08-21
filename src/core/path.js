@@ -32,7 +32,6 @@ export default (app) => {
   app.use(favicon(path.join(client, 'favicon.ico')));
 
   // Folder client
-
   app.get('/*', (req, res) => {
     res.sendFile(`${client}/${file}.html`);
   });
