@@ -15,6 +15,7 @@ export async function connect() {
         // Events
         conn.on('disconnected', (err) => {
             console.log(chalk.redBright(`MongoDB-> disconnected: ${uri}`));
+            connect();
         });
 
         conn.on('reconnected', (err) => {
