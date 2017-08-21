@@ -1,19 +1,59 @@
 import path from 'path';
-/**
- * development || production
- */
-const mode = 'production';
-const appName = `your-app-name`;
-const dbName = `your-app-name-${mode}`;
-const client = '/client';  // 
+
+const APP_NAME = `your-app-name`;
+const DB_NAME = `your-app-name-dev`;
+const CLIENT = '/client';
 
 export default {
-  server: {
+  secret: `your_secret_key`, // Secret Key
+  server: { // Express
     ip: 'localhost',
     port: 8000
   },
-  io: 8001, // Public port for socket.io
-  secret: `your_secret_key`,
+  io: { // Socket.io
+    port: 8001,
+    example: true // router -> http://localhost:8000/socket
+  },
+  redis: { // Redis
+    sessions: { // redis[sessions]
+      conn: {
+        //host: '/tmp/redis.sock', //unix domain
+        host: '127.0.0.1', //can be IP or hostname
+        port: 6379,
+        maxretries: 10, //reconnect retries, default 10
+        //auth: '123', //optional password, if needed
+        db: 0 //optional db selection
+      },
+      multiple: true, // If you want multiples logins or only one device in same time
+      pubsub: {
+        enabled: false// Enable PubSub
+      }
+    },
+    sockets: { // redis[sockets]
+      conn: {
+        host: '127.0.0.1',
+        port: 6379
+      }
+    }
+  },
+  mongo: { // MongoDB
+    db: {
+      // uri: mongodb://username:password@host:port/database?options
+      uri: `mongodb://localhost:27017/${DB_NAME}`,
+      options: {
+        useMongoClient: true
+      },
+      seeds: [
+        {
+          path: '/api/models/seeds/user',
+          plant: 'alway' //  once - alway - never
+        }, {
+          path: '/api/models/seeds/hello',
+          plant: 'alway'
+        }
+      ]
+    }
+  },
   // Roles: if a user has multiple roles, will take the time of the greater role
   roles: [
     {
@@ -24,58 +64,10 @@ export default {
       time: 'infinite'
     }
   ],
-  redis: {
-    sessions: {
-      conn: {
-        //host: '/tmp/redis.sock', //unix domain
-        host: '127.0.0.1', //can be IP or hostname
-        port: 6379,
-        maxretries: 10, //reconnect retries, default 10
-        //auth: '123', //optional password, if needed
-        db: 0 //optional db selection
-      },
-      // If you want multiples logins or only one device in same time
-      multiple: true,
-      pubsub: {
-        // Enable PubSub!
-        enabled: false,
-        // Enable events to expired,del...
-        events: true
-      }
-    },
-    sockets: {
-      conn: {
-        host: '127.0.0.1',
-        port: 6379
-      }
-    }
-  },
-  database: {
-    mongo: {
-      db: {
-        // uri: mongodb://username:password@host:port/database?options
-        uri: `mongodb://localhost:27017/${dbName}`,
-        options: {
-          useMongoClient: true
-        },
-        // plant: once - alway - never
-        seeds: [
-          {
-            path: '/seeds/user',
-            plant: 'alway'
-          }, {
-            path: '/seeds/hello',
-            plant: 'alway'
-          }
-        ]
-      }
-    }
-  },
   path: {
-    // paths 404
-    disabled: '/:url(api|auth|assets|lib)/*'
+    disabled: '/:url(api|auth|assets|lib)/*' // paths 404
   },
-  email: {
+  email: { // Email
     host: 'hostexample',
     secure: true,
     port: 465,
@@ -84,12 +76,12 @@ export default {
       pass: 'examplePassword'
     }
   },
-  swagger: {
-    enabled: false,
+  swagger: { // Swagger
+    enabled: true, // router -> http://localhost:8000/docs/
     info: {
       version: 'v1.0',
-      title: appName,
-      description: `RESTful API ${appName}`,
+      title: APP_NAME,
+      description: `RESTful API ${APP_NAME}`,
       "contact": {
         "name": "Developer",
         "url": "http://www.example.com",
@@ -101,10 +93,7 @@ export default {
       }
     }
   },
-  // session: defaultStore, mongoStore, redisStore
-  // note: Required for Twitter oAuth
-  session: 'defaultStore',
-  oAuth: {
+  oAuth: { // oAuth
     local: {
       enabled: true
     },
@@ -140,17 +129,11 @@ export default {
     }
   },
   // globals
-  mode: mode,
-  name: appName,
-  root: path.normalize(`${__dirname}/../..`),
-  base: path.normalize(`${__dirname}/..`),
-  client: `${path.normalize(`${__dirname}/../..`)}${client}`,
-  // DEV
-  livereload: { // livereload
-    enabled: false,
-    ip: 'localhost',
-    port: 35729
-  },
-  log: false, // Log request in console?
-  example: false // enable router to example's!
+  mode: process.env.NODE_ENV || 'production', // mode
+  name: APP_NAME, // name 
+  node: parseInt(process.env.NODE_APP_INSTANCE) || 0, // node instance
+  root: path.normalize(`${__dirname}/../..`), // root
+  base: path.normalize(`${__dirname}/..`), // base
+  client: `${path.normalize(`${__dirname}/../..`)}${CLIENT}`, // client
+  log: false // logs
 };
