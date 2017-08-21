@@ -8,7 +8,7 @@ export default (connection, config) => {
       console.log(err);
     } else {
       // Get seeds in config
-      config.database.mongo.db.seeds.forEach(seed => {
+      config.mongo.db.seeds.forEach(seed => {
         // let model = seed.path.split('/').reverse()[0].match(/\S+(?=.seed)/g)[0] + 's'; //format [model.seed.js]
         let model = seed.path.split('/').reverse()[0] + 's'; //format [model.js]
         // Evaluate seed
