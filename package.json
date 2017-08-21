@@ -1,6 +1,6 @@
 {
     "name": "nodetomic-api-swagger",
-    "version": "2.8.5",
+    "version": "2.8.7",
     "description": "RESTful API Nodejs designed for horizontal scalability, based on Swagger, Redis, JWT, Passport, Socket.io, Express, MongoDB. Support multiple cluster!",
     "main": "src/app.js",
     "repository": {
