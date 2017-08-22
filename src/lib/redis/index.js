@@ -25,7 +25,7 @@ export async function create(key, value, ttl) {
 }
 
 // exits by key
-export function exits(key) {
+export function exists(key) {
   return new Promise((resolve, reject) => {
     r.rawCall([
       'EXISTS', key
