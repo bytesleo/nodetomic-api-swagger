@@ -4,7 +4,7 @@ import fs from "fs";
 import config from '../../config';
 
 const io = require('socket.io')(config.io.port);
-io.adapter(Redis(config.redis.sockets.conn));
+io.adapter(Redis(config.io.redis));
 
 // Scan events
 const pathSocket = `${config.base}/api/sockets`;
