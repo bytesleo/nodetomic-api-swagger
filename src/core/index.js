@@ -35,10 +35,7 @@ export async function index(app) {
   await require('../lib/mongoose').connect();
 
   // Redis
-  await require('../lib/redis');
-
-  if (config.redis.sessions.pubsub.enabled)
-    await require('../lib/redis/pubsub');
+  await require('../lib/redis-jwt');
 
   // Socket.io
   await require('../lib/socket.io').connect();
