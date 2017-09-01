@@ -1,10 +1,10 @@
 import { result, notFound, error } from 'express-easy-helper';
-import { getValuesByPattern as reGetAll, destroy as reDestroy } from '../../lib/redis';
+import { call } from '../../lib/redis-jwt';
 
 // List of sessions by user
 export function list(req, res) {
 
-  return reGetAll(req.user._id)
+  return call.getValuesByPattern(req.user._id)
     .then(notFound(res))
     .then(all => {
       for (let prop in all)
@@ -18,7 +18,7 @@ export function list(req, res) {
 // Destroy a session
 export function destroy(req, res) {
 
-  return reDestroy(`${req.user._id}:${req.swagger.params.verify.value}`)
+  return call.destroy(`${req.user._id}:${req.swagger.params.verify.value}`)
     .then(notFound(res))
     .then(result(res))
     .catch(error(res))
@@ -28,7 +28,7 @@ export function destroy(req, res) {
 // Destroy a current session
 export function logout(req, res) {
 
-  return reDestroy(req.user.key)
+  return call.destroy(req.user.key)
     .then(notFound(res))
     .then(result(res))
     .catch(error(res))
