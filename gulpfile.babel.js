@@ -50,10 +50,9 @@ gulp.task('build-replace', () => {
   gulp.src("package.json").pipe(jeditor((json) => {
     delete json.devDependencies;
     json.scripts = {
-      "start": `npm run redis && node server/app.js`,
-      "simple": `npm run redis && npm stop && pm2 start ${pm2_simple} --env production`,
-      "cluster": `npm run redis && npm stop && pm2 start ${pm2_cluster} --env production`,
-      "redis": `redis-cli config set notify-keyspace-events KEA`,
+      "start": `node server/app.js`,
+      "simple": `npm stop && pm2 start ${pm2_simple} --env production`,
+      "cluster": `npm stop && pm2 start ${pm2_cluster} --env production`,
       "stop": `pm2 delete ${pm2_simple} ${pm2_cluster}`
     };
     return json;
@@ -64,10 +63,16 @@ gulp.task('build-replace', () => {
   if (fs.existsSync(`${dist}/client`)) {
     gulp.src(['client/**/*']).pipe(gulp.dest(dist_client));
   } else {
-    // If not exits client folder, then copy default client
+    // If not exists client folder, then copy default client
     gulp.src(['src/views/default/favicon.ico', 'src/views/default/logo.svg']).pipe(gulp.dest(dist_client));
-    gulp.src(['src/views/default/client.html']).pipe(minify({ minify: true, collapseWhitespace: true, conservativeCollapse: true})).pipe(rename('index.html')).pipe(gulp.dest(dist_client));
+    gulp.src(['src/views/default/client.html']).pipe(minify({ minify: true, collapseWhitespace: true, conservativeCollapse: true })).pipe(rename('index.html')).pipe(gulp.dest(dist_client));
   }
+  // Copy assets if not exists
+  if (!fs.existsSync(`${dist_server}/assets`)) {
+    gulp.src('src/assets').pipe(gulp.dest(`${dist_server}`));
+  }
+
+
   // Success
   setTimeout(() => console.log(chalk.greenBright('\n---------\nBuild success!\n---------\n')), 500);
 });

@@ -1,6 +1,6 @@
 {
     "name": "nodetomic-api-swagger",
-    "version": "2.8.9",
+    "version": "3.0.0",
     "description": "RESTful API Nodejs designed for horizontal scalability, based on Swagger, Redis, JWT, Passport, Socket.io, Express, MongoDB. Support multiple cluster!",
     "main": "src/app.js",
     "repository": {
@@ -8,12 +8,11 @@
         "url": "git+https://github.com/kevoj/nodetomic-api-swagger.git"
     },
     "scripts": {
-        "nodemon": "export NODE_ENV=development && npm stop && npm run redis && nodemon src/app.js --exec babel-node -e js,yaml",
-        "start": "npm stop && npm run redis && pm2-dev dev.config.js",
+        "nodemon": "export NODE_ENV=development && npm stop && nodemon src/app.js --exec babel-node -e js,yaml",
+        "start": "npm stop && pm2-dev dev.config.js",
         "build": "npm run lint && gulp build",
         "test": "npm run simple && node ./node_modules/npm-delay 4000 && mocha --compilers js:babel-register && npm stop",
         "lint": "eslint src --ext .js",
-        "redis": "redis-cli config set notify-keyspace-events KEA",
         "stop": "pm2 delete simple.config.js cluster.config.js",
         "dev-simple": "npm run build -- -dev && cd dist && npm stop && pm2-dev simple.config.js",
         "dev-cluster": "npm run build -- -dev && cd dist && npm stop && pm2-dev cluster.config.js",
@@ -61,7 +60,6 @@
         "express-session": "^1.15.5",
         "helmet": "^3.8.1",
         "hogan.js": "^3.0.2",
-        "jsonwebtoken": "^7.4.3",
         "method-override": "^2.3.9",
         "mongoose": "4.11.9",
         "mongoose-paginate": "^5.0.3",
@@ -75,7 +73,7 @@
         "passport-local": "^1.0.0",
         "passport-twitter": "^1.0.4",
         "pm2": "^2.6.1",
-        "redis-fast-driver": "^1.0.5",
+        "redis-jwt": "^1.0.5",
         "serve-favicon": "^2.4.3",
         "socket.io": "^2.0.3",
         "socket.io-redis": "^5.1.0",
