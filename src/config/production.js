@@ -8,51 +8,42 @@ export default {
   secret: `your_secret_key`, // Secret Key
   server: { // Express
     ip: 'localhost',
-    port: 8000
+    port: 8000,
   },
   io: { // Socket.io
-    port: 8001,
-    example: false // router -> http://localhost:8000/socket
+    port: 8001, // public port listen
+    example: true, // router -> http://localhost:8000/socket
+    redis: { // Redis config
+      host: '127.0.0.1',
+      port: 6379
+    }
   },
-  redis: { // Redis
-    sessions: { // redis[sessions]
-      conn: {
-        //host: '/tmp/redis.sock', //unix domain
-        host: '127.0.0.1', //can be IP or hostname
-        port: 6379,
-        maxretries: 10, //reconnect retries, default 10
-        //auth: '123', //optional password, if needed
-        db: 0 //optional db selection
-      },
-      multiple: true, // If you want multiples logins or only one device in same time
-      pubsub: {
-        enabled: false// Enable PubSub
-      }
+  'redis-jwt': { // Sessions
+    //host: '/tmp/redis.sock', //unix domain
+    host: '127.0.0.1', //can be IP or hostname
+    port: 6379, // port
+    maxretries: 10, //reconnect retries, default 10
+    //auth: '123', //optional password, if needed
+    db: 0, //optional db selection
+    secret: 'secret_key', // secret key for Tokens!
+    multiple: false, // single or multiple sessions by user
+    KEA: true // Enable notify-keyspace-events KEA
+  },
+  mongoose: { // MongoDB
+    // uri: mongodb://username:password@host:port/database?options
+    uri: `mongodb://localhost:27017/${DB_NAME}`,
+    options: {
+      useMongoClient: true
     },
-    sockets: { // redis[sockets]
-      conn: {
-        host: '127.0.0.1',
-        port: 6379
+    seeds: [
+      {
+        path: '/api/models/seeds/user',
+        plant: 'alway' //  once - alway - never
+      }, {
+        path: '/api/models/seeds/hello',
+        plant: 'alway'
       }
-    }
-  },
-  mongo: { // MongoDB
-    db: {
-      // uri: mongodb://username:password@host:port/database?options
-      uri: `mongodb://localhost:27017/${DB_NAME}`,
-      options: {
-        useMongoClient: true
-      },
-      seeds: [
-        {
-          path: '/api/models/seeds/user',
-          plant: 'alway' //  once - alway - never
-        }, {
-          path: '/api/models/seeds/hello',
-          plant: 'alway'
-        }
-      ]
-    }
+    ]
   },
   // Roles: if a user has multiple roles, will take the time of the greater role
   roles: [
@@ -135,5 +126,5 @@ export default {
   root: path.normalize(`${__dirname}/../..`), // root
   base: path.normalize(`${__dirname}/..`), // base
   client: `${path.normalize(`${__dirname}/../..`)}${CLIENT}`, // client
-  log: false // logs
+  log: true // logs
 };
