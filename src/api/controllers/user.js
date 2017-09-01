@@ -54,7 +54,9 @@ export function update(req, res) {
 export function me(req, res) {
 
   let user = req.user;
-  delete user.key; //session key in redis
+  delete user.rjwt._key;
+  delete user.rjwt._id;
+  delete user.rjwt._verify;
   return result(res, user);
 
 }

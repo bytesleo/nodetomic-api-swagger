@@ -9,8 +9,8 @@ export async function index(req, res) {
       let file = req.files.example;
       let path = `/assets/${new Date().getTime()}_${file.name}`;
 
-      await file.mv(`${config.base}/${path}`);
-      result(res, 201, { message: `file upload: ${path}` });
+      await file.mv(`${config.base}${path}`);
+      result(res, 201, { message: `Uploaded file!`, path });
 
     } else {
       throw 'Not found files!';
