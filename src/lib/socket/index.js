@@ -3,8 +3,8 @@ import chalk from 'chalk';
 import fs from "fs";
 import config from '../../config';
 
-const io = require('socket.io')(config.io.port);
-io.adapter(Redis(config.io.redis));
+const io = require('socket.io')(config['socket.io'].port);
+io.adapter(Redis(config['socket.io'].redis));
 
 // Scan events
 const pathSocket = `${config.base}/api/sockets`;
