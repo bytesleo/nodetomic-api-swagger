@@ -13,8 +13,8 @@ const dist = './dist';
 const dist_server = `${dist}/server`;
 const dist_swagger = `${dist_server}/lib/swagger/ui`;
 const dist_client = `${dist}/client`;
-const pm2_simple = `simple.config.js`;
-const pm2_cluster = `cluster.config.js`;
+const pm2_simple = `pm2.simple.config.js`;
+const pm2_cluster = `pm2.cluster.config.js`;
 
 gulp.task('build', () => {
   // Sequence
