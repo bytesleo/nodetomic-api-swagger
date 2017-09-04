@@ -80,6 +80,15 @@
             //var path = location.origin + '/' + v + '/swagger.json';
             var path = location.origin + '/swagger.json';
 
+            function rename() {
+                document.querySelector(".link span").innerHTML = 'Nodetomic Api Swagger';
+                document.querySelector(".link").setAttribute("href", "/");
+                var elements = document.getElementsByClassName('download-url-wrapper');
+                while (elements.length > 0) {
+                    elements[0].parentNode.removeChild(elements[0]);
+                }
+            }
+
             // Build a system
             const ui = SwaggerUIBundle({
                 url: path,
@@ -95,15 +104,8 @@
                 layout: "StandaloneLayout"
             })
 
-            window.ui = ui
-
-            //Nodetomic
-            document.querySelector(".link span").innerHTML = 'Nodetomic Api Swagger';
-            document.querySelector(".link").setAttribute("href", "/");
-            var elements = document.getElementsByClassName('download-url-wrapper');
-            while (elements.length > 0) {
-                elements[0].parentNode.removeChild(elements[0]);
-            }
+            window.ui = ui;
+            rename();
         }
     </script>
 </body>
