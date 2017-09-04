@@ -10,7 +10,7 @@ export default {
     ip: 'localhost',
     port: 8000,
   },
-  io: { // Socket.io
+  "socket.io": { // Socket.io
     port: 8001, // public port listen
     example: true, // router -> http://localhost:8000/socket
     redis: { // Redis config
@@ -18,7 +18,7 @@ export default {
       port: 6379
     }
   },
-  'redis-jwt': { // Sessions
+  "redis-jwt": { // Sessions
     //host: '/tmp/redis.sock', //unix domain
     host: '127.0.0.1', //can be IP or hostname
     port: 6379, // port
