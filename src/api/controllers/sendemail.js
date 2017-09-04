@@ -1,7 +1,7 @@
 import { result, error } from 'express-easy-helper';
-import { send } from '../../lib/util/nodemailer';
-import { getTemplate, setTemplate } from '../../lib/util/hogan';
-const templateExample = getTemplate('example/example.html'); //Example with .html, .mustache, .js
+import { send } from '../../lib/nodemailer';
+import { getTemplate, setTemplate } from '../../lib/hogan';
+const templateExample = getTemplate('/views/templates/example.html');
 
 // Send a email
 export async function index(req, res) {

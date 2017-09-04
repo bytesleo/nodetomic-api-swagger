@@ -36,10 +36,11 @@ export default (app) => {
     res.sendFile(`${client}/${file}.html`);
   });
 
-  // Paths specials from client
-  // app.use('/bower_components', express.static(`${config.root}/bower_components`));
+  // ADD PATHS HERE!
+  // Examples
 
-  // Other folder client
+  // app.use('/bower_components', express.static(`${config.root}/bower_components`));}
+  
   // app.get('/:url(admin)/*', (req, res) => {
   //     res.sendFile(`${config.client2}/index.html`);
   // });

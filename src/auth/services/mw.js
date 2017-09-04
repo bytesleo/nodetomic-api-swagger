@@ -1,6 +1,6 @@
 import { unauthorized, forbidden } from 'express-easy-helper';
-import { r } from '../../lib/redis-jwt';
-import { hasRole } from '../../lib/util/role';
+import { has } from 'role-calc';
+import { r } from '../../lib/redis';
 import User from '../../api/models/user';
 
 // VerifyToken
@@ -19,12 +19,12 @@ export async function mw(req, authOrSecDef, token, cb) {
       return cb(forbidden(req.res));
 
     // Extract info user from MongoDB
-    let _user = await User.findById(rjwt._id).select('-social').exec();
+    let _user = await User.findById(rjwt.id).select('-social').exec();
     if (!_user)
       return cb(unauthorized(req.res));
 
     // If id's not equals
-    if (_user._id.toString() !== rjwt._id.toString())
+    if (_user._id.toString() !== rjwt.id.toString())
       return cb(forbidden(req.res));
 
     // User is enabled?
@@ -33,7 +33,7 @@ export async function mw(req, authOrSecDef, token, cb) {
 
     // Verify Roles
     if (requiredRoles)
-      if (!hasRole(requiredRoles, _user.roles))
+      if (!has(requiredRoles, _user.roles))
         return cb(forbidden(req.res));
 
     // Success

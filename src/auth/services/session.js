@@ -1,6 +1,7 @@
 import { result, invalid, error } from 'express-easy-helper';
-import { r } from '../../lib/redis-jwt';
-import { ttlRole } from '../../lib/util/role';
+import { time } from 'role-calc';
+import { r } from '../../lib/redis';
+import config from '../../config';
 
 // Initialize after login success
 export async function initialize(err, user, res) {
@@ -11,11 +12,13 @@ export async function initialize(err, user, res) {
     if (!user)
       return error(res, { message: 'Something went wrong, please try again.' });
 
-    // Calculate ttl by user role
-    let _ttl = ttlRole(user.roles);
+    // Calculate ttl by user roles
+    let roles = [];
+    user.roles.forEach(role => config.roles.forEach(crole => role === crole.role ? roles.push(crole) : null));
+    let _ttl = time(roles, 'max');
 
     // Create session in redis-jwt
-    const token = await r.create(res.req, user._id.toString(), _ttl);
+    const token = await r.sign(user._id.toString(), { ttl: _ttl, request: res.req });
 
     // Save token in cookies
     res.cookie('token', JSON.stringify(token));

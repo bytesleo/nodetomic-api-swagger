@@ -54,9 +54,8 @@ export function update(req, res) {
 export function me(req, res) {
 
   let user = req.user;
-  delete user.rjwt._key;
-  delete user.rjwt._id;
-  delete user.rjwt._verify;
+  delete user.rjwt.rjwt;
+  delete user.rjwt.id;
   return result(res, user);
 
 }

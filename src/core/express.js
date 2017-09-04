@@ -31,17 +31,7 @@ export async function index(app) {
   if (config.log)
     app.use(morgan('dev'));
 
-  // Mongoose
-  await require('../lib/mongoose').connect();
+  // require
+  await require('./require').index();
 
-  // Redis
-  await require('../lib/redis-jwt');
-
-  // Socket.io
-  await require('../lib/socket.io').connect();
-
-  // Services
-  await require('../auth/services');
-
-  // You can add more require's here! 
 };

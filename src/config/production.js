@@ -27,7 +27,7 @@ export default {
     db: 0, //optional db selection
     secret: 'secret_key', // secret key for Tokens!
     multiple: false, // single or multiple sessions by user
-    KEA: true // Enable notify-keyspace-events KEA
+    kea: false // Enable notify-keyspace-events KEA
   },
   mongoose: { // MongoDB
     // uri: mongodb://username:password@host:port/database?options
@@ -35,24 +35,30 @@ export default {
     options: {
       useMongoClient: true
     },
-    seeds: [
-      {
-        path: '/api/models/seeds/user',
-        plant: 'alway' //  once - alway - never
-      }, {
-        path: '/api/models/seeds/hello',
-        plant: 'alway'
-      }
-    ]
+    seed: {
+      path: '/api/models/seeds/',
+      list: [
+        {
+          file: 'user',
+          schema: 'User',
+          plant: 'alway' //  once - alway - never
+        },
+        {
+          file: 'hello',
+          schema: 'Hello',
+          plant: 'alway'
+        }
+      ]
+    },
   },
   // Roles: if a user has multiple roles, will take the time of the greater role
   roles: [
     {
       role: 'user',
-      time: 60, // minutes
+      ttl: '60 minutes',
     }, {
       role: 'admin',
-      time: 'infinite'
+      ttl: '5 days'
     }
   ],
   path: {
@@ -126,5 +132,5 @@ export default {
   root: path.normalize(`${__dirname}/../..`), // root
   base: path.normalize(`${__dirname}/..`), // base
   client: `${path.normalize(`${__dirname}/../..`)}${CLIENT}`, // client
-  log: true // logs
+  log: false // logs
 };

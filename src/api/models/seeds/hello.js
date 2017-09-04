@@ -1,7 +1,4 @@
-import Hello from '../hello';
-import chalk from 'chalk';
-
-const data = [
+export default [
   {
     greet: 'Hello World',
     language: 'English'
@@ -22,8 +19,3 @@ const data = [
     language: 'Chinese'
   }
 ];
-
-// Insert
-Hello.create(data, () => {
-  console.log(chalk.cyanBright(`Seed-> Published Hello's!`));
-});

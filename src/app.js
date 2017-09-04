@@ -5,8 +5,8 @@ import config from './config';
 const app = express();
 
 async function run() {
-  // Core
-  await require('./core').index(app);
+  // Express
+  await require('./core/express').index(app);
   // Swagger Config
   let swaggerConfig = await require('./lib/swagger/config').default(app);
   // Swagger Middleware
@@ -17,7 +17,10 @@ async function run() {
     require('./core/path').default(app);
     // Server
     app.listen(config.server.port, config.server.ip, () => {
-      console.log(chalk.greenBright(`-------\nServer-> listening on http://${config.server.ip}:${config.server.port} in mode [${config.mode}]\n-------`));
+      console.log(chalk.greenBright(`-------\nServer-> 
+      mode: [${chalk.magentaBright(`${config.mode}`)}]
+      url: ${chalk.blueBright(`http://${config.server.ip}:${config.server.port}`)}\n-------`));
+      console.log(chalk.black.bgGreenBright(`>>nodetomic-api-swagger ready!<<`));
     });
   });
 }
