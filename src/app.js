@@ -8,16 +8,16 @@ const app = express();
   // Express
   await require('./lib/express').index(app);
 
-  // Mongoo
-  await require('./lib/mongo').connect();
+  // Mongoose
+  await require('./lib/mongoose').connect();
 
-  // Redis
-  await require('./lib/redis').connect();
+  // Redis-jwt
+  await require('./lib/redis-jwt').connect();
 
-  // Socket
-  await require('./lib/socket').connect();
+  // Socket.io
+  await require('./lib/socket.io').connect();
 
-  // Services
+  // Passport
   await require('./auth/services');
 
   // Swagger
@@ -38,4 +38,3 @@ const app = express();
   });
 
 })();
-
