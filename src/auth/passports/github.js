@@ -9,29 +9,12 @@ passport.use(new GitHubStrategy({
   callbackURL: config.oAuth.github.callbackURL
 }, (accessToken, refreshToken, profile, done) => {
 
-  User.findOne({ provider: 'github', 'social.id': profile.id }).exec().then(user => {
+  let social = profile;
+  social.email = profile._json.email;
+  social.photo = profile._json.avatar_url;
 
-    if (!user) {
-      user = new User({
-        name: profile.displayName,
-        username: profile.username,
-        email: profile._json.email || '',
-        provider: 'github',
-        photo: profile._json.avatar_url,
-        'social.id': profile.id,
-        'social.info': profile._json
-      });
-    } else {
-      user.social.info = profile._json;
-      user.photo = profile._json.avatar_url;
-    }
-
-    user.lastLogin = Date.now();
-
-    user.save().then(_user => {
-      return done(null, _user);
-    }).catch(err => done(err));
-
-  }).catch(err => done(err));
+  User.loginBySocial('github', social)
+    .then(user => done(null, user))
+    .catch(err => done(err));
 
 }));
