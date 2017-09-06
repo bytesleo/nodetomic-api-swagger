@@ -9,28 +9,11 @@ passport.use(new GoogleStrategy({
   callbackURL: config.oAuth.google.callbackURL
 }, (accessToken, refreshToken, profile, done) => {
 
-  User.findOne({ provider: 'google', 'social.id': profile.id }).exec().then(user => {
+  let social = profile;
+  social.photo = profile._json.image.url;
 
-    if (!user) {
-      user = new User({
-        name: profile.displayName,
-        username: profile.username,
-        provider: 'google',
-        photo: profile._json.image.url,
-        'social.id': profile.id,
-        'social.info': profile._json
-      });
-    } else {
-      user.social.info = profile._json;
-      user.photo = profile._json.image.url;
-    }
-
-    user.lastLogin = Date.now();
-
-    user.save().then(_user => {
-      return done(null, _user);
-    }).catch(err => done(err));
-
-  }).catch(err => done(err));
+  User.loginBySocial('google', social)
+    .then(user => done(null, user))
+    .catch(err => done(err));
 
 }));
