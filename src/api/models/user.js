@@ -56,6 +56,8 @@ UserSchema.path('username').index({ unique: true });
 
 UserSchema.plugin(mongoosePaginate);
 
-require('./extend/user').default(UserSchema);
+require('./extend/user.hooks').default(UserSchema);
+require('./extend/user.statics').default(UserSchema);
+require('./extend/user.methods').default(UserSchema);
 
 export default mongoose.model('User', UserSchema);
