@@ -1,5 +1,5 @@
 import { result, error } from 'express-easy-helper';
-import { call } from '../../lib/redis';
+import { call } from '../../lib/redis-jwt';
 
 // Get section
 export function section(req, res) {
