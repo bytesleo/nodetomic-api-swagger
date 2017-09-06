@@ -1,5 +1,5 @@
 import { result, notFound, error } from 'express-easy-helper';
-import { call } from '../../lib/redis';
+import { call } from '../../lib/redis-jwt';
 
 // List of sessions by user
 export function list(req, res) {
