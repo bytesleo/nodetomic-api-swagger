@@ -1,6 +1,6 @@
 import { unauthorized, forbidden } from 'express-easy-helper';
 import { has } from 'role-calc';
-import { r } from '../../lib/redis';
+import { r } from '../../lib/redis-jwt';
 import User from '../../api/models/user';
 
 // VerifyToken
