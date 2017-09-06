@@ -6,7 +6,7 @@
     tags:
       - Authentication
     summary: Signin
-    description: Default [ admin/123 ] - [ user/123 ]
+    description: Login --> admin - 123 / user - 123
     consumes:
       - application/x-www-form-urlencoded
     parameters:
