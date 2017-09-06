@@ -11,8 +11,8 @@ export default {
     port: 8000,
   },
   "socket.io": { // Socket.io
-    port: 8001, // public port listen
-    example: true, // router -> http://localhost:8000/socket
+    port: 8001, // public port listen - do not forget to change also in: views/default/socket.js
+    example: true, // router -> http://localhost:8000/socket 
     redis: { // Redis config
       host: '127.0.0.1',
       port: 6379
@@ -39,14 +39,14 @@ export default {
       path: '/api/models/seeds/',
       list: [
         {
-          file: 'user',
+          file: 'user.seed',
           schema: 'User',
-          plant: 'alway' //  once - alway - never
+          plant: 'once' //  once - alway - never
         },
         {
-          file: 'hello',
+          file: 'hello.seed',
           schema: 'Hello',
-          plant: 'alway'
+          plant: 'once'
         }
       ]
     },
