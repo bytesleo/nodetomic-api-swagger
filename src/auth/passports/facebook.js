@@ -9,29 +9,12 @@ passport.use(new FacebookStrategy({
   callbackURL: config.oAuth.facebook.callbackURL
 }, (accessToken, refreshToken, profile, done) => {
 
-  User.findOne({ provider: 'facebook', 'social.id': profile.id }).exec().then(user => {
+  let social = profile;
+  social.email = profile.emails[0].value;
+  social.photo = `http://graph.facebook.com/${profile.id}/picture?type=square`;
 
-    if (!user) {
-      user = new User({
-        name: profile.displayName,
-        username: profile.username || '',
-        email: profile.emails[0].value || '',
-        provider: 'facebook',
-        photo: `http://graph.facebook.com/${profile.id}/picture?type=square`,
-        'social.id': profile.id,
-        'social.info': profile._json
-      });
-    } else {
-      user.social.info = profile._json;
-      user.photo = `http://graph.facebook.com/${profile.id}/picture?type=square`;
-    }
-
-    user.lastLogin = Date.now();
-
-    user.save().then(_user => {
-      return done(null, _user);
-    }).catch(err => done(err));
-
-  }).catch(err => done(err));
+  User.loginBySocial('facebook', social)
+    .then(user => done(null, user))
+    .catch(err => done(err));
 
 }));
