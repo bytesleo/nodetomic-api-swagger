@@ -19,9 +19,10 @@ export function create(req, res) {
 // Read a user
 export function read(req, res) {
 
-  return User.findById(req.swagger.params.id.value, {
+  return User.findOne({ username: req.swagger.params.username.value }, {
     social: 0
-  }).exec()
+  }).select('-email')
+    .exec()
     .then(notFound(res))
     .then(result(res))
     .catch(error(res));
