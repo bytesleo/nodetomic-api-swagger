@@ -14,17 +14,18 @@ export async function mw(req, authOrSecDef, token, cb) {
     req.headers.authorization = `Bearer ${token}`;
 
     // Verify Token with redis-jwt
-    let rjwt = await r.verify(token);
-    if (!rjwt)
+    let session = await r.verify(token);
+    if (!session)
       return cb(forbidden(req.res));
 
     // Extract info user from MongoDB
-    let _user = await User.findById(rjwt.id).select('-social').exec();
+    let _user = await User.findById(session.id).select('-social').exec();
     if (!_user)
       return cb(unauthorized(req.res));
 
+
     // If id's not equals
-    if (_user._id.toString() !== rjwt.id.toString())
+    if (_user._id.toString() !== session.id.toString())
       return cb(forbidden(req.res));
 
     // User is enabled?
@@ -37,7 +38,7 @@ export async function mw(req, authOrSecDef, token, cb) {
         return cb(forbidden(req.res));
 
     // Success
-    req.user = Object.assign({ rjwt }, _user._doc);
+    req.user = Object.assign({ session }, _user._doc);
 
     return cb(null);
   } else {
