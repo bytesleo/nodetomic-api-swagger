@@ -53,10 +53,9 @@ export function update(req, res) {
 
 // Get current user
 export function me(req, res) {
-
+  
   let user = req.user;
-  delete user.rjwt.rjwt;
-  delete user.rjwt.id;
+  delete user.session.id;
   return result(res, user);
 
 }
