@@ -20,7 +20,7 @@
         description: Not found
       500:
         description: Error
-#---------------------------------------------
+
 /auth/session/{verify}:
   x-swagger-router-controller: session
   # destroy
@@ -49,7 +49,7 @@
         description: Not found
       500:
         description: Error
-#---------------------------------------------
+
 /auth/logout:
   x-swagger-router-controller: session
   # logout

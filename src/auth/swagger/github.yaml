@@ -14,7 +14,7 @@
         description: Login Invalid
       500:
         description: Error
-#---------------------------------------------
+
 /auth/github/callback*:
   x-swagger-router-controller: github
 # callback

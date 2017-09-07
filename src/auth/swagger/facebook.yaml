@@ -14,7 +14,7 @@
         description: Login Invalid
       500:
         description: Error
-#---------------------------------------------
+
 /auth/facebook/callback*:
   x-swagger-router-controller: facebook
 # callback

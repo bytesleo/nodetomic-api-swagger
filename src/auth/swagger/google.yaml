@@ -14,7 +14,7 @@
         description: Login Invalid
       500:
         description: Error
-#---------------------------------------------
+
 /auth/google/callback*:
   x-swagger-router-controller: google
 # callback

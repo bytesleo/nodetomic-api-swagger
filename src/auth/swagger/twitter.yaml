@@ -14,7 +14,7 @@
         description: Login Invalid
       500:
         description: Error
-#---------------------------------------------
+
 /auth/twitter/callback*:
   x-swagger-router-controller: twitter
 # callback

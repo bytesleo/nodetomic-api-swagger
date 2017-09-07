@@ -14,7 +14,7 @@
         description: Login Invalid
       500:
         description: Error
-#---------------------------------------------
+
 /auth/bitbucket/callback*:
   x-swagger-router-controller: bitbucket
 # callback

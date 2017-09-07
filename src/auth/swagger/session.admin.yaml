@@ -62,7 +62,6 @@
       500:
         description: Error
 
-#---------------------------------------------
 /auth/admin/logout/{id}:
   x-swagger-router-controller: session.admin
   # logout
