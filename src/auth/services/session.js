@@ -16,7 +16,7 @@ export async function initialize(err, user, res) {
     let ttl = calc(time(config.roles, user.roles), 'max');
 
     // Create session in redis-jwt
-    const token = await r.sign(user._id.toString(), { ttl, request: res.req });
+    const token = await r.sign(user._id.toString(), { ttl, data: { request: res.req } });
 
     // Save token in cookies
     res.cookie('token', JSON.stringify(token));
