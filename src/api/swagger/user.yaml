@@ -44,21 +44,19 @@
         description: Forbidden
       500:
         description: Error
-#---------------------------------------------
-/api/user/{id}:
+
+/api/user/{username}:
   x-swagger-router-controller: user
 # read
   get:
     operationId: read
-    security:
-      - Bearer: []
     tags:
       - User
-    summary: Get user by id [Public profile] [Signed]
+    summary: Get user by username [Public]
     description: Returns a single User
     parameters:
-      - name: id
-        description: User's id
+      - name: username
+        description: username
         in: path
         required: true
         type: string
@@ -73,7 +71,7 @@
         description: Not found
       500:
         description: Error
-#---------------------------------------------
+
 /api/user/me:
   x-swagger-router-controller: user
 # me

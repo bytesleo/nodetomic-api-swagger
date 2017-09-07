@@ -26,7 +26,7 @@
         description: Not found
       500:
         description: Error
-#---------------------------------------------
+
 /api/admin/user/{id}:
   x-swagger-router-controller: user.admin
 # destroy
