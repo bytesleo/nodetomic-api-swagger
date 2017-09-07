@@ -78,7 +78,7 @@
         "passport-local": "^1.0.0",
         "passport-twitter": "^1.0.4",
         "pm2": "^2.6.1",
-        "redis-jwt": "^1.2.0",
+        "redis-jwt": "^1.2.2",
         "role-calc": "^1.1.2",
         "serve-favicon": "^2.4.3",
         "socket.io": "^2.0.3",
