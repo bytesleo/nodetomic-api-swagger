@@ -11,7 +11,7 @@ export default {
     port: 8000,
   },
   "socket.io": { // Socket.io
-    port: 8001, // public port listen - do not forget to change also in: views/default/socket.js
+    port: 8001, // public port listen, change also in views/default/demo.js
     example: true, // router -> http://localhost:8000/socket 
     redis: { // Redis config
       host: '127.0.0.1',
