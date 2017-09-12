@@ -6,7 +6,7 @@
 
 <a href="https://www.codacy.com/app/kevoj/nodetomic-api-swagger?utm_source=github.com&utm_medium=referral&utm_content=kevoj/nodetomic-api-swagger&utm_campaign=Badge_Grade" ><img src="http://i.imgur.com/n98gapy.png"></a>
 
-#### Include libs
+
 * [redis-jwt](https://github.com/kevoj/redis-jwt)
 * [express-easy-helper](https://github.com/kevoj/express-easy-helper)
 * [role-calc](https://github.com/kevoj/role-calc)
@@ -70,7 +70,7 @@ npm i
 
 ![Imgur](https://i.imgur.com/qY1mzDZ.png)
 
-*  <http://localhost:8000>
+* <http://localhost:8000>
 
 Optional: `npm run modemon` if you want work with **nodemon**.
 
@@ -195,6 +195,7 @@ export function list(req, res) {
 }
 
 ```
+
 ### Swagger (Router)
 
 src/api/**swagger**/hello.yaml
@@ -296,6 +297,7 @@ export function test(req, res) {
 }
 
 ```
+
 ## License
 
 MIT © [Leonardo Rico](https://github.com/kevoj/nodetomic-api-swagger/blob/master/LICENSE)
