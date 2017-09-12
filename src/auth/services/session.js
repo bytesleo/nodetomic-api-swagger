@@ -28,7 +28,7 @@ export async function initialize(err, user, res) {
       return result(res, { token });
 
     // if Social redirect to..
-    res.redirect('/token');
+    res.redirect(`/?token=${token}`);
 
   } catch (err) {
     return error(res, { message: err });
