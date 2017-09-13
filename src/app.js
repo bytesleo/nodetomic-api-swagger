@@ -24,7 +24,7 @@ const app = express();
   await require('./lib/swagger').index(app);
 
   // Paths
-  await require('./lib/express/path').default(app);
+  await require('./lib/express/client').default(app);
 
   // Server 
   app.listen(config.server.port, config.server.ip, () => {
