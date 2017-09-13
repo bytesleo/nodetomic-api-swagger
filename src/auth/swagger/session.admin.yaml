@@ -41,13 +41,8 @@
     description: Destroy a session
     parameters:
       - name: id
-        description: user id
+        description: rjwt of session
         in: path
-        required: true
-        type: string
-      - name: verify
-        description: session verify
-        in: query
         required: true
         type: string
     responses:
@@ -65,7 +60,7 @@
 /auth/admin/logout/{id}:
   x-swagger-router-controller: session.admin
   # logout
-  get:
+  delete:
     operationId: logout
     security:
       - Bearer: []
