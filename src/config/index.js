@@ -26,7 +26,7 @@ export default {
     //auth: '123', //optional password, if needed
     db: 0, //optional db selection
     secret: 'secret_key', // secret key for Tokens!
-    multiple: false, // single or multiple sessions by user
+    multiple: true, // single or multiple sessions by user
     kea: false // Enable notify-keyspace-events KEA
   },
   mongoose: { // MongoDB
