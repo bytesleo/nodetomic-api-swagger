@@ -15,10 +15,10 @@ export function list(req, res) {
 
 }
 
-// Destroy a session by id
+// Destroy a session by rjwt
 export function destroy(req, res) {
 
-  return call.destroy(`${req.swagger.params.id.value}:${req.swagger.params.verify.value}`)
+  return call.destroy(`${req.swagger.params.id.value}`)
     .then(notFound(res))
     .then(result(res))
     .catch(error(res))
