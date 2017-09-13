@@ -17,7 +17,9 @@ export async function initialize(err, user, res) {
 
     // Create session in redis-jwt
     const token = await r.sign(user._id.toString(), {
-      ttl, dataSession: { headers: res.req.headers }
+      ttl,
+      dataSession: { headers: res.req.headers }, // save data in REDIS (Private)
+      //dataToken: {}, // save data in Token (Public)
     });
 
     // Save token in cookies
