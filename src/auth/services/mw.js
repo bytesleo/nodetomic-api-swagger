@@ -13,7 +13,7 @@ export async function mw(req, authOrSecDef, token, cb) {
     // Bearer
     req.headers.authorization = `Bearer ${token}`;
 
-    // Verify Token with redis-jwt
+    // Verify Token with redis-jwt -> if you want to extract the data you should add true: r.verify(token, true);
     let session = await r.verify(token);
     if (!session)
       return cb(forbidden(req.res));
@@ -22,7 +22,6 @@ export async function mw(req, authOrSecDef, token, cb) {
     let _user = await User.findById(session.id).select('-social').exec();
     if (!_user)
       return cb(unauthorized(req.res));
-
 
     // If id's not equals
     if (_user._id.toString() !== session.id.toString())
