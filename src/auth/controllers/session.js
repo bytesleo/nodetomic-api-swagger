@@ -18,7 +18,7 @@ export function list(req, res) {
 // Destroy a session
 export function destroy(req, res) {
 
-  return call.destroy(`${req.user._id}:${req.swagger.params.verify.value}`)
+  return call.destroy(`${req.user._id}:${req.swagger.params.id.value.split(":")[1]}`)
     .then(notFound(res))
     .then(result(res))
     .catch(error(res))
@@ -28,7 +28,7 @@ export function destroy(req, res) {
 // Destroy a current session
 export function logout(req, res) {
 
-  return call.destroy(req.user.key)
+  return call.destroy(req.user.session.rjwt)
     .then(notFound(res))
     .then(result(res))
     .catch(error(res))
