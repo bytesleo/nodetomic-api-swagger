@@ -41,7 +41,7 @@ export default {
         {
           file: 'user.seed',
           schema: 'User',
-          plant: 'once' //  once - alway - never
+          plant: 'once' //  once - always - never
         },
         {
           file: 'hello.seed',
