@@ -30,7 +30,7 @@ export default (conn, config) => {
             });
             break;
 
-          case 'alway':
+          case 'always':
             model.collection.drop(() => {
               plant(model, data).then(() => i >= length - 1 ? resolve() : exec(i + 1));
             });
