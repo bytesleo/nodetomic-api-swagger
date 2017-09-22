@@ -12,14 +12,19 @@ export async function initialize(err, user, res) {
     if (!user)
       return error(res, { message: 'Something went wrong, please try again.' });
 
-    // Calculate ttl by user roles
+    // Calculate ttl by user roles, by default takes the role with the longest 'max'
     let ttl = calc(time(config.roles, user.roles), 'max');
 
     // Create session in redis-jwt
     const token = await r.sign(user._id.toString(), {
       ttl,
-      dataSession: { headers: res.req.headers }, // save data in REDIS (Private)
-      //dataToken: {}, // save data in Token (Public)
+      dataSession: {// save data in REDIS (Private)
+        ip: res.req.headers['x-forwarded-for'] || res.req.connection.remoteAddress,
+        agent: res.req.headers['user-agent']
+      },
+      dataToken: {// save data in Token (Public)
+        example: 'I travel with the token!'
+      }
     });
 
     // Save token in cookies
