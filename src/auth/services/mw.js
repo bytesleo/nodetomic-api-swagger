@@ -14,7 +14,7 @@ export async function mw(req, authOrSecDef, token, cb) {
     req.headers.authorization = `Bearer ${token}`;
 
     // Verify Token with redis-jwt -> if you want to extract the data you should add true: r.verify(token, true);
-    let session = await r.verify(token);
+    let session = await r.verify(token, true);
     if (!session)
       return cb(forbidden(req.res));
 
