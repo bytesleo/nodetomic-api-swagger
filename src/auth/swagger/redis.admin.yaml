@@ -12,7 +12,7 @@
     produces:
       - text/html
     tags:
-      - Admin Redis
+      - Redis
     parameters:
       - name: section
         in: path
