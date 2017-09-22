@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({ service: 'gmail', auth: config.
 export async function send(message) {
 
   let r = await transporter.sendMail(message);
-  await transporter.close()
+  await transporter.close();
   return r;
 
 }
