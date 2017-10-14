@@ -10,6 +10,20 @@ export default {
     ip: 'localhost',
     port: 8000,
   },
+  log: true, // show logs
+  // Roles: if a user has multiple roles, will take the time of the greater role
+  roles: [
+    {
+      role: 'user',
+      ttl: '60 minutes',
+    }, {
+      role: 'admin',
+      ttl: '5 days'
+    }
+  ],
+  path: {
+    disabled: '/:url(api|auth|assets|lib)/*' // paths 404
+  },
   "socket.io": { // Socket.io
     port: 8001, // public port listen, change also in views/default/demo.js
     example: true, // router -> http://localhost:8000/socket 
@@ -46,25 +60,12 @@ export default {
         {
           file: 'hello.seed',
           schema: 'Hello',
-          plant: 'always'
+          plant: 'once'
         }
       ]
     },
   },
-  // Roles: if a user has multiple roles, will take the time of the greater role
-  roles: [
-    {
-      role: 'user',
-      ttl: '60 minutes',
-    }, {
-      role: 'admin',
-      ttl: '5 days'
-    }
-  ],
-  path: {
-    disabled: '/:url(api|auth|assets|lib)/*' // paths 404
-  },
-  email: { // Email
+  nodemailer: { // Email
     host: 'hostexample',
     secure: true,
     port: 465,
@@ -132,5 +133,4 @@ export default {
   root: path.normalize(`${__dirname}/../..`), // root
   base: path.normalize(`${__dirname}/..`), // base
   client: `${path.normalize(`${__dirname}/../..`)}${CLIENT}`, // client
-  log: true // logs
 };
