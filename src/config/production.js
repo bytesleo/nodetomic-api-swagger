@@ -1,7 +1,7 @@
 import path from 'path';
 
 const APP_NAME = `your-app-name`;
-const DB_NAME = `your-app-name`;
+const DB_NAME = `your-app-name-dev`;
 const CLIENT = '/client';
 
 export default {
@@ -9,6 +9,20 @@ export default {
   server: { // Express
     ip: 'localhost',
     port: 8000,
+  },
+  log: false, // show logs
+  // Roles: if a user has multiple roles, will take the time of the greater role
+  roles: [
+    {
+      role: 'user',
+      ttl: '60 minutes',
+    }, {
+      role: 'admin',
+      ttl: '5 days'
+    }
+  ],
+  path: {
+    disabled: '/:url(api|auth|assets|lib)/*' // paths 404
   },
   "socket.io": { // Socket.io
     port: 8001, // public port listen, change also in views/default/demo.js
@@ -51,20 +65,7 @@ export default {
       ]
     },
   },
-  // Roles: if a user has multiple roles, will take the time of the greater role
-  roles: [
-    {
-      role: 'user',
-      ttl: '60 minutes',
-    }, {
-      role: 'admin',
-      ttl: '5 days'
-    }
-  ],
-  path: {
-    disabled: '/:url(api|auth|assets|lib)/*' // paths 404
-  },
-  email: { // Email
+  nodemailer: { // Email
     host: 'hostexample',
     secure: true,
     port: 465,
@@ -132,5 +133,4 @@ export default {
   root: path.normalize(`${__dirname}/../..`), // root
   base: path.normalize(`${__dirname}/..`), // base
   client: `${path.normalize(`${__dirname}/../..`)}${CLIENT}`, // client
-  log: false // logs
 };
