@@ -53,10 +53,18 @@ View horizontal scaling representation image with nodetomic-api-swagger <a href=
 
 ## Installation
 
+Npm
+
 ```bash
 git clone https://github.com/kevoj/nodetomic-api-swagger
 cd nodetomic-api-swagger
 npm i
+```
+
+Yarn
+
+```bash
+yarn add nodetomic-api-swagger --ignore-engines
 ```
 
 ## Development
