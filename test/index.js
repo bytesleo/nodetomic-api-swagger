@@ -1,3 +1,5 @@
+/* global describe, it */
+
 import http from 'http';
 import assert from 'assert';
 import request from 'request';
