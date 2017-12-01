@@ -1,6 +1,6 @@
 {
     "name": "nodetomic-api-swagger",
-    "version": "3.3.8",
+    "version": "3.3.9",
     "description": "RESTful API Nodejs designed for horizontal scalability, based on Swagger, Redis, JWT, Passport, Socket.io, Express, MongoDB. Supports clustering!",
     "main": "src/app.js",
     "repository": {
@@ -67,7 +67,7 @@
         "helmet": "^3.9.0",
         "hogan.js": "^3.0.2",
         "method-override": "^2.3.10",
-        "mongoose": "4.12.1",
+        "mongoose": "4.13.5",
         "mongoose-paginate": "^5.0.3",
         "nodemailer": "^4.2.0",
         "nodemailer-smtp-transport": "^2.7.4",
