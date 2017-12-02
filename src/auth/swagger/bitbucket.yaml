@@ -2,6 +2,7 @@
   x-swagger-router-controller: bitbucket
 # index
   get:
+    x-hide: true
     operationId: index
     tags:
       - Social
@@ -19,6 +20,7 @@
   x-swagger-router-controller: bitbucket
 # callback
   get:
+    x-hide: true
     operationId: callback
     tags:
       - Social

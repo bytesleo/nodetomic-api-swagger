@@ -2,6 +2,7 @@
   x-swagger-router-controller: github
 # index
   get:
+    x-hide: true
     operationId: index
     tags:
       - Social
@@ -19,6 +20,7 @@
   x-swagger-router-controller: github
 # callback
   get:
+    x-hide: true
     operationId: callback
     tags:
       - Social
