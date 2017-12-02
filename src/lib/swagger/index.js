@@ -2,6 +2,7 @@
 import swaggerTools from 'swagger-tools';
 import express from 'express';
 import { error } from 'express-easy-helper';
+import YAML from 'yamljs';
 import { mw } from '../../auth/services/mw';
 import config from '../../config';
 
@@ -51,16 +52,19 @@ export async function index(app) {
 
 function router(app, swaggerConfig) {
 
-    // Delete Paths from /api-docs
-    // Example -> delete swaggerConfig.paths['/auth/github'];
-    if (config.oAuth) {
-        Object.keys(config.oAuth).forEach(elem => {
-            if (elem !== 'local') {
-                delete swaggerConfig.paths[`/auth/${elem}`]
-                delete swaggerConfig.paths[`/auth/${elem}/callback*`]
+    // Remove Routers from /docs with property x-hide: true
+    Object.keys(swaggerConfig.paths).forEach((keyParent, i) => {
+        let parent = swaggerConfig.paths[keyParent];
+        Object.keys(parent).forEach((keyChild, j) => {
+            let child = swaggerConfig.paths[keyParent][keyChild]
+            if (typeof child === 'object' && 'x-hide' in child && child['x-hide'] === true) {
+                delete swaggerConfig.paths[keyParent][keyChild];
             }
-        });
-    }
+        })
+    })
+
+    // or remove manual, exmaple:
+    // delete swaggerConfig.paths['/auth/github'];
 
     // If Swagger is enabled then the router is enabled!
     if (config.swagger.enabled) {
