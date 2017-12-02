@@ -2,6 +2,7 @@
   x-swagger-router-controller: hello
 # list
   get:
+    x-hide: false
     operationId: list
     tags:
       - Hello
@@ -20,6 +21,7 @@
         description: Error
 # create
   post:
+    x-hide: false
     operationId: create
     tags:
       - Hello
@@ -42,6 +44,7 @@
   x-swagger-router-controller: hello
 # read
   get:
+    x-hide: false
     operationId: read
     tags:
       - Hello
@@ -62,6 +65,7 @@
         description: Error
 # update
   put:
+    x-hide: false
     operationId: update
     tags:
       - Hello
@@ -86,6 +90,7 @@
         description: Error
 # destroy
   delete:
+    x-hide: false
     operationId: destroy
     tags:
       - Hello
