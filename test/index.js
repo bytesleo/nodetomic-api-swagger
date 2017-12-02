@@ -9,6 +9,8 @@ describe('Server', () => {
 
   const host = `http://${config.server.ip}:${config.server.port}`;
 
+  // Server Online
+
   it('host should return 200', done => {
     http.get(host, res => {
       assert.equal(200, res.statusCode);
@@ -16,20 +18,54 @@ describe('Server', () => {
     });
   });
 
-  it('/hello/all should return 200', done => {
-    http.get(host + '/api/hello', res => {
+  // Get list from Hello
+
+  it('/api/hello/all should return 200', done => {
+    http.get(`${host}/api/hello`, res => {
       assert.equal(200, res.statusCode);
       done();
     });
   });
 
-  it('/user/me should return 403', done => {
-    http.get(host + '/api/user/me', res => {
+  // Require Authentication
+
+  it('/api/user/me should return 403', done => {
+    http.get(`${host}/api/user/me`, res => {
       assert.equal(403, res.statusCode);
       done();
     });
   });
 
+  // Duplicate username
+
+  it('/api/user should return 500', done => {
+
+    let options = {
+      method: 'POST',
+      url: `${host}/api/user`,
+      headers: {
+        'cache-control': 'no-cache',
+        'content-type': 'application/json'
+      },
+      json: {
+        "username": "admin",
+        "password": "123",
+        "email": "example@example.com",
+        "name": "Hello",
+        "lastname": "World"
+      }
+    };
+
+    request(options, function (error, res, body) {
+      if (error)
+        throw new Error(error);
+      assert.equal(500, res.statusCode);
+      done();
+    });
+
+  });
+
+  // Authentication
 
   it('/auth/local should return 200', done => {
 
