@@ -6,18 +6,6 @@
 
 <a href="https://www.codacy.com/app/kevoj/nodetomic-api-swagger?utm_source=github.com&utm_medium=referral&utm_content=kevoj/nodetomic-api-swagger&utm_campaign=Badge_Grade" ><img src="http://i.imgur.com/n98gapy.png"></a>
 
-### Preview
-
-**url:** <http://localhost:8000/socket>
-
-[![](https://j.gifs.com/0gw5gX.gif)](https://www.youtube.com/watch?v=drhEQl-4x0w)
-
-### Swagger Api
-
-**url:** <http://localhost:8000/docs> 
-
-<img src="http://i.imgur.com/FARxCXe.png">
-
 ### Technologies
 
 <a><img src="http://oraclelinuxworld.com/wp-content/uploads/2016/01/NodeJS-Small-Blog-Feature-Image-.jpg" width="50"></a>
@@ -41,13 +29,25 @@
 <a><img src="https://i2.wp.com/community.nodemailer.com/wp-content/uploads/2015/10/n2-2.png?fit=422%2C360&ssl=1" width="50"></a>
 <a><img src="https://cdn.xebialabs.com/assets/files/plugins/travis-ci.jpg" width="50"></a>
 
+### Preview
+
+**url:** <http://localhost:8000/socket>
+
+[![](https://j.gifs.com/0gw5gX.gif)](https://www.youtube.com/watch?v=drhEQl-4x0w)
+
+### Swagger Api
+
+**url:** <http://localhost:8000/docs> 
+
+<img src="http://i.imgur.com/FARxCXe.png">
+
 ### Horizontal scalability
 
-View horizontal scaling representation image with nodetomic-api-swagger <a href="https://github.com/kevoj/nodetomic-api-swagger/wiki/Horizontal-scalability">HERE!</a>
+View horizontal scaling representation image with nodetomic-api-swagger <a href="https://github.com/kevoj/nodetomic-api-swagger/wiki/1.-Horizontal-scalability">HERE!</a>
 
 ## Requirements
 
-- [Nodejs](https://nodejs.org) **>= 6.x.x** (**Recommended 8.x.x**)
+- [Nodejs](https://nodejs.org) **>= 6.x.x** (**Recommended 9.x.x**)
 - [MongoDB](https://www.mongodb.com)  **>= 3.x.x**
 - [Redis](https://redis.io)  **>= 3.x.x** (**Recommended 4.x.x**)
 
