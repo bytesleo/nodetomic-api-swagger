@@ -1,5 +1,5 @@
 /api/admin/user:
-  x-swagger-router-controller: user.admin
+  x-swagger-router-controller: userAdmin
 # list
   get:
     operationId: list
@@ -9,26 +9,26 @@
       - admin
     tags:
       - User
-    summary: Get list users [Role admin]
-    description: Returns list of Users
+    summary: Get the list of users [Role admin]
+    description: Get the list of users [Role admin]
     responses:
       200:
-        description: Success
+        description: Success.
         schema:
           type: array
           items:
             $ref: "#/definitions/User"
       401:
-        description: Unauthenticated
+        $ref: '#/responses/401'
       403:
-        description: Forbidden
+        $ref: '#/responses/403'
       404:
-        description: Not found
+        $ref: '#/responses/404'
       500:
-        description: Error
+        $ref: '#/responses/500'
 
 /api/admin/user/{id}:
-  x-swagger-router-controller: user.admin
+  x-swagger-router-controller: userAdmin
 # destroy
   delete:
     operationId: destroy
@@ -38,25 +38,24 @@
       - admin
     tags:
       - User
-    summary: Delete user by id [Role admin]
-    description: Deletes a single User
+    summary: Remove a user by id [Role admin]
+    description: Remove a user by id [Role admin]
     parameters:
       - name: id
-        description: User's id
         in: path
         required: true
         type: string
     responses:
       200:
-        description: Success
+        $ref: '#/responses/200'
       401:
-        description: Unauthenticated
+        $ref: '#/responses/401'
       403:
-        description: Forbidden
+        $ref: '#/responses/403'
       404:
-        description: Not found
+        $ref: '#/responses/404'
       500:
-        description: Error
+        $ref: '#/responses/500'
 # update
   put:
     operationId: update
@@ -66,28 +65,29 @@
       - admin
     tags:
       - User
-    summary: Update user by id [Role admin]
-    description: update a single User
+    summary: Update a user by id [Role admin]
+    description: Update a user by id [Role admin]
     parameters:
       - name: id
-        description: User's id
         in: path
         required: true
         type: string
       - in: body
         name: body
-        description: Fields for the User resource
         schema:
           type: array
           $ref: "#/definitions/User"
     responses:
       200:
-        description: Success
+        description: Success.
+        schema:
+          type: object
+          $ref: "#/definitions/User"
       401:
-        description: Unauthenticated
+        $ref: '#/responses/401'
       403:
-        description: Forbidden
+        $ref: '#/responses/403'
       404:
-        description: Not found
+        $ref: '#/responses/404'
       500:
-        description: Error
+        $ref: '#/responses/500'

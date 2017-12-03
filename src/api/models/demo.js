@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate';
 const Schema = mongoose.Schema;
 
-const HelloSchema = new Schema({
+const DemoSchema = new Schema({
   greet: {
     type: String,
     required: [true, 'Greet is required.']
@@ -13,6 +13,6 @@ const HelloSchema = new Schema({
   }
 });
 
-HelloSchema.plugin(mongoosePaginate);
+DemoSchema.plugin(mongoosePaginate);
 
-export default mongoose.model('Hello', HelloSchema);
+export default mongoose.model('Demo', DemoSchema);

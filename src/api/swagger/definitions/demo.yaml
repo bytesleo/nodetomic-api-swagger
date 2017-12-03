@@ -1,5 +1,5 @@
 definitions:
-  Hello:
+  Greeting:
     properties:
       greet:
         type: "string"

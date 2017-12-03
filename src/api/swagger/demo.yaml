@@ -1,0 +1,136 @@
+/api/demo/greeting:
+  x-swagger-router-controller: demo
+# list
+  get:
+    operationId: list
+    tags:
+      - Demos
+    summary: Get the list of greetings
+    description: Get the list of greetings
+    responses:
+      200:
+        description: Success.
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Greeting"
+      404:
+        $ref: '#/responses/404'
+      500:
+        $ref: '#/responses/500'
+# create
+  post:
+    operationId: create
+    tags:
+      - Demos
+    summary: Create a new greeting
+    description: Create a new greeting
+    parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: "#/definitions/Greeting"
+    responses:
+      201:
+        description: Success.
+        schema:
+          $ref: "#/definitions/Greeting"
+      500:
+        $ref: '#/responses/500'
+
+/api/demo/greeting/{id}:
+  x-swagger-router-controller: demo
+# read
+  get:
+    operationId: read
+    tags:
+      - Demos
+    summary: Get a greeting for id
+    description: Get a greeting for id
+    parameters:
+      - name: id
+        description: id
+        in: path
+        required: true
+        type: string
+    responses:
+      200:
+        description: Success.
+        schema:
+          $ref: "#/definitions/Greeting"
+      500:
+        $ref: '#/responses/500'
+# update
+  put:
+    operationId: update
+    tags:
+      - Demos
+    summary: Update a greeting by id
+    description: Update a greeting by id
+    parameters:
+      - name: id
+        description: id
+        in: path
+        required: true
+        type: string
+      - in: body
+        name: body
+        schema:
+          type: array
+          $ref: "#/definitions/Greeting"
+    responses:
+      200:
+        description: Success.
+        schema:
+          $ref: "#/definitions/Greeting"
+      500:
+        $ref: '#/responses/500'
+# destroy
+  delete:
+    operationId: destroy
+    tags:
+      - Demos
+    summary: Delete a greeting by id
+    parameters:
+      - name: id
+        description: id
+        in: path
+        required: true
+        type: string
+    responses:
+      200:
+        $ref: '#/responses/200'
+      500:
+        $ref: '#/responses/500'
+
+/api/demo/socket:
+  x-swagger-router-controller: demo
+# emit
+  get:
+    operationId: animation
+    tags:
+      - Demos
+    summary: Animate logo via socket
+    description: To see the animation emitted by the socket please open another window with the home page of notetomic-api-swagger
+    parameters:
+      - name: action
+        in: query
+        default: hinge
+        enum:
+          - hinge
+          - swing
+          - jello
+          - wobble
+          - tada
+          - shake
+          - rotateIn
+          - flip
+        description: Select an animation
+        required: true
+        type: string
+    responses:
+      200:
+        $ref: '#/responses/200'
+      500:
+        $ref: '#/responses/500'

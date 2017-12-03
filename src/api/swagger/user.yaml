@@ -5,20 +5,29 @@
     operationId: create
     tags:
       - User
-    summary: Create user
-    description: Creates a new User
+    summary: Create a new user
+    description: Create a new user
     parameters:
       - in: body
         name: body
-        description: Create new User
         required: true
         schema:
-          $ref: "#/definitions/User"
+          properties:
+            username:
+              type: "string"
+            password:
+              type: "string"
+            email:
+              type: "string"
+            name:
+              type: "string"
+            lastname:
+              type: "string"
     responses:
       201:
-        description: Success
+        $ref: '#/responses/201'
       500:
-        description: Error
+        $ref: '#/responses/500'
 # update
   put:
     operationId: update
@@ -26,24 +35,25 @@
       - Bearer: []
     tags:
       - User
-    summary: Update current user [Signed]
-    description: update a single User
+    summary: Update the current user [Signed]
+    description: Update the current user [Signed]
     parameters:
       - in: body
         name: body
-        description: Fields for the User resource
         schema:
           type: array
           $ref: "#/definitions/User"
     responses:
       200:
-        description: Success
+        description: Success.
+        schema:
+          $ref: "#/definitions/User"
       401:
-        description: Unauthenticated
+        $ref: '#/responses/401'
       403:
-        description: Forbidden
+        $ref: '#/responses/403'
       500:
-        description: Error
+        $ref: '#/responses/500'
 
 /api/user/{username}:
   x-swagger-router-controller: user
@@ -52,25 +62,27 @@
     operationId: read
     tags:
       - User
-    summary: Get user by username [Public]
-    description: Returns a single User
+    summary: Get a user by "username" [Public]
+    description: Get a user by "username" [Public]
     parameters:
       - name: username
-        description: username
         in: path
         required: true
         type: string
+        description: username
     responses:
       200:
-        description: Success
+        description: Success.
+        schema:
+          $ref: "#/definitions/User"
       401:
-        description: Unauthenticated
+        $ref: '#/responses/401'
       403:
-        description: Forbidden
+        $ref: '#/responses/403'
       404:
-        description: Not found
+        $ref: '#/responses/404'
       500:
-        description: Error
+        $ref: '#/responses/500'
 
 /api/user/me:
   x-swagger-router-controller: user
@@ -81,16 +93,18 @@
       - Bearer: []
     tags:
       - User
-    summary: Get current user [Signed]
-    description: Returns session User
+    summary: Get the current user [Signed]
+    description: Get the current user [Signed]
     responses:
       200:
-        description: Success
+        description: Success.
         schema:
           $ref: "#/definitions/User"
       401:
-        description: Unauthenticated
+        $ref: '#/responses/401'
       403:
-        description: Forbidden
+        $ref: '#/responses/403'
+      404:
+        $ref: '#/responses/404'
       500:
-        description: Error
+        $ref: '#/responses/500'

@@ -10,7 +10,12 @@ export default (_socket, _io) => {
 
 // Here should be all events 'on'
 export function on() {
-
+    socket.on('demo:add', function (data) {
+        emit('add', data);
+    });
+    socket.on('demo:delete', function (data) {
+        emit('delete', data);
+    });
 }
 
 // Emit events
