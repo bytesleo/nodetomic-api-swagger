@@ -25,7 +25,6 @@ export function destroy(req, res) {
 
 }
 
-
 // Logout a user by id
 export function logout(req, res) {
 
