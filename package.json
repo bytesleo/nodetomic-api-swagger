@@ -1,6 +1,6 @@
 {
     "name": "nodetomic-api-swagger",
-    "version": "3.3.12",
+    "version": "3.3.13",
     "description": "RESTful API Nodejs designed for horizontal scalability with support for cluster, based on Swagger, Redis, JWT, Passport, Socket.io, Express, MongoDB.",
     "main": "src/app.js",
     "repository": {
@@ -11,7 +11,7 @@
         "nodemon": "export NODE_ENV=development & set NODE_PATH=development && npm stop && nodemon src/app.js --exec babel-node -e js,yaml",
         "start": "npm stop && pm2-dev pm2.dev.config.js",
         "build": "npm run lint && gulp build",
-        "test": "npm run simple && node ./node_modules/npm-delay 4000 && mocha --compilers js:babel-register && npm stop",
+        "test": "npm run simple && node ./node_modules/npm-delay 4000 && mocha --require babel-core/register && npm stop",
         "stop": "pm2 update && pm2 delete pm2.simple.config.js pm2.cluster.config.js",
         "lint": "eslint src --ext .js",
         "dev-simple": "npm run build -- -dev && cd dist && npm stop && pm2-dev pm2.simple.config.js",
