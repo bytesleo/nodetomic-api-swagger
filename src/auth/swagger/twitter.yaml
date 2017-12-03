@@ -2,8 +2,8 @@
   x-swagger-router-controller: twitter
 # index
   get:
-    x-hide: true
     operationId: index
+    x-hide: true
     tags:
       - Social
     summary: Login
@@ -16,12 +16,12 @@
       500:
         description: Error
 
-/auth/twitter/callback*:
+/auth/twitter/callback:
   x-swagger-router-controller: twitter
 # callback
   get:
-    x-hide: true
     operationId: callback
+    x-hide: true
     tags:
       - Social
     summary: Login

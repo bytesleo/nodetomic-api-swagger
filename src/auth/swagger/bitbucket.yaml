@@ -2,8 +2,8 @@
   x-swagger-router-controller: bitbucket
 # index
   get:
-    x-hide: true
     operationId: index
+    x-hide: true
     tags:
       - Social
     summary: Login
@@ -16,7 +16,7 @@
       500:
         description: Error
 
-/auth/bitbucket/callback*:
+/auth/bitbucket/callback:
   x-swagger-router-controller: bitbucket
 # callback
   get:
