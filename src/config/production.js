@@ -65,15 +65,6 @@ export default {
       ]
     },
   },
-  nodemailer: { // Email
-    host: 'hostexample',
-    secure: true,
-    port: 465,
-    auth: {
-      user: 'example@gmail.com',
-      pass: 'examplePassword'
-    }
-  },
   swagger: { // Swagger
     enabled: true, // router -> http://localhost:8000/docs/
     info: {
