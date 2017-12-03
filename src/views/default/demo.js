@@ -18,34 +18,34 @@ var app = new Vue({
         logo: 'rubberBand',
         igreet: '',
         ilanguage: '',
-        greets: []
+        greetings: []
     },
     created: function created() {
-        this.getHello();
+        this.getGreetings();
     },
     methods: {
-        getHello: function getHello() {
+        getGreetings: function getGreetings() {
             var _this = this;
 
-            this.$http.get(host + '/api/hello').then(function (response) {
-                _this.greets = response.body;
+            this.$http.get(host + '/api/demo/greeting').then(function (response) {
+                _this.greetings = response.body;
             }, function (response) {
                 alert('error :(');
             });
         },
-        addHello: function addHello() {
+        addGreeting: function addGreeting() {
             var _this2 = this;
 
-            this.$http.post(host + '/api/hello', { greet: this.igreet, language: this.ilanguage }).then(function (response) {
+            this.$http.post(host + '/api/demo/greeting', { greet: this.igreet, language: this.ilanguage }).then(function (response) {
                 _this2.igreet = _this2.ilanguage = '';
-                socket.emit('hello:add', response.body);
+                socket.emit('demo:add', response.body);
             }, function (response) {
                 alert('error :(');
             });
         },
-        deleteHello: function deleteHello(id) {
-            this.$http.delete(host + '/api/hello/' + id).then(function (response) {
-                socket.emit('hello:delete', { _id: id });
+        deleteGreeting: function deleteGreeting(id) {
+            this.$http.delete(host + '/api/demo/greeting/' + id).then(function (response) {
+                socket.emit('demo:delete', { _id: id });
             }, function (response) {
                 alert('error :(');
             });
@@ -54,14 +54,14 @@ var app = new Vue({
 });
 
 socket.on('add', function (data) {
-    app.greets.push(data);
+    app.greetings.push(data);
 });
 
 socket.on('delete', function (data) {
-    app.greets.forEach(function (element) {
+    app.greetings.forEach(function (element) {
         if (element._id === data._id) {
-            var index = app.greets.indexOf(element);
-            app.greets.splice(index, 1);
+            var index = app.greetings.indexOf(element);
+            app.greetings.splice(index, 1);
         }
     });
 });

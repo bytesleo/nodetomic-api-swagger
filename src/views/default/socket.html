@@ -31,11 +31,16 @@
 
                 <div class="row fadeIn animated">
                     <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-                        <div> <input v-model="igreet" class="form-control" placeholder="Add greet" /></div>
-                        <div v-if="igreet" class="btn-add animated flipInX"> <input v-model="ilanguage" class="form-control" placeholder="Add language" /></div>
+                        <div>
+                            <input v-model="igreet" class="form-control" placeholder="Add greet" />
+                        </div>
+                        <div v-if="igreet" class="btn-add animated flipInX">
+                            <input v-model="ilanguage" class="form-control" placeholder="Add language" />
+                        </div>
                         <div v-if="igreet && ilanguage" class="text-center animated flipInY">
-                            <button class="btn btn-primary btn-sm btn-add" v-on:click="addHello">
-                                Send by socket <i class="glyphicon glyphicon-send"></i>
+                            <button class="btn btn-primary btn-sm btn-add" v-on:click="addGreeting">
+                                Send by socket
+                                <i class="glyphicon glyphicon-send"></i>
                             </button>
                         </div>
                     </div>
@@ -43,19 +48,23 @@
                 </div>
                 <br/>
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in greets">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in greetings">
                         <div class="list-group hello animated fadeIn">
                             <div class="list-group-item">
-                                <span class="glyphicon glyphicon-remove rm" aria-hidden="true" v-on:click="deleteHello(item._id)"></span>
+                                <span class="glyphicon glyphicon-remove rm" aria-hidden="true" v-on:click="deleteGreeting(item._id)"></span>
                                 <h4 class="list-group-item-heading greet">{{ item.greet }}</h4>
                                 <p class="list-group-item-text language">{{ item.language }}</p>
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" v-if="greetings.length <= 0">
+                        Loading...
+                    </div>
                 </div>
 
                 <div class="footer">
-                    Github <a href="https://github.com/kevoj/nodetomic-api-swagger" target="_blank">@nodetomic-api-swagger</a>
+                    Github
+                    <a href="https://github.com/kevoj/nodetomic-api-swagger" target="_blank">@nodetomic-api-swagger</a>
                 </div>
 
             </div>
