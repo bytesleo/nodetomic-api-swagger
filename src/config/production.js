@@ -58,8 +58,8 @@ export default {
           plant: 'once' //  once - always - never
         },
         {
-          file: 'hello',
-          schema: 'Hello',
+          file: 'demo',
+          schema: 'Demo',
           plant: 'once'
         }
       ]
