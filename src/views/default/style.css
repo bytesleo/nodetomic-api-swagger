@@ -37,6 +37,10 @@
      font-size: 25px;
      margin: 25px 0;
  }
+
+ .tk{
+    display: none !important;
+ }
  
  .btn-add {
      margin-top: 15px;
