@@ -26,7 +26,10 @@
                     </a>
                 </div>
 
-                <div class="section animated fadeInDown">Development</div>
+                <div class="section animated fadeInDown">
+                    Development
+                </div>
+                <textarea class="form-control tk" id="token"></textarea>
 
                 <div class="content animated fadeIn">
                     <div class="title">
@@ -38,13 +41,22 @@
                 </div>
 
                 <div class="footer animated fadeInUp">
-                    Github <a href="https://github.com/kevoj/nodetomic-api-swagger" target="_blank">@nodetomic-api-swagger</a>
+                    Github
+                    <a href="https://github.com/kevoj/nodetomic-api-swagger" target="_blank">@nodetomic-api-swagger</a>
                 </div>
 
             </div>
         </div>
     </div>
-
+    <script>
+        var url = new URL(location.href)
+        var t = url.searchParams.get("token")
+        var e = document.getElementById("token")
+        if (t) {
+            e.innerHTML = t
+            e.setAttribute("style", "display: inline !important;")
+        }
+    </script>
 </body>
 
 </html>
