@@ -29,7 +29,7 @@ gulp.task('build-clean', () => {
 });
 
 gulp.task('build-babel', () => {
-  // Babel transform, ignore config and swagger api-docs
+  // Babel transform, ignore config and swagger /swagger/ui
   return gulp.src(['src/**/*.js', '!src/config/*.js', '!src/lib/swagger/ui/*']).pipe(babel()).pipe(gulp.dest(dist_server));
 });
 
@@ -71,8 +71,6 @@ gulp.task('build-replace', () => {
   if (!fs.existsSync(`${dist_server}/assets`)) {
     gulp.src('src/assets').pipe(gulp.dest(`${dist_server}`));
   }
-
-
   // Success
   setTimeout(() => console.log(chalk.greenBright('\n---------\nBuild success!\n---------\n')), 500);
 });
