@@ -1,5 +1,5 @@
 /auth/admin/redis/{section}:
-  x-swagger-router-controller: redis.admin
+  x-swagger-router-controller: redisAdmin
   # logout
   get:
     operationId: section
@@ -31,16 +31,16 @@
         description: Section...
         required: true
         type: string
-    summary: Get info redis [Role Admin]
-    description: Get info redis
+    summary: Get information from Redis [Role Admin]
+    description: Get information from Redis
     responses:
       200:
-        description: Success
+        $ref: '#/responses/auth-200'
       401:
-        description: Unauthenticated
+        $ref: '#/responses/auth-401'
       403:
-        description: Forbidden
+        $ref: '#/responses/auth-403'
       404:
-        description: Not found
+        $ref: '#/responses/auth-404'
       500:
-        description: Error
+        $ref: '#/responses/auth-500'

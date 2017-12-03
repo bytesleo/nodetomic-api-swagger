@@ -6,15 +6,15 @@
     x-hide: true
     tags:
       - Social
-    summary: Login
-    description: Login user
+    summary: Authenticate with Facebook
+    description: Authenticate with Facebook
     responses:
       200:
-        description: Success
-      400:
-        description: Login Invalid
+        $ref: '#/responses/auth-200'
+      422:
+        $ref: '#/responses/auth-422'
       500:
-        description: Error
+        $ref: '#/responses/auth-500'
 
 /auth/facebook/callback:
   x-swagger-router-controller: facebook
@@ -24,12 +24,12 @@
     x-hide: true
     tags:
       - Social
-    summary: Login
-    description: Login user
+    summary: Callback with Facebook
+    description: Callback with Facebook
     responses:
       200:
-        description: Success
-      400:
-        description: Login Invalid
+        $ref: '#/responses/auth-200'
+      422:
+        $ref: '#/responses/auth-422'
       500:
-        description: Error
+        $ref: '#/responses/auth-500'

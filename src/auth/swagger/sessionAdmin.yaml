@@ -1,14 +1,22 @@
-/auth/session:
-  x-swagger-router-controller: session
+/auth/admin/session/{id}:
+  x-swagger-router-controller: sessionAdmin
 # list
   get:
     operationId: list
     security:
       - Bearer: []
+    x-security-scopes:
+      - admin
     tags:
       - Session
-    summary: Get the list of sessions [Signed]
-    description: Get the list of sessions
+    summary: Get the sessions of a user [Role Admin]
+    description: Get the sessions of a user
+    parameters:
+      - name: id
+        description: user id
+        in: path
+        required: true
+        type: string
     responses:
       200:
         description: Success.
@@ -28,18 +36,17 @@
         $ref: '#/responses/auth-404'
       500:
         $ref: '#/responses/auth-500'
-
-/auth/session/{id}:
-  x-swagger-router-controller: session
-  # destroy
+# destroy
   delete:
     operationId: destroy
     security:
       - Bearer: []
+    x-security-scopes:
+      - admin
     tags:
       - Session
-    summary: Destroy a session of your own [Signed]
-    description: Destroy a session of your own
+    summary: Destroy a session of a user [Role Admin]
+    description: Destroy a session of a user
     parameters:
       - name: id
         description: rjwt of session
@@ -58,17 +65,25 @@
       500:
         $ref: '#/responses/auth-500'
 
-/auth/logout:
-  x-swagger-router-controller: session
+/auth/admin/logout/{id}:
+  x-swagger-router-controller: sessionAdmin
   # logout
   delete:
     operationId: logout
     security:
       - Bearer: []
+    x-security-scopes:
+      - admin
     tags:
       - Session
-    summary: Destroys the current session [Signed]
-    description: Destroys the current session
+    summary: Destroy all sessions related to a user [Role Admin]
+    description: Destroy all sessions related to a user
+    parameters:
+      - name: id
+        description: user id
+        in: path
+        required: true
+        type: string
     responses:
       200:
         $ref: '#/responses/auth-200'

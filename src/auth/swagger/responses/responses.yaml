@@ -1,0 +1,39 @@
+responses:
+  auth-200:
+    description: Success.
+  auth-201:
+    description: Success.
+  auth-401:
+    description: Unauthenticated.
+    schema:
+      type: object
+      required: ["message"]
+      properties:
+        message:
+          type: string
+  auth-403:
+    description: Forbidden.
+    schema:
+      type: object
+      required: ["message"]
+      properties:
+        message:
+          type: string
+  auth-404:
+    description: Not found.
+    schema:
+      type: object
+      required: ["message"]
+      properties:
+        message:
+          type: string
+  auth-500:
+    description: Server Error.
+  auth-422:
+    description: Login Invalid.
+    schema:
+      type: object
+      required: ["message"]
+      properties:
+        message:
+          type: string
