@@ -5,6 +5,7 @@ import config from '../../config';
 
 // Initialize after login success
 export async function initialize(err, user, res) {
+
   try {
     // Errors
     if (err)
@@ -40,4 +41,5 @@ export async function initialize(err, user, res) {
   } catch (err) {
     return error(res, { message: err });
   }
+
 }
