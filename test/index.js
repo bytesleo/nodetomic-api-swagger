@@ -10,7 +10,6 @@ describe('Server', () => {
   const host = `http://${config.server.ip}:${config.server.port}`;
 
   // Server Online
-
   it('host should return 200', done => {
     http.get(host, res => {
       assert.equal(200, res.statusCode);
@@ -19,16 +18,14 @@ describe('Server', () => {
   });
 
   // Get list from Hello
-
   it('/api/hello/all should return 200', done => {
-    http.get(`${host}/api/hello`, res => {
+    http.get(`${host}/api/demo/greeting`, res => {
       assert.equal(200, res.statusCode);
       done();
     });
   });
 
   // Require Authentication
-
   it('/api/user/me should return 403', done => {
     http.get(`${host}/api/user/me`, res => {
       assert.equal(403, res.statusCode);
@@ -37,7 +34,6 @@ describe('Server', () => {
   });
 
   // Duplicate username
-
   it('/api/user should return 500', done => {
 
     let options = {
@@ -66,7 +62,6 @@ describe('Server', () => {
   });
 
   // Authentication
-
   it('/auth/local should return 200', done => {
 
     let roles = ['admin', 'user'];
@@ -85,7 +80,6 @@ describe('Server', () => {
     request(options, function (error, res, body) {
       if (error)
         throw new Error(error);
-
       assert.equal(200, res.statusCode);
       done();
     });
