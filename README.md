@@ -39,7 +39,7 @@
 
 **url:** <http://localhost:8000/docs> 
 
-<img src="http://i.imgur.com/FARxCXe.png">
+<img src="https://i.imgur.com/7cujNND.png">
 
 ### Horizontal scalability
 
