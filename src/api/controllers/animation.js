@@ -1,7 +1,7 @@
 import { result, error } from 'express-easy-helper';
 import { emit } from '../sockets/animation';
 
-// Emit animation!
+// Emit animation with socket!
 export function animation(req, res) {
   try {
     emit('animation', req.swagger.params.action.value);
