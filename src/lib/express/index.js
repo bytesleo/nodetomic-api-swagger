@@ -6,7 +6,6 @@ import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import session from 'express-session';
 import cors from 'cors';
-import fileUpload from 'express-fileupload';
 import morgan from 'morgan';
 import config from '../../config';
 
@@ -16,7 +15,6 @@ export function index(app) {
 
     app.use(bodyParser.json({ limit: '5mb' }));
     app.use(bodyParser.urlencoded({ extended: false }));
-    app.use(fileUpload());
     app.use(cookieParser());
     app.use(methodOverride());
     app.use(compression());
