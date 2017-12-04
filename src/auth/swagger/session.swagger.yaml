@@ -1,0 +1,182 @@
+/auth/session:
+  x-swagger-router-controller: session.controller
+# list
+  get:
+    operationId: list
+    security:
+      - Bearer: []
+    tags:
+      - Session
+    summary: Get the list of sessions [Signed]
+    description: Get the list of sessions
+    responses:
+      200:
+        description: Success.
+        schema:
+          type: array
+          items:
+            properties:
+                  rjwt:
+                    type: "string"
+                  dataSession:
+                    type: "object"
+      401:
+        $ref: '#/responses/auth-401'
+      403:
+        $ref: '#/responses/auth-403'
+      404:
+        $ref: '#/responses/auth-404'
+      500:
+        $ref: '#/responses/auth-500'
+
+/auth/session/{id}:
+  x-swagger-router-controller: session.controller
+  # destroy
+  delete:
+    operationId: destroy
+    security:
+      - Bearer: []
+    tags:
+      - Session
+    summary: Destroy a session of your own [Signed]
+    description: Destroy a session of your own
+    parameters:
+      - name: id
+        description: rjwt of session
+        in: path
+        required: true
+        type: string
+    responses:
+      200:
+        $ref: '#/responses/auth-200'
+      401:
+        $ref: '#/responses/auth-401'
+      403:
+        $ref: '#/responses/auth-403'
+      404:
+        $ref: '#/responses/auth-404'
+      500:
+        $ref: '#/responses/auth-500'
+
+/auth/logout:
+  x-swagger-router-controller: session.controller
+  # logout
+  delete:
+    operationId: logout
+    security:
+      - Bearer: []
+    tags:
+      - Session
+    summary: Destroys the current session [Signed]
+    description: Destroys the current session
+    responses:
+      200:
+        $ref: '#/responses/auth-200'
+      401:
+        $ref: '#/responses/auth-401'
+      403:
+        $ref: '#/responses/auth-403'
+      404:
+        $ref: '#/responses/auth-404'
+      500:
+        $ref: '#/responses/auth-500'
+        
+# Administrator
+
+/auth/admin/session/{id}:
+  x-swagger-router-controller: session.controller
+# list
+  get:
+    operationId: listAdmin
+    security:
+      - Bearer: []
+    x-security-scopes:
+      - admin
+    tags:
+      - Session
+    summary: Get the sessions of a user [Role Admin]
+    description: Get the sessions of a user
+    parameters:
+      - name: id
+        description: user id
+        in: path
+        required: true
+        type: string
+    responses:
+      200:
+        description: Success.
+        schema:
+          type: array
+          items:
+            properties:
+                  rjwt:
+                    type: "string"
+                  dataSession:
+                    type: "object"
+      401:
+        $ref: '#/responses/auth-401'
+      403:
+        $ref: '#/responses/auth-403'
+      404:
+        $ref: '#/responses/auth-404'
+      500:
+        $ref: '#/responses/auth-500'
+# destroy
+  delete:
+    operationId: destroyAdmin
+    security:
+      - Bearer: []
+    x-security-scopes:
+      - admin
+    tags:
+      - Session
+    summary: Destroy a session of a user [Role Admin]
+    description: Destroy a session of a user
+    parameters:
+      - name: id
+        description: rjwt of session
+        in: path
+        required: true
+        type: string
+    responses:
+      200:
+        $ref: '#/responses/auth-200'
+      401:
+        $ref: '#/responses/auth-401'
+      403:
+        $ref: '#/responses/auth-403'
+      404:
+        $ref: '#/responses/auth-404'
+      500:
+        $ref: '#/responses/auth-500'
+
+/auth/admin/logout/{id}:
+  x-swagger-router-controller: session.controller
+  # logout
+  delete:
+    operationId: logoutAdmin
+    security:
+      - Bearer: []
+    x-security-scopes:
+      - admin
+    tags:
+      - Session
+    summary: Destroy all sessions related to a user [Role Admin]
+    description: Destroy all sessions related to a user
+    parameters:
+      - name: id
+        description: user id
+        in: path
+        required: true
+        type: string
+    responses:
+      200:
+        $ref: '#/responses/auth-200'
+      401:
+        $ref: '#/responses/auth-401'
+      403:
+        $ref: '#/responses/auth-403'
+      404:
+        $ref: '#/responses/auth-404'
+      500:
+        $ref: '#/responses/auth-500'

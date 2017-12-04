@@ -1,0 +1,35 @@
+/auth/github:
+  x-swagger-router-controller: github
+# index
+  get:
+    operationId: index
+    x-hide: true
+    tags:
+      - Social
+    summary: Authenticate with Github
+    description: Authenticate with Github
+    responses:
+      200:
+        $ref: '#/responses/auth-200'
+      422:
+        $ref: '#/responses/auth-422'
+      500:
+        $ref: '#/responses/auth-500'
+
+/auth/github/callback:
+  x-swagger-router-controller: github
+# callback
+  get:
+    operationId: callback
+    x-hide: true
+    tags:
+      - Social
+    summary: Callback with Github
+    description: Callback with Github
+    responses:
+      200:
+        $ref: '#/responses/auth-200'
+      422:
+        $ref: '#/responses/auth-422'
+      500:
+        $ref: '#/responses/auth-500'

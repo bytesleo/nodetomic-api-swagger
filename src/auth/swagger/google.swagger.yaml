@@ -1,0 +1,35 @@
+/auth/google:
+  x-swagger-router-controller: google
+# index
+  get:
+    operationId: index
+    x-hide: true
+    tags:
+      - Social
+    summary: Authenticate with Google
+    description: Authenticate with Google
+    responses:
+      200:
+        $ref: '#/responses/auth-200'
+      422:
+        $ref: '#/responses/auth-422'
+      500:
+        $ref: '#/responses/auth-500'
+
+/auth/google/callback:
+  x-swagger-router-controller: google
+# callback
+  get:
+    operationId: callback
+    x-hide: true
+    tags:
+      - Social
+    summary: Callback with Google
+    description: Callback with Google
+    responses:
+      200:
+        $ref: '#/responses/auth-200'
+      422:
+        $ref: '#/responses/auth-422'
+      500:
+        $ref: '#/responses/auth-500'

@@ -1,0 +1,46 @@
+/auth/admin/redis/{section}:
+  x-swagger-router-controller: redis.controller
+  # logout
+  get:
+    operationId: section
+    security:
+      - Bearer: []
+    x-security-scopes:
+      - admin
+    consumes:
+      - text/html
+    produces:
+      - text/html
+    tags:
+      - Redis
+    parameters:
+      - name: section
+        in: path
+        default: DBSIZE
+        enum:
+          - DBSIZE
+          - Server
+          - Clients
+          - Memory
+          - Persistence
+          - Stats
+          - Replication
+          - CPU
+          - Cluster
+          - Keyspace
+        description: Section...
+        required: true
+        type: string
+    summary: Get information from Redis [Role Admin]
+    description: Get information from Redis
+    responses:
+      200:
+        $ref: '#/responses/auth-200'
+      401:
+        $ref: '#/responses/auth-401'
+      403:
+        $ref: '#/responses/auth-403'
+      404:
+        $ref: '#/responses/auth-404'
+      500:
+        $ref: '#/responses/auth-500'

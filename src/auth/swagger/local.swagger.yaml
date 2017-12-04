@@ -1,0 +1,38 @@
+/auth/local:
+  x-swagger-router-controller: local.controller
+# callback
+  post:
+    operationId: callback
+    tags:
+      - Authentication
+    summary: Signin
+    description: | 
+      Login
+      username = admin / password = 123
+      username = user / password = 123
+    consumes:
+      - application/x-www-form-urlencoded
+    parameters:
+      - name: username
+        in: formData
+        description: username 
+        required: true
+        type: string
+      - name: password
+        in: formData
+        description: password
+        required: true
+        type: string
+        format: password
+    responses:
+      200:
+        description: Success.
+        schema:
+            type: object
+            properties:
+              token:
+                type: string
+      422:
+        $ref: '#/responses/auth-422'
+      500:
+        $ref: '#/responses/auth-500'

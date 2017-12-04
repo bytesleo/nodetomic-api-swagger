@@ -1,0 +1,35 @@
+/auth/bitbucket:
+  x-swagger-router-controller: bitbucket
+# index
+  get:
+    operationId: index
+    x-hide: true
+    tags:
+      - Social
+    summary: Authenticate with Bitbucket
+    description: Authenticate with Bitbucket
+    responses:
+      200:
+        $ref: '#/responses/auth-200'
+      422:
+        $ref: '#/responses/auth-422'
+      500:
+        $ref: '#/responses/auth-500'
+
+/auth/bitbucket/callback:
+  x-swagger-router-controller: bitbucket
+# callback
+  get:
+    operationId: callback
+    x-hide: true
+    tags:
+      - Social
+    summary: Callback with Bitbucket
+    description: Callback with Bitbucket
+    responses:
+      200:
+        $ref: '#/responses/auth-200'
+      422:
+        $ref: '#/responses/auth-422'
+      500:
+        $ref: '#/responses/auth-500'
