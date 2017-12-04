@@ -1,0 +1,39 @@
+responses:
+  200:
+    description: Success.
+  201:
+    description: Success.
+  401:
+    description: Unauthenticated.
+    schema:
+      type: object
+      required: ["message"]
+      properties:
+        message:
+          type: string
+  403:
+    description: Forbidden.
+    schema:
+      type: object
+      required: ["message"]
+      properties:
+        message:
+          type: string
+  404:
+    description: Not found.
+    schema:
+      type: object
+      required: ["message"]
+      properties:
+        message:
+          type: string
+  500:
+    description: Server Error.
+  422:
+    description: Login Invalid.
+    schema:
+      type: object
+      required: ["message"]
+      properties:
+        message:
+          type: string

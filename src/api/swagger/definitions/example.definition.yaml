@@ -1,0 +1,7 @@
+definitions:
+  Greeting:
+    properties:
+      greet:
+        type: "string"
+      language:
+        type: "string"

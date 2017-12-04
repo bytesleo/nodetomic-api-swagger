@@ -1,0 +1,206 @@
+/api/user:
+  x-swagger-router-controller: user.controller
+# create
+  post:
+    operationId: create
+    tags:
+      - User
+    summary: Create a new user
+    description: Create a new user
+    parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            username:
+              type: "string"
+            password:
+              type: "string"
+            email:
+              type: "string"
+            name:
+              type: "string"
+            lastname:
+              type: "string"
+    responses:
+      201:
+        $ref: '#/responses/201'
+      500:
+        $ref: '#/responses/500'
+# update
+  put:
+    operationId: update
+    security:
+      - Bearer: []
+    tags:
+      - User
+    summary: Update the current user [Signed]
+    description: Update the current user [Signed]
+    parameters:
+      - in: body
+        name: body
+        schema:
+          type: array
+          $ref: "#/definitions/User"
+    responses:
+      200:
+        description: Success.
+        schema:
+          $ref: "#/definitions/User"
+      401:
+        $ref: '#/responses/401'
+      403:
+        $ref: '#/responses/403'
+      500:
+        $ref: '#/responses/500'
+
+/api/user/{username}:
+  x-swagger-router-controller: user.controller
+# read
+  get:
+    operationId: read
+    tags:
+      - User
+    summary: Get a user by "username" [Public]
+    description: Get a user by "username" [Public]
+    parameters:
+      - name: username
+        in: path
+        required: true
+        type: string
+        description: username
+    responses:
+      200:
+        description: Success.
+        schema:
+          $ref: "#/definitions/User"
+      401:
+        $ref: '#/responses/401'
+      403:
+        $ref: '#/responses/403'
+      404:
+        $ref: '#/responses/404'
+      500:
+        $ref: '#/responses/500'
+
+/api/user/me:
+  x-swagger-router-controller: user.controller
+# me
+  get:
+    operationId: me
+    security:
+      - Bearer: []
+    tags:
+      - User
+    summary: Get the current user [Signed]
+    description: Get the current user [Signed]
+    responses:
+      200:
+        description: Success.
+        schema:
+          $ref: "#/definitions/User"
+      401:
+        $ref: '#/responses/401'
+      403:
+        $ref: '#/responses/403'
+      404:
+        $ref: '#/responses/404'
+      500:
+        $ref: '#/responses/500'
+        
+# Administrator
+
+/api/admin/user:
+  x-swagger-router-controller: user.controller
+# list
+  get:
+    operationId: listAdmin
+    security:
+      - Bearer: []
+    x-security-scopes:
+      - admin
+    tags:
+      - User
+    summary: Get the list of users [Role admin]
+    description: Get the list of users [Role admin]
+    responses:
+      200:
+        description: Success.
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/User"
+      401:
+        $ref: '#/responses/401'
+      403:
+        $ref: '#/responses/403'
+      404:
+        $ref: '#/responses/404'
+      500:
+        $ref: '#/responses/500'
+
+/api/admin/user/{id}:
+  x-swagger-router-controller: user.controller
+# destroy
+  delete:
+    operationId: destroyAdmin
+    security:
+      - Bearer: []
+    x-security-scopes:
+      - admin
+    tags:
+      - User
+    summary: Remove a user by id [Role admin]
+    description: Remove a user by id [Role admin]
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+    responses:
+      200:
+        $ref: '#/responses/200'
+      401:
+        $ref: '#/responses/401'
+      403:
+        $ref: '#/responses/403'
+      404:
+        $ref: '#/responses/404'
+      500:
+        $ref: '#/responses/500'
+# update
+  put:
+    operationId: updateAdmin
+    security:
+      - Bearer: []
+    x-security-scopes:
+      - admin
+    tags:
+      - User
+    summary: Update a user by id [Role admin]
+    description: Update a user by id [Role admin]
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+      - in: body
+        name: body
+        schema:
+          type: array
+          $ref: "#/definitions/User"
+    responses:
+      200:
+        description: Success.
+        schema:
+          type: object
+          $ref: "#/definitions/User"
+      401:
+        $ref: '#/responses/401'
+      403:
+        $ref: '#/responses/403'
+      404:
+        $ref: '#/responses/404'
+      500:
+        $ref: '#/responses/500'
