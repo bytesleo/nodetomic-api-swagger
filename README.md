@@ -39,7 +39,7 @@
 
 **url:** <http://localhost:8000/docs> 
 
-<img src="https://i.imgur.com/m0eJiva.png">
+<img src="https://i.imgur.com/lnOKBF4.png">
 
 ### Horizontal scalability
 
@@ -123,7 +123,7 @@ yarn add nodetomic-api-swagger --ignore-engines
 
 **Description:** Run Lint and run Build in production mode and execute the authentication methods and basic requests.
 
-![Imgur](http://i.imgur.com/4cM4HXs.png)
+![Imgur](http://i.imgur.com/ouKpQg1.png)
 
 ### Lint
 
