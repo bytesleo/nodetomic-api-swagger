@@ -17,7 +17,7 @@ const app = express();
   // Socket.io
   await require('./lib/socket.io').connect();
 
-  // Passport
+  // Passports
   await require('./auth/services/router.service');
 
   // Swagger
@@ -32,7 +32,6 @@ const app = express();
     console.log(chalk.greenBright(`-------\nServer-> 
           mode: [${chalk.magentaBright(`${config.mode}`)}]
           url: ${chalk.blueBright(`http://${config.server.ip}:${config.server.port}`)}\n-------`));
-
     // Ready!
     console.log(chalk.black.bgGreenBright(`>>nodetomic-api-swagger ready!<<`));
   });
