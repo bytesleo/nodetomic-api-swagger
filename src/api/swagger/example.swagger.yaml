@@ -92,6 +92,7 @@
     tags:
       - Example
     summary: Delete a greeting by id
+    description: Delete a greeting by id
     parameters:
       - name: id
         description: id
