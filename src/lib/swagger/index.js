@@ -3,7 +3,7 @@ import swaggerTools from 'swagger-tools';
 import express from 'express';
 import { error } from 'express-easy-helper';
 import YAML from 'yamljs';
-import { mw } from '../../auth/services/mw';
+import { mw } from '../../auth/services/mw.service';
 import config from '../../config';
 
 export async function index(app) {
