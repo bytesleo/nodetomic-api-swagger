@@ -27,7 +27,7 @@ var app = new Vue({
         getGreetings: function getGreetings() {
             var _this = this;
 
-            this.$http.get(host + '/api/demo/greeting').then(function (response) {
+            this.$http.get(host + '/api/example/greeting').then(function (response) {
                 _this.greetings = response.body;
             }, function (response) {
                 alert('error :(');
@@ -36,16 +36,16 @@ var app = new Vue({
         addGreeting: function addGreeting() {
             var _this2 = this;
 
-            this.$http.post(host + '/api/demo/greeting', { greet: this.igreet, language: this.ilanguage }).then(function (response) {
+            this.$http.post(host + '/api/example/greeting', { greet: this.igreet, language: this.ilanguage }).then(function (response) {
                 _this2.igreet = _this2.ilanguage = '';
-                socket.emit('demo:add', response.body);
+                socket.emit('example:add', response.body);
             }, function (response) {
                 alert('error :(');
             });
         },
         deleteGreeting: function deleteGreeting(id) {
-            this.$http.delete(host + '/api/demo/greeting/' + id).then(function (response) {
-                socket.emit('demo:delete', { _id: id });
+            this.$http.delete(host + '/api/example/greeting/' + id).then(function (response) {
+                socket.emit('example:delete', { _id: id });
             }, function (response) {
                 alert('error :(');
             });
