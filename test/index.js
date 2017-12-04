@@ -10,39 +10,104 @@ describe('Server', () => {
   const host = `http://${config.server.ip}:${config.server.port}`;
 
   // Server Online
-  it('host should return 200', done => {
+  it('host should return 200 (Server Online)', done => {
     http.get(host, res => {
       assert.equal(200, res.statusCode);
       done();
     });
   });
 
-  // Get list from Hello
-  it('/api/hello/all should return 200', done => {
-    http.get(`${host}/api/demo/greeting`, res => {
+  /* Greeting */
+
+  // Create a new greeting
+  let idGreeting = '';
+  it('/api/example/greeting should return 201 (Create)', done => {
+
+    let options = {
+      method: 'POST',
+      url: `${host}/api/example/greeting`,
+      json: {
+        "greet": "Hi testing",
+        "language": "Testing"
+      }
+    };
+
+    request(options, function (error, res, body) {
+      if (error)
+        throw new Error(error);
+      idGreeting = body._id;
+      assert.equal(201, res.statusCode);
+      done();
+    });
+
+  });
+
+  // Get the list of greetings
+  it('/api/example/greeting should return 200 (All)', done => {
+    http.get(`${host}/api/example/greeting`, res => {
       assert.equal(200, res.statusCode);
       done();
     });
   });
 
-  // Require Authentication
-  it('/api/user/me should return 403', done => {
+  // Get a greeting for id
+  it('/api/example/greeting should return 200 (Read)', done => {
+    http.get(`${host}/api/example/greeting/${idGreeting}`, res => {
+      assert.equal(200, res.statusCode);
+      done();
+    });
+  });
+
+  // Update a greeting by id
+  it('/api/example/greeting should return 200 (Update)', done => {
+
+    let options = {
+      method: 'PUT',
+      url: `${host}/api/example/greeting/${idGreeting}`,
+      json: {
+        "greet": "Hi again testing",
+        "language": "Testing two"
+      }
+    };
+    request(options, function (error, res, body) {
+      if (error)
+        throw new Error(error);
+      assert.equal(200, res.statusCode);
+      done();
+    });
+
+  });
+
+  // Delete a greeting by id
+  it('/api/example/greeting should return 200 (Delete)', done => {
+    let options = {
+      method: 'DELETE',
+      url: `${host}/api/example/greeting/${idGreeting}`
+    };
+    request(options, function (error, res, body) {
+      if (error)
+        throw new Error(error);
+      assert.equal(200, res.statusCode);
+      done();
+    });
+  });
+
+  /* Authentication */
+
+  // Test Middleware
+  it('/api/user/me should return 403 (Forbidden)', done => {
     http.get(`${host}/api/user/me`, res => {
       assert.equal(403, res.statusCode);
       done();
     });
   });
 
-  // Duplicate username
-  it('/api/user should return 500', done => {
+  // Register with duplicate username
+  it('/api/user should return 500 (Duplicate username)', done => {
 
     let options = {
       method: 'POST',
       url: `${host}/api/user`,
-      headers: {
-        'cache-control': 'no-cache',
-        'content-type': 'application/json'
-      },
       json: {
         "username": "admin",
         "password": "123",
@@ -61,8 +126,9 @@ describe('Server', () => {
 
   });
 
-  // Authentication
-  it('/auth/local should return 200', done => {
+  // Login
+  let token = '';
+  it('/auth/local should return 200 (Login Success)', done => {
 
     let roles = ['admin', 'user'];
     let options = {
@@ -80,10 +146,47 @@ describe('Server', () => {
     request(options, function (error, res, body) {
       if (error)
         throw new Error(error);
+      token = JSON.parse(body).token;
       assert.equal(200, res.statusCode);
       done();
     });
 
+  });
+
+  // Send Token 
+  it('/api/user/me should return 200 (Test Token)', done => {
+
+    let options = {
+      method: 'GET',
+      url: `${host}/api/user/me`,
+      headers: {
+        'authorization': `${token}`
+      }
+    };
+    request(options, function (error, res, body) {
+      if (error)
+        throw new Error(error);
+      assert.equal(200, res.statusCode);
+      done();
+    });
+  });
+
+  // Logout
+  it('/auth/logout should return 200 (Logout)', done => {
+
+    let options = {
+      method: 'DELETE',
+      url: `${host}/auth/logout`,
+      headers: {
+        'authorization': `${token}`
+      }
+    };
+    request(options, function (error, res, body) {
+      if (error)
+        throw new Error(error);
+      assert.equal(200, res.statusCode);
+      done();
+    });
   });
 
 });
