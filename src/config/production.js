@@ -22,7 +22,7 @@ export default {
     }
   ],
   path: {
-    disabled: '/:url(api|auth|assets|lib)/*' // paths 404
+    disabled: '/:url(api|assets|auth|config|lib|views)/*' // paths 404
   },
   "socket.io": { // Socket.io
     port: 8001, // public port listen, change also in views/default/demo.js
