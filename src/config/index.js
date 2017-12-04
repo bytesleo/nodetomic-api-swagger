@@ -53,13 +53,13 @@ export default {
       path: '/api/models/seeds/',
       list: [
         {
-          file: 'user',
+          file: 'user.seed',
           schema: 'User',
           plant: 'once' //  once - always - never
         },
         {
-          file: 'demo',
-          schema: 'Demo',
+          file: 'example.seed',
+          schema: 'Example',
           plant: 'once'
         }
       ]
