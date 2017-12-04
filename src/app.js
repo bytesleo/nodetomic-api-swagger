@@ -18,7 +18,7 @@ const app = express();
   await require('./lib/socket.io').connect();
 
   // Passport
-  await require('./auth/services');
+  await require('./auth/services/router.service');
 
   // Swagger
   await require('./lib/swagger').index(app);
