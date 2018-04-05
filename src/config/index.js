@@ -47,7 +47,6 @@ export default {
     // uri: mongodb://username:password@host:port/database?options
     uri: `mongodb://localhost:27017/${DB_NAME}`,
     options: {
-      useMongoClient: true
     },
     seed: {
       path: '/api/models/seeds/',

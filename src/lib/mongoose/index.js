@@ -11,15 +11,16 @@ mongoose.Promise = global.Promise;
 export async function connect() {
 
     try {
-        let conn = await mongoose.connect(uri, opts);
+        const conn = await mongoose.connect(uri, opts);
+        const db = mongoose.connection;
 
         // Events
-        conn.on('disconnected', (err) => {
+        db.on('disconnected', (err) => {
             console.log(chalk.redBright(`MongoDB-> disconnected: ${uri}`));
             connect();
         });
 
-        conn.on('reconnected', (err) => {
+        db.on('reconnected', (err) => {
             console.log(chalk.greenBright(`MongoDB-> reconnected: ${uri}`));
         });
 
@@ -35,7 +36,7 @@ export async function connect() {
             }
         }
         // Plant seed
-        await require('./seed').default(conn, config);
+        await require('./seed').default(db, config);
 
     } catch (err) {
         console.log(chalk.redBright(`MongoDB-> connection error: ${uri} details->${err}`));

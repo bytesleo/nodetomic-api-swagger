@@ -5,7 +5,7 @@ import assert from 'assert';
 import request from 'request';
 import config from '../src/config';
 
-describe('Server', () => {
+describe('/', () => {
 
   const host = `http://${config.server.ip}:${config.server.port}`;
 
