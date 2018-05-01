@@ -1,5 +1,5 @@
 /auth/twitter:
-  x-swagger-router-controller: twitter
+  x-swagger-router-controller: twitter.controller
 # index
   get:
     operationId: index
@@ -17,7 +17,7 @@
         $ref: '#/responses/auth-500'
 
 /auth/twitter/callback:
-  x-swagger-router-controller: twitter
+  x-swagger-router-controller: twitter.controller
 # callback
   get:
     operationId: callback

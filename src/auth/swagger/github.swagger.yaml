@@ -1,5 +1,5 @@
 /auth/github:
-  x-swagger-router-controller: github
+  x-swagger-router-controller: github.controller
 # index
   get:
     operationId: index
@@ -17,7 +17,7 @@
         $ref: '#/responses/auth-500'
 
 /auth/github/callback:
-  x-swagger-router-controller: github
+  x-swagger-router-controller: github.controller
 # callback
   get:
     operationId: callback

@@ -39,6 +39,8 @@
 
 **url:** <http://localhost:8000/docs> 
 
+**OpenAPI Spec compatibility:** 2.0, 3.0
+
 <img src="https://i.imgur.com/lnOKBF4.png">
 
 ### Horizontal scalability

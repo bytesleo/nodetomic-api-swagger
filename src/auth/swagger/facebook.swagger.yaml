@@ -1,5 +1,5 @@
 /auth/facebook:
-  x-swagger-router-controller: facebook
+  x-swagger-router-controller: facebook.controller
 # index
   get:
     operationId: index
@@ -17,7 +17,7 @@
         $ref: '#/responses/auth-500'
 
 /auth/facebook/callback:
-  x-swagger-router-controller: facebook
+  x-swagger-router-controller: facebook.controller
 # callback
   get:
     operationId: callback

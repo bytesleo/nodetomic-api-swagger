@@ -1,5 +1,5 @@
 /auth/google:
-  x-swagger-router-controller: google
+  x-swagger-router-controller: google.controller
 # index
   get:
     operationId: index
@@ -17,7 +17,7 @@
         $ref: '#/responses/auth-500'
 
 /auth/google/callback:
-  x-swagger-router-controller: google
+  x-swagger-router-controller: google.controller
 # callback
   get:
     operationId: callback
