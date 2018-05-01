@@ -1,6 +1,6 @@
 {
     "name": "nodetomic-api-swagger",
-    "version": "3.4.4",
+    "version": "3.4.5",
     "description": "RESTful API Nodejs designed for horizontal scalability with support for cluster, based on Swagger, Redis, JWT, Passport, Socket.io, Express, MongoDB.",
     "main": "src/app.js",
     "repository": {
@@ -76,6 +76,7 @@
         "passport-twitter": "^1.0.4",
         "pm2": "^2.10.3",
         "redis-jwt": "^1.4.0",
+        "request": "^2.85.0",
         "role-calc": "^1.1.6",
         "serve-favicon": "^2.5.0",
         "socket.io": "^2.1.0",
