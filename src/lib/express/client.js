@@ -7,9 +7,7 @@ import config from '../../config';
 export default (app) => {
 
   // Paths 404 from url
-  app.get(config.path.disabled, (req, res) => {
-    res.status(404).sendFile(`${config.base}/views/404.html`);
-  });
+  app.get(config.path.disabled, (req, res) => res.status(404).sendFile(`${config.base}/views/404.html`));
 
   // Point static path to client by default
   let client = config.client;
@@ -29,16 +27,10 @@ export default (app) => {
   app.use(favicon(path.join(client, 'favicon.ico')));
 
   // Folder client
-  app.get('/*', (req, res) => {
-    res.sendFile(`${client}/${file}.html`);
-  });
+  app.get('/*', (req, res) => res.sendFile(`${client}/${file}.html`));
 
-
-  // Examples
-  
+  // Other examples
   // app.use('/bower_components', express.static(`${config.root}/bower_components`));
-  // app.get('/:url(admin)/*', (req, res) => {
-  //     res.sendFile(`${config.client2}/index.html`);
-  // });
+  // app.get('/:url(admin)/*', (req, res) => res.sendFile(`${config.client2}/index.html`));
 
 }
