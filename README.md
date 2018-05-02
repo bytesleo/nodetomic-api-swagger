@@ -12,7 +12,7 @@
 <a><img src="https://avatars2.githubusercontent.com/u/7658037?v=3&s=400" width="50"></a>
 <a><img src="https://chris.lu/upload/images/redis.png" width="50"></a>
 <a><img src="http://nightdeveloper.net/wp-content/uploads/2014/12/mongo_db.png" width="50"></a>
-<a><img src="http://code.runnable.com/images/provider-icons/icon-express-alt.svg" width="50"></a>
+<a><img src="http://mean.io/wp-content/themes/twentysixteen-child/images/express.png" width="50"></a>
 <a><img src="https://www.pubnub.com/wp-content/uploads/2014/07/SOCKETIOICON.gif" width="50"></a>
 <a><img src="https://pbs.twimg.com/profile_images/542039812916510720/Vw-JEJQA.png" width="50"></a>
 <a><img src="https://cms-assets.tutsplus.com/uploads/users/16/posts/24511/preview_image/babel-1.png" width="50"></a>
@@ -27,7 +27,7 @@
 <a><img src="https://seeklogo.com/images/E/eslint-logo-DDFB6EBCF6-seeklogo.com.png" width="50"></a>
 <a><img src="https://avatars3.githubusercontent.com/u/2824157?v=3&s=400" width="50"></a>
 <a><img src="https://i2.wp.com/community.nodemailer.com/wp-content/uploads/2015/10/n2-2.png?fit=422%2C360&ssl=1" width="50"></a>
-<a><img src="https://cdn.xebialabs.com/assets/files/plugins/travis-ci.jpg" width="50"></a>
+<a><img src="https://travis-ci.org/images/logos/TravisCI-Mascot-1.png" width="50"></a>
 
 ### Preview
 
@@ -75,9 +75,9 @@ View horizontal scaling representation image with nodetomic-api-swagger <a href=
 
 ## Requirements
 
-- [Nodejs](https://nodejs.org) >= **6.x.x** (Recommended **9.x.x**)
+- [Nodejs](https://nodejs.org) >= **6.x.x** (Recommended last version)
 - [MongoDB](https://www.mongodb.com)  >= **3.x.x**
-- [Redis](https://redis.io)  >= **3.x.x** (Recommended **4.x.x**)
+- [Redis](https://redis.io)  >= **3.x.x** (Recommended last version)
 
 ## Installation
 
