@@ -1,7 +1,7 @@
 import path from 'path';
 
 const APP_NAME = `your-app-name`;
-const DB_NAME = `your-app-name`;
+const DB_NAME = `your-database-name`;
 const CLIENT = '/client';
 
 export default {
