@@ -64,8 +64,8 @@ gulp.task('build-replace', () => {
     gulp.src(['client/**/*']).pipe(gulp.dest(dist_client));
   } else {
     // If not exists client folder, then copy default client
-    gulp.src(['src/views/default/favicon.ico', 'src/views/default/logo.svg']).pipe(gulp.dest(dist_client));
-    gulp.src(['src/views/default/client.html']).pipe(minify({ minify: true, collapseWhitespace: true, conservativeCollapse: true })).pipe(rename('index.html')).pipe(gulp.dest(dist_client));
+    gulp.src(['src/views/default/favicon.ico']).pipe(gulp.dest(dist_client));
+    gulp.src(['src/views/default/production.html']).pipe(minify({ minify: true, collapseWhitespace: true, conservativeCollapse: true })).pipe(rename('index.html')).pipe(gulp.dest(dist_client));
   }
   // Copy assets if not exists
   if (!fs.existsSync(`${dist_server}/assets`)) {
