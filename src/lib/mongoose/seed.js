@@ -19,7 +19,7 @@ export default (conn, config) => {
         switch (seed.plant) {
 
           case 'once':
-            model.count({}, (err, count) => {
+            model.countDocuments({}, (err, count) => {
               if (count <= 0) {
                 model.collection.drop(() => {
                   plant(model, data).then(() => i >= length - 1 ? resolve() : exec(i + 1));

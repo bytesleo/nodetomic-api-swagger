@@ -1,39 +1,35 @@
-import swaggerJSDoc from 'swagger-jsdoc';
-import config from '../../config';
+import swaggerJSDoc from "swagger-jsdoc";
+import config from "../../config";
 
 export default (app) => {
-
   // Initialize Swagger
   let options = {
     swaggerDefinition: {
       swagger: "2.0",
       info: config.swagger.info,
       basePath: `/`,
-      schemes: [
-        'http', 'https'
-      ],
+      schemes: ["http", "https"],
       securityDefinitions: {
         Bearer: {
-          type: 'apiKey',
-          name: 'Authorization',
-          in: 'header',
-          description: 'The following syntax must be used in the "Authorization" header xxxxxx.yyyyyyy.zzzzzz'
+          type: "apiKey",
+          name: "Authorization",
+          in: "header",
+          description:
+            'The following syntax must be used in the "Authorization" header xxxxxx.yyyyyyy.zzzzzz',
         },
         OAuth2: {
-          type: 'oauth2',
-          flow: 'implicit',
+          type: "oauth2",
+          flow: "implicit",
           authorizationUrl: `http://${config.server.ip}:${config.server.port}/auth/github`,
           // tokenUrl: `http://${config.server.ip}:${config.server.port}/#/token`,
-          description: 'Copy the generated token value in the url, and paste it into "Api key authorization"'
-        }
-      }
+          description:
+            'Copy the generated token value in the url, and paste it into "Api key authorization"',
+        },
+      },
     },
-    consumes: ['application/json'],
-    produces: ['application/json'],
-    apis: [
-      `${config.base}/auth/**/*.yaml`,
-      `${config.base}/api/**/*.yaml`
-    ]
+    consumes: ["application/json"],
+    produces: ["application/json"],
+    apis: [`${config.base}/auth/**/*.yaml`, `${config.base}/api/**/*.yaml`],
   };
 
   return swaggerJSDoc(options);
@@ -69,5 +65,4 @@ export default (app) => {
    *       500:
    *         description: Invalid status value
    */
-
 };
